@@ -3,95 +3,8 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Moon, Sun, Menu } from "lucide-react"
 import { useTheme } from "next-themes"
-
-export function WaitlistForm() {
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError("")
-    setSuccess(false)
-
-    const form = e.target
-    const data = new FormData(form)
-
-    // --- Simple front-end validation ---
-    if (!data.get("entry.1451818773")) {
-      setError("Name is required.")
-      return
-    }
-    if (!data.get("entry.605252520")) {
-      setError("Email is required.")
-      return
-    }
-    if (!data.get("entry.686287728")) {
-      setError("Company is required.")
-      return
-    }
-    if (!data.get("entry.1656959376")) {
-      setError("Job title is required.")
-      return
-    }
-
-    try {
-      await fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLScTGA_pVUQDd_FQ1nEOf3o3tK6_-9E5nMyxiV2qp3g2BmAaKg/formResponse",
-        {
-          method: "POST",
-          body: data,
-          mode: "no-cors", // Google Forms requires no-cors
-        },
-      )
-      setSuccess(true)
-      form.reset()
-    } catch (err) {
-      setError("Something went wrong. Please try again.")
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <Label htmlFor="name-header">Name*</Label>
-        <Input id="name-header" name="entry.1451818773" placeholder="Enter your name" className="mt-1" />
-      </div>
-
-      <div>
-        <Label htmlFor="email-header">Email*</Label>
-        <Input
-          id="email-header"
-          name="entry.605252520"
-          type="email"
-          placeholder="Enter your email address"
-          className="mt-1"
-        />
-      </div>
-
-      <div>
-        <Label htmlFor="company-header">Company name*</Label>
-        <Input id="company-header" name="entry.686287728" placeholder="Enter your company name" className="mt-1" />
-      </div>
-
-      <div>
-        <Label htmlFor="job-title-header">Job title*</Label>
-        <Input id="job-title-header" name="entry.1656959376" placeholder="Enter your job title" className="mt-1" />
-      </div>
-
-      {error && <p className="text-red-500">{error}</p>}
-      {success && <p className="text-green-500">✅ Thanks! You've been added to the waitlist.</p>}
-
-      <Button type="submit" className="w-full mt-6">
-        Join Waitlist
-      </Button>
-    </form>
-  )
-}
 
 export function ThemedImage({ lightSrc, darkSrc, alt, className }) {
   const { resolvedTheme } = useTheme()
@@ -121,12 +34,8 @@ export function ThemedIcons({ className }) {
   return resolvedTheme === "dark" ? <Sun className={className} /> : <Moon className={className} />
 }
 
-export default function HeuricaLanding() {
+export default function LandingPage() {
   const { theme, setTheme } = useTheme()
-
-  const [isHeaderWaitlistOpen, setIsHeaderWaitlistOpen] = useState(false)
-  const [isHeroWaitlistOpen, setIsHeroWaitlistOpen] = useState(false)
-  const [isCTAWaitlistOpen, setIsCTAWaitlistOpen] = useState(false)
 
   const [isMounted, setIsMounted] = useState(false)
 
@@ -134,78 +43,26 @@ export default function HeuricaLanding() {
     setIsMounted(true)
   }, [])
 
-  const handleDialogOpenChange = (open: boolean, setOpen: (open: boolean) => void) => {
-    if (!open) {
-      // Prevent any scroll restoration when closing
-      setTimeout(() => {
-        setOpen(false)
-      }, 0)
-    } else {
-      setOpen(true)
-    }
-  }
-
-  // Common dialog content component to avoid duplication
-  const WaitlistDialogContent = () => (
-    <DialogContent className="sm:max-w-md">
-      <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-center mb-2">Scale with Heurica.</DialogTitle>
-      </DialogHeader>
-      <form className="space-y-4">
-        <div>
-          <Label htmlFor="name">Name*</Label>
-          <Input id="name" placeholder="Enter your name" className="mt-1" />
-        </div>
-        <div>
-          <Label htmlFor="email">Email*</Label>
-          <Input id="email" type="email" placeholder="Enter your email address" className="mt-1" />
-        </div>
-        <div>
-          <Label htmlFor="company">Company name</Label>
-          <Input id="company" placeholder="Enter your company name" className="mt-1" />
-        </div>
-        <div>
-          <Label htmlFor="job-title">Job title</Label>
-          <Input id="job-title" placeholder="Enter your job title" className="mt-1" />
-        </div>
-        <Button type="submit" className="w-full mt-6">
-          Join Waitlist
-        </Button>
-      </form>
-    </DialogContent>
-  )
-
   // Don't render until mounted to prevent hydration issues
   if (!isMounted) {
     return null
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="h-screen bg-background text-foreground flex flex-col overflow-hidden">
       {/* Header */}
-      <header className="border-b border-border/40 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
+      <header className="border-b border-border/40 backdrop-blur-sm z-50 bg-background/80 flex-shrink-0">
         <div className="container mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold">AI UX Copilot</span>
+            <span className="text-lg font-semibold">Heurica, AI UX Copilot for SaaS </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <Dialog
-              open={isHeaderWaitlistOpen}
-              onOpenChange={(open) => handleDialogOpenChange(open, setIsHeaderWaitlistOpen)}
-            >
-              <DialogTrigger asChild>
-                <Button size="sm" className="hidden md:inline-flex px-4 py-2 text-sm font-semibold">
-                  Join Waitlist
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold text-center mb-2">Scale with Heurica.</DialogTitle>
-                </DialogHeader>
-                <WaitlistForm />
-              </DialogContent>
-            </Dialog>
+            <Button size="sm" className="hidden md:inline-flex px-4 py-2 text-sm font-semibold" asChild>
+              <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
+                Join Waitlist
+              </a>
+            </Button>
 
             <Button variant="ghost" size="sm" className="hidden">
               See Example Audit
@@ -227,14 +84,14 @@ export default function HeuricaLanding() {
       </header>
 
       {/* Hero Section - Keep center-aligned */}
-      <section className="min-h-screen flex items-center justify-center px-6 lg:px-12">
+      <section className="flex-1 flex items-center justify-center px-6 lg:px-12">
         <div className="container mx-auto text-center max-w-4xl">
-          <div className="mb-6 inline-block">
+          <div className="mb-6 inline-block hidden">
             <div
-              className="text-sm px-3 py-1.5 rounded-full"
-              style={{ backgroundColor: "var(--waitlist-bg)", color: "var(--waitlist-bubble)" }}
+              className="text-sm px-3 py-1.5 rounded-full text-muted-foreground"
+              style={{ backgroundColor: "var(--waitlist-bg)" }}
             >
-              Get early access — join the waitlist now
+              Get early access now
             </div>
           </div>
 
@@ -267,30 +124,20 @@ export default function HeuricaLanding() {
             </span>
             <span> UX. </span>
             <br className="hidden md:block" />
-            Scale with principles.
+            Make your SaaS <br className="hidden md:block" />
+            look modern again.
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-            Your lean AI UX Designer. Scale smarter - Systematic UX design, not just vibes.
+            <span className="block">Ship good UX upstream. A/B test less downstream.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Dialog
-              open={isHeroWaitlistOpen}
-              onOpenChange={(open) => handleDialogOpenChange(open, setIsHeroWaitlistOpen)}
-            >
-              <DialogTrigger asChild>
-                <Button size="lg" className="px-8 py-3 text-base font-semibold">
-                  Join Waitlist
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold text-center mb-2">Scale with Heurica.</DialogTitle>
-                </DialogHeader>
-                <WaitlistForm />
-              </DialogContent>
-            </Dialog>
+            <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
+              <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
+                Join Waitlist
+              </a>
+            </Button>
 
             <Button variant="outline" size="lg" className="hidden px-8 py-3 text-base bg-transparent">
               See Example Audit
@@ -785,22 +632,11 @@ export default function HeuricaLanding() {
             </h2>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Dialog
-                open={isCTAWaitlistOpen}
-                onOpenChange={(open) => handleDialogOpenChange(open, setIsCTAWaitlistOpen)}
-              >
-                <DialogTrigger asChild>
-                  <Button size="lg" className="px-8 py-3 text-base font-medium">
-                    Join Waitlist
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold text-center mb-2">Scale with Heurica.</DialogTitle>
-                  </DialogHeader>
-                  <WaitlistForm />
-                </DialogContent>
-              </Dialog>
+              <Button size="lg" className="px-8 py-3 text-base font-medium" asChild>
+                <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
+                  Join Waitlist
+                </a>
+              </Button>
 
               <Button variant="outline" size="lg" className="px-8 py-3 text-base bg-transparent">
                 See Example Audit
@@ -811,14 +647,14 @@ export default function HeuricaLanding() {
       </div>
 
       {/* Footer */}
-      <footer className="py-8 px-6 lg:px-12 border-t border-border/40">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-muted-foreground">© 2025 Nuaroom, Inc.</div>
+      <footer className="border-t border-border/40 flex-shrink-0">
+        <div className="container mx-auto px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-sm text-muted-foreground">© 2025 Heurica</div>
           <a
-            href="mailto:contact@nuaroom.com?subject=Inquiry%20to%20Heurica%20Team"
+            href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
             className="text-sm text-muted-foreground"
           >
-            contact@nuaroom.com
+            yunbin@heurica.co
           </a>
         </div>
       </footer>
