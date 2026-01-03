@@ -54,7 +54,7 @@ export default function LandingPage() {
       <header className="border-b border-border/40 backdrop-blur-sm z-50 bg-background/80 flex-shrink-0">
         <div className="container mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold">Heurica, AI UX Copilot for SaaS </span>
+            <span className="text-lg font-semibold">Heurica</span>
           </div>
 
           <div className="flex items-center gap-4">
