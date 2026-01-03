@@ -60,7 +60,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <Button size="sm" className="hidden md:inline-flex px-4 py-2 text-sm font-semibold" asChild>
               <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
-                Join Waitlist
+                Request for Demo
               </a>
             </Button>
 
@@ -135,7 +135,7 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
               <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
-                Join Waitlist
+                Request for Demo
               </a>
             </Button>
 
@@ -634,7 +634,7 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" className="px-8 py-3 text-base font-medium" asChild>
                 <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
-                  Join Waitlist
+                  Request for Demo
                 </a>
               </Button>
 
