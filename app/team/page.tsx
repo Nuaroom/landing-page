@@ -78,7 +78,7 @@ export default function TeamPage() {
           <div className="max-w-xl mx-auto text-center">
             <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-gold)' }}>Our Team</p>
             <h1 className="text-4xl md:text-5xl font-bold mb-8">
-              Building the <span style={{ color: 'var(--accent-gold)' }}>UX Future</span>
+              Building the UX Future
             </h1>
             <div className="border border-border/30 rounded-2xl bg-card/50 p-8 md:p-10">
               <div className="flex flex-col items-center">

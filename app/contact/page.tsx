@@ -99,7 +99,7 @@ export default function ContactPage() {
             <div className="flex flex-col">
               <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-gold)' }}>Contact</p>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                Book a <span style={{ color: 'var(--accent-gold)' }}>Demo</span>
+                Book a Demo
               </h1>
               <p className="text-muted-foreground mb-8 text-base md:text-lg">
                 See how Heurica turns PRDs into front-end code with best-practice UX baked in.
