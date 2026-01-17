@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Moon, Sun, Menu } from "lucide-react"
+import Link from "next/link"
 import { useTheme } from "next-themes"
 
 export function ThemedImage({ lightSrc, darkSrc, alt, className }) {
@@ -43,25 +44,86 @@ export default function LandingPage() {
     setIsMounted(true)
   }, [])
 
+  // Scroll animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    const elements = document.querySelectorAll('.animate-on-scroll')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [isMounted])
+
   // Don't render until mounted to prevent hydration issues
   if (!isMounted) {
     return null
   }
 
   return (
-    <div className="h-screen bg-background text-foreground flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Header */}
-      <header className="border-b border-border/40 backdrop-blur-sm z-50 bg-background/80 flex-shrink-0">
+      <header className="sticky top-0 border-b border-border/20 backdrop-blur-sm z-50 bg-background/95 flex-shrink-0">
         <div className="container mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold">Heurica</span>
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="flex-shrink-0"
+            >
+              {/* Main circle outline */}
+              <circle
+                cx="50"
+                cy="50"
+                r="38"
+                stroke="var(--brand-color)"
+                strokeWidth="5"
+                fill="none"
+              />
+              {/* Diagonal line */}
+              <line
+                x1="20"
+                y1="80"
+                x2="85"
+                y2="15"
+                stroke="var(--brand-color)"
+                strokeWidth="5"
+              />
+              {/* Small filled circle (pin) */}
+              <circle
+                cx="85"
+                cy="15"
+                r="8"
+                fill="var(--brand-color)"
+              />
+            </svg>
+            <span className="text-lg font-semibold" style={{ color: 'var(--brand-color)' }}>Heurica</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Button size="sm" className="hidden md:inline-flex px-4 py-2 text-sm font-semibold" asChild>
-              <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
-                Request for Demo
-              </a>
+          <div className="flex items-center gap-6">
+            <nav className="hidden md:flex items-center gap-6">
+              <Link href="/team" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Team
+              </Link>
+              <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                Contact
+              </Link>
+            </nav>
+            <Button size="sm" className="px-4 py-2 text-sm font-semibold" asChild>
+              <Link href="/contact">
+                Book a Demo
+              </Link>
             </Button>
 
             <Button variant="ghost" size="sm" className="hidden">
@@ -84,64 +146,110 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section - Keep center-aligned */}
-      <section className="flex-1 flex items-center justify-center px-6 lg:px-12">
-        <div className="container mx-auto text-center max-w-4xl">
-          <div className="mb-6 inline-block hidden">
-            <div
-              className="text-sm px-3 py-1.5 rounded-full text-muted-foreground"
-              style={{ backgroundColor: "var(--waitlist-bg)" }}
-            >
-              Get early access now
+      <section className="min-h-[calc(100vh-73px)] flex flex-col">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="container mx-auto px-6 lg:px-12 text-center max-w-4xl">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight relative animate-hero-title">
+              Can AI ship Enterprise-ready UX?
+            </h1>
+
+            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty animate-hero-subtitle">
+              Heurica turns PRDs into front-end code — with best-practice UX baked in.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-hero-button">
+              <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
+                <Link href="/contact">
+                  Book a Demo
+                </Link>
+              </Button>
+
+              <Button variant="outline" size="lg" className="hidden px-8 py-3 text-base bg-transparent">
+                See Example Audit
+              </Button>
             </div>
           </div>
+        </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight relative">
-            <span>Don't </span>
-            <span className="relative inline-block">
-              <div
-                className="absolute inset-0 shadow-lg"
-                style={{
-                  background: `
-                    repeating-linear-gradient(
-                      0deg,
-                      var(--duct-tape-color-1) 0px,
-                      var(--duct-tape-color-1) 2px,
-                      var(--duct-tape-color-2) 2px,
-                      var(--duct-tape-color-2) 4px,
-                      var(--duct-tape-color-1) 4px,
-                      var(--duct-tape-color-1) 6px,
-                      var(--duct-tape-color-2) 6px,
-                      var(--duct-tape-color-2) 8px
-                    )
-                  `,
-                  clipPath: "polygon(2% 15%, 98% 8%, 96% 85%, 4% 92%)",
-                  transform: "rotate(-0.5deg) scale(1.1)",
-                  zIndex: 1,
-                  opacity: "var(--duct-tape-opacity)",
-                }}
-              ></div>
-              <span className="relative z-10">duct tape</span>
-            </span>
-            <span> UX. </span>
-            <br className="hidden md:block" />
-            Make your SaaS <br className="hidden md:block" />
-            look modern again.
-          </h1>
+        <div className="text-center pb-16 animate-hero-footer">
+          <p className="text-xs font-medium uppercase tracking-wider mb-2" style={{ color: 'var(--accent-gold)' }}>Built for</p>
+          <p className="text-sm text-muted-foreground">Enterprise teams in security, healthcare, fintech, and more.</p>
+        </div>
+      </section>
 
-          <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-            <span className="block">Ship good UX upstream. A/B test less downstream.</span>
-          </p>
+      {/* Problem Section */}
+      <section className="py-20 border-t border-border/20">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="mb-12 animate-on-scroll">
+            <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-pink)' }}>The Problem</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-balance">
+              Complex workflows,<br className="hidden md:block" /> Confusing UX.
+            </h2>
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
-              <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
-                Request for Demo
-              </a>
-            </Button>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-1">
+              <CardContent className="p-5">
+                <h3 className="text-lg font-semibold mb-2">Onboarding Takes Forever</h3>
+                <p className="text-sm text-muted-foreground">18 months to adopt. With hand-holding.</p>
+              </CardContent>
+            </Card>
 
-            <Button variant="outline" size="lg" className="hidden px-8 py-3 text-base bg-transparent">
-              See Example Audit
-            </Button>
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-2">
+              <CardContent className="p-5">
+                <h3 className="text-lg font-semibold mb-2">Users Hate Your Product</h3>
+                <p className="text-sm text-muted-foreground">They're not stupid. Your UX is.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-3">
+              <CardContent className="p-5">
+                <h3 className="text-lg font-semibold mb-2">You're Wasting User's Time</h3>
+                <p className="text-sm text-muted-foreground">2+ hours per task completion. They won't come back.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution Section */}
+      <section className="py-20 bg-muted/10">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="mb-12 animate-on-scroll">
+            <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-gold)' }}>The Solution</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-balance">
+              PRD in. Dev-ready UI out. <br className="hidden md:block" />Best-practice UX baked in.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-4">
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-1">
+              <CardContent className="p-5 h-full flex flex-col">
+                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Finally Ship On Time</h3>
+                <p className="text-sm text-muted-foreground">No more 'it's in design review.' Just ship.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-2">
+              <CardContent className="p-5 h-full flex flex-col">
+                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Users Actually Get It</h3>
+                <p className="text-sm text-muted-foreground">No training. No support calls. They just get it.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-3">
+              <CardContent className="p-5 h-full flex flex-col">
+                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Onboarding That Actually Works</h3>
+                <p className="text-sm text-muted-foreground">Hours, not months. No hand-holding required.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-4">
+              <CardContent className="p-5 h-full flex flex-col">
+                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Demo On Day 1</h3>
+                <p className="text-sm text-muted-foreground">Your sales team stops apologizing. Starts closing.</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -634,7 +742,7 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" className="px-8 py-3 text-base font-medium" asChild>
                 <a href="https://tally.so/r/44a68o" target="_blank" rel="noopener noreferrer">
-                  Request for Demo
+                  Join Waitlist
                 </a>
               </Button>
 
@@ -646,8 +754,22 @@ export default function LandingPage() {
         </section>
       </div>
 
+      {/* CTA Section */}
+      <section className="py-20 border-t border-border/20">
+        <div className="container mx-auto px-6 lg:px-12 text-center animate-on-scroll">
+          <p className="text-sm text-muted-foreground mb-6">
+            You wrote the spec. Ship it already.
+          </p>
+          <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
+            <Link href="/contact">
+              Book a Demo
+            </Link>
+          </Button>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t border-border/40 flex-shrink-0">
+      <footer className="border-t border-border/20 flex-shrink-0">
         <div className="container mx-auto px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-sm text-muted-foreground">© 2025 Heurica</div>
           <a

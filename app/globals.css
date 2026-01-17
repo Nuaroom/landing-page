@@ -4,42 +4,47 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --background: #F4F4F0;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #1A1A1A;
+  --primary-foreground: #F4F4F0;
+  --secondary: #EAEAE6;
+  --secondary-foreground: #1A1A1A;
+  --muted: #EAEAE6;
+  --muted-foreground: #6B6B6B;
+  --accent: #EAEAE6;
+  --accent-foreground: #1A1A1A;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #D0D0D0;
+  --input: #D0D0D0;
+  --ring: #6B6B6B;
+  --chart-1: #E86A42;
+  --chart-2: #00A896;
+  --chart-3: #1A1A1A;
+  --chart-4: #F6E05E;
+  --chart-5: #7C4DFF;
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #EAEAE6;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #1A1A1A;
+  --sidebar-primary-foreground: #F4F4F0;
+  --sidebar-accent: #E0E0DC;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #D0D0D0;
+  --sidebar-ring: #6B6B6B;
   --duct-tape-color-1: #f5f1e8;
   --duct-tape-color-2: #ede7d8;
   --duct-tape-opacity: 0.95;
+  --accent-gold: #CA8A04;
+  --accent-gold-muted: rgba(202, 138, 4, 0.15);
+  --accent-blue: #2563EB;
+  --accent-pink: #DE425E;
+  --brand-color: #B9841E;
   --mockup-bg: #f9fafb; /* gray-50 equivalent */
   --mockup-border: #e5e7eb; /* gray-200 equivalent */
   --mockup-chrome: #9ca3af; /* gray-400 equivalent */
@@ -64,28 +69,33 @@
   --waitlist-bubble: #718096;
 }
 
-/* Added dark mode color overrides with specific colors requested */
+/* Dark mode colors matching Heurica demo */
 .dark {
-  --background: #141414;
-  --foreground: #fafaf8;
-  --card: #202020;
-  --card-foreground: #fafaf8;
-  --popover: #202020;
-  --popover-foreground: #fafaf8;
-  --primary: #fafaf8;
-  --primary-foreground: #141414;
-  --secondary: #343434;
-  --secondary-foreground: #fafaf8;
-  --muted: #343434;
-  --muted-foreground: #979797;
-  --accent: #343434;
-  --accent-foreground: #fafaf8;
-  --border: #525252;
-  --input: #343434;
-  --ring: #979797;
+  --background: #1C1C1C;
+  --foreground: #E2E8F0;
+  --card: #262626;
+  --card-foreground: #E2E8F0;
+  --popover: #262626;
+  --popover-foreground: #E2E8F0;
+  --primary: #E2E8F0;
+  --primary-foreground: #1C1C1C;
+  --secondary: #2D2D2D;
+  --secondary-foreground: #E2E8F0;
+  --muted: #2D2D2D;
+  --muted-foreground: #A0A0A0;
+  --accent: #2D2D2D;
+  --accent-foreground: #E2E8F0;
+  --border: #404040;
+  --input: #2D2D2D;
+  --ring: #A0A0A0;
   --duct-tape-color-1: #5B5814;
   --duct-tape-color-2: #37350B;
   --duct-tape-opacity: 0.80;
+  --accent-gold: #F6E05E;
+  --accent-gold-muted: rgba(246, 224, 94, 0.12);
+  --accent-blue: #60A5FA;
+  --accent-pink: #EF5E79;
+  --brand-color: #EFDF5E;
   --mockup-bg: #111827; /* gray-900 equivalent */
   --mockup-border: #374151; /* gray-700 equivalent */
   --mockup-chrome: #9ca3af; /* gray-400 equivalent */
@@ -121,7 +131,7 @@
   --color-gray-300: #525252;
   --color-gray-400: #343434;
   --color-gray-500: #202020;
-  --color-white: #fafaf8;
+  --color-white: #F2F2EE;
   --color-black: #141414;
 
   --color-background: var(--background);
@@ -174,4 +184,63 @@
 /* Custom shadow for tagline */
 .tagline-shadow {
   box-shadow: 0 4px 20px rgba(97, 97, 97, 0.1);
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.animate-on-scroll-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.animate-on-scroll-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.animate-on-scroll-delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* Hero entrance animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-title {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-hero-subtitle {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.animate-hero-button {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.animate-hero-footer {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
