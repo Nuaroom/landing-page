@@ -72,19 +72,19 @@
 /* Dark mode colors matching Heurica demo */
 .dark {
   --background: #1C1C1C;
-  --foreground: #E2E8F0;
+  --foreground: #F5F0E1;
   --card: #262626;
-  --card-foreground: #E2E8F0;
+  --card-foreground: #F5F0E1;
   --popover: #262626;
-  --popover-foreground: #E2E8F0;
-  --primary: #E2E8F0;
+  --popover-foreground: #F5F0E1;
+  --primary: #F5F0E1;
   --primary-foreground: #1C1C1C;
   --secondary: #2D2D2D;
-  --secondary-foreground: #E2E8F0;
+  --secondary-foreground: #F5F0E1;
   --muted: #2D2D2D;
-  --muted-foreground: #A0A0A0;
+  --muted-foreground: #B8B0A0;
   --accent: #2D2D2D;
-  --accent-foreground: #E2E8F0;
+  --accent-foreground: #F5F0E1;
   --border: #404040;
   --input: #2D2D2D;
   --ring: #A0A0A0;
@@ -243,4 +243,15 @@
 .animate-hero-footer {
   opacity: 0;
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+/* Selection/highlight colors */
+::selection {
+  background-color: #ECE4D0;
+  color: #1A1A1A;
+}
+
+.dark ::selection {
+  background-color: #2F2E20;
+  color: #F5F0E1;
 }
