@@ -8,7 +8,7 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Heurica — AI-powered UX for Enterprise",
+  title: "AI-powered UX for Enterprise",
   description: "Heurica turns PRDs into front-end code with best-practice UX baked in.",
   generator: "v0.app",
   icons: {
