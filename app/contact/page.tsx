@@ -55,27 +55,14 @@ export default function ContactPage() {
       {/* Header */}
       <header className="sticky top-0 border-b border-border/20 backdrop-blur-sm z-50 bg-background/95 flex-shrink-0">
         <div className="container mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-shrink-0"
-            >
-              <text
-                x="50"
-                y="76"
-                fontFamily="Georgia, 'Times New Roman', serif"
-                fontSize="80"
-                fontWeight="400"
-                fill="var(--accent-gold)"
-                textAnchor="middle"
-              >H</text>
-            </svg>
-            <span className="text-lg font-semibold" style={{ color: 'var(--brand-color)' }}>Heurica</span>
-          </Link>
+          <Link
+            href="/"
+            className="text-xl font-medium"
+            style={{
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              color: 'var(--accent-gold)'
+            }}
+          >Heurica</Link>
 
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex items-center gap-6">
