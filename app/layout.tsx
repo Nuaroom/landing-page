@@ -8,9 +8,12 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Heurica — Cursor for UX",
-  description: "UX Designer AI agent that scales your design with human-centered, UX best practices.",
+  title: "Heurica — AI-powered UX for Enterprise",
+  description: "Heurica turns PRDs into front-end code with best-practice UX baked in.",
   generator: "v0.app",
+  icons: {
+    icon: "/icon.svg",
+  },
 }
 
 export default function RootLayout({
