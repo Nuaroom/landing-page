@@ -82,31 +82,15 @@ export default function LandingPage() {
               xmlns="http://www.w3.org/2000/svg"
               className="flex-shrink-0"
             >
-              {/* Main circle outline */}
-              <circle
-                cx="50"
-                cy="50"
-                r="38"
-                stroke="var(--brand-color)"
-                strokeWidth="5"
-                fill="none"
-              />
-              {/* Diagonal line */}
-              <line
-                x1="20"
-                y1="80"
-                x2="85"
-                y2="15"
-                stroke="var(--brand-color)"
-                strokeWidth="5"
-              />
-              {/* Small filled circle (pin) */}
-              <circle
-                cx="85"
-                cy="15"
-                r="8"
-                fill="var(--brand-color)"
-              />
+              <text
+                x="50"
+                y="76"
+                fontFamily="Georgia, 'Times New Roman', serif"
+                fontSize="80"
+                fontWeight="400"
+                fill="var(--accent-gold)"
+                textAnchor="middle"
+              >H</text>
             </svg>
             <span className="text-lg font-semibold" style={{ color: 'var(--brand-color)' }}>Heurica</span>
           </div>
