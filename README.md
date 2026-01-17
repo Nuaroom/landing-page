@@ -1,1 +1,1 @@
-Nuaroom Landing Page
+Heurica Landing Page
