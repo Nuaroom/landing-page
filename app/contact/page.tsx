@@ -97,16 +97,16 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
             {/* Left Column - Info */}
             <div className="flex flex-col">
-              <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-gold)' }}>Contact</p>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              <p className="text-xs font-medium uppercase tracking-wider mb-3 animate-hero-title" style={{ color: 'var(--accent-gold)' }}>Contact</p>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-hero-subtitle">
                 Book a Demo
               </h1>
-              <p className="text-muted-foreground mb-8 text-base md:text-lg">
+              <p className="text-muted-foreground mb-8 text-base md:text-lg animate-hero-button">
                 See how Heurica turns PRDs into front-end code with best-practice UX baked in.
               </p>
 
               {/* What to Expect Card */}
-              <div className="border border-border/30 rounded-xl bg-card/50 p-6 mb-6">
+              <div className="border border-border/30 rounded-xl bg-card/50 p-6 mb-6 animate-hero-footer">
                 <h2 className="font-semibold mb-5">What to Expect</h2>
                 <div className="space-y-4">
                   {expectations.map((item, index) => (
@@ -151,7 +151,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right Column - Calendar Embed */}
-            <div className="border border-border/30 rounded-xl bg-card/50 overflow-hidden">
+            <div className="border border-border/30 rounded-xl bg-card/50 overflow-hidden animate-hero-card">
               <iframe
                 src="https://calendar.notion.so/meet/yunbin-ujrj02gip/akgy4ok5"
                 width="100%"

@@ -76,11 +76,11 @@ export default function TeamPage() {
       <main className="flex-1 py-20">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="max-w-xl mx-auto text-center">
-            <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-gold)' }}>Our Team</p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-8">
+            <p className="text-xs font-medium uppercase tracking-wider mb-3 animate-hero-title" style={{ color: 'var(--accent-gold)' }}>Our Team</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-8 animate-hero-subtitle">
               Building the UX Future
             </h1>
-            <div className="border border-border/30 rounded-2xl bg-card/50 p-8 md:p-10">
+            <div className="border border-border/30 rounded-2xl bg-card/50 p-8 md:p-10 animate-hero-button">
               <div className="flex flex-col items-center">
                 <img
                   src="/yunbin-profile.jpg"
