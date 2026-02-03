@@ -86,18 +86,18 @@ export function Header() {
         >Heurica</Link>
 
         <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          <Link
-            href={isHomePage ? "#solutions" : "/#solutions"}
+          <a
+            href="/#solutions"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             Solutions
-          </Link>
-          <Link
-            href={isHomePage ? "#how-it-works" : "/#how-it-works"}
+          </a>
+          <a
+            href="/#how-it-works"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             How It Works
-          </Link>
+          </a>
           <Link
             href="/perspectives"
             className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}

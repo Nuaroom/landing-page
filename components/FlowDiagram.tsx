@@ -14,8 +14,8 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
   useEffect(() => setMounted(true), [])
 
   const filterStyle = !mounted || resolvedTheme === "light"
-    ? 'saturate(0.2) brightness(1.05) sepia(0.15)'
-    : 'saturate(0.6) brightness(0.6)'
+    ? 'saturate(0.15) brightness(1.1) sepia(0.08)'
+    : 'saturate(0.4) brightness(0.7)'
 
   const arrowColor = !mounted || resolvedTheme === "light" ? "#1A1A1A" : "white"
 

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 50:1 Problem — Heurica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #0C0B0F;
+    --color-surface: #141318;
+    --color-surface-raised: #1C1B22;
+    --color-border: #2A2930;
+    --color-text-primary: #E8E6ED;
+    --color-text-secondary: #9B99A3;
+    --color-text-muted: #6B6974;
+    --color-accent: #D4A853;
+    --color-accent-dim: #A38240;
+    --color-highlight: #F0E6CC;
+    --color-red-soft: #C45C5C;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'DM Sans', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* --- NAV BAR --- */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12, 11, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .nav-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* --- HERO --- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 840px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-dim);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-meta::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--color-accent-dim);
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    max-width: 720px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: 2rem;
+  }
+
+  .hero-reading {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* --- ARTICLE BODY --- */
+  .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .article p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.6rem;
+    font-weight: 350;
+  }
+
+  .article p strong {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  /* Section breaks */
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 4rem 0 3rem;
+  }
+
+  .section-break .num {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--color-accent-dim);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .section-break .line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .article h2 {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  /* Pullquote */
+  .pullquote {
+    margin: 3rem 0;
+    padding: 2rem 0 2rem 1.8rem;
+    border-left: 2px solid var(--color-accent-dim);
+    position: relative;
+  }
+
+  .pullquote p {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--color-highlight);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Callout box */
+  .callout {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.6rem 1.8rem;
+    margin: 2.5rem 0;
+  }
+
+  .callout-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-dim);
+    margin-bottom: 0.8rem;
+  }
+
+  .callout p {
+    font-size: 0.92rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  .callout p strong {
+    color: var(--color-text-primary);
+  }
+
+  /* Inline emphasis */
+  .article .highlight-line {
+    color: var(--color-text-primary);
+    font-weight: 450;
+  }
+
+  /* The "ratio visual" */
+  .ratio-visual {
+    margin: 3rem 0;
+    padding: 2.5rem 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .ratio-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .ratio-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    max-width: 420px;
+    margin: 0 auto 1rem;
+  }
+
+  .ratio-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  .ratio-dot.engineer {
+    background: var(--color-border);
+    border-color: var(--color-text-muted);
+  }
+
+  .ratio-dot.designer {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 8px rgba(212, 168, 83, 0.3);
+  }
+
+  .ratio-caption {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .ratio-caption span.eng-label {
+    color: var(--color-text-secondary);
+  }
+
+  .ratio-caption span.des-label {
+    color: var(--color-accent);
+  }
+
+  /* Scenario blocks */
+  .scenario {
+    margin: 2rem 0;
+    padding: 1.4rem 1.6rem;
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-red-soft);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .scenario-domain {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-red-soft);
+    margin-bottom: 0.5rem;
+  }
+
+  .scenario p {
+    font-size: 0.92rem;
+    margin-bottom: 0;
+    color: var(--color-text-secondary);
+  }
+
+  /* End CTA */
+  .end-section {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .end-section p {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .end-section .author-info {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+  }
+
+  .end-section .author-info a {
+    color: var(--color-accent-dim);
+    text-decoration: none;
+  }
+
+  .end-section .author-info a:hover {
+    color: var(--color-accent);
+  }
+
+  /* --- ANIMATIONS --- */
+  .hero-meta,
+  .hero h1,
+  .hero-subtitle,
+  .hero-divider,
+  .hero-reading {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-meta { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero-subtitle { animation-delay: 0.4s; }
+  .hero-divider { animation-delay: 0.55s; }
+  .hero-reading { animation-delay: 0.6s; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    html { font-size: 16px; }
+    .hero { padding: 7rem 1.4rem 3rem; }
+    .article { padding: 0 1.4rem 4rem; }
+    .pullquote { padding-left: 1.2rem; }
+    .callout { padding: 1.2rem 1.4rem; }
+    .ratio-visual { padding: 2rem 1.2rem; }
+    .scenario { padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-logo">Heurica</div>
+  <div class="nav-label">Research &amp; Perspectives</div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-meta">Thought Piece — 2026</div>
+  <h1>The 50:1 Problem: Engineer-Heavy Teams Don't Ship Bad UX — They Ship <em>No UX</em></h1>
+  <p class="hero-subtitle">
+    The best-practice ratio is 5 engineers per designer. The reality at most B2B companies is 50:1. Some run at 500:1. That gap doesn't produce ugly interfaces. It produces interfaces where no one made a design decision at all.
+  </p>
+  <div class="hero-divider"></div>
+  <div class="hero-reading">8 min read</div>
+</header>
+
+<!-- Article Body -->
+<article class="article">
+
+  <!-- Section 1 -->
+  <div class="section-break fade-in">
+    <span class="num">01</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">SAP survived. That's not a compliment.</h2>
+
+  <p class="fade-in">
+    SAP has run on roughly the same interface paradigm for three decades. ServiceNow, Splunk, legacy Salesforce — same story. Enterprise software doesn't die from bad UX. Switching costs are too high, contracts too sticky, migrations too painful. The product survives.
+  </p>
+
+  <p class="fade-in">
+    But "survived" and "working well" are not the same thing. Behind every enterprise product that survived its own interface, there's an 18-month onboarding timeline. A support team drowning in "did I do this right?" tickets. A sales org that hides the product demo until the last possible moment. A CEO who periodically asks if they should just scrap the whole front end and start over.
+  </p>
+
+  <p class="fade-in">
+    These aren't symptoms of a design that went wrong. They're symptoms of a design that never happened. And the root cause is almost always the same structural condition: an engineering organization that was never set up to make UX decisions in the first place.
+  </p>
+
+  <!-- Section 2 -->
+  <div class="section-break fade-in">
+    <span class="num">02</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">The ratio nobody models</h2>
+
+  <p class="fade-in">
+    Industry best practice says 5 to 10 engineers per designer. The actual ratio at most B2B SaaS companies — especially in infrastructure, security, and developer tooling — is closer to 50:1. We've seen organizations running at 500:1. Five hundred engineers. One designer, hired last year, still ramping up on domain knowledge.
+  </p>
+
+  <!-- Ratio Visual -->
+  <div class="ratio-visual fade-in">
+    <div class="ratio-label">Typical B2B SaaS org — Eng : Design ratio</div>
+    <div class="ratio-grid" id="ratioGrid"></div>
+    <div class="ratio-caption">
+      <span class="eng-label">■ 50 Engineers</span>&nbsp;&nbsp;&nbsp;
+      <span class="des-label">■ 1 Designer</span>
+    </div>
+  </div>
+
+  <p class="fade-in">
+    This ratio doesn't produce "bad design." It produces <strong>no design</strong> — at least not in the way design actually functions. Engineers build every feature the PRD specifies. Every button exists. Every API is connected. Every input field is present. The product is functionally complete.
+  </p>
+
+  <p class="fade-in">
+    What's missing isn't craft or aesthetics. What's missing is the <strong>layer of decision-making</strong> that determines how information is structured on a screen, how flows connect to each other, what a user should see first versus last, and what happens when something goes wrong. Information hierarchy. Flow architecture. Error state design. The questions that sound simple — "what should the user see when they land on this page?" — but require deliberate reasoning that no one in the org is tasked with doing.
+  </p>
+
+  <div class="pullquote fade-in">
+    <p>The problem isn't that engineers can't design. It's that the organization never created the role of making UX decisions — and engineers are already busy making engineering decisions.</p>
+  </div>
+
+  <p class="fade-in">
+    A PM writes the requirements. An engineer implements them. Between those two steps, someone needs to ask: does the information structure on this screen match how users actually think about this task? Does this flow guide the user toward the right outcome, or just present options? If the user makes a mistake, does the interface help them recover — or just fail silently?
+  </p>
+
+  <p class="fade-in">
+    At 50:1, nobody asks those questions. Not because people don't care, but because nobody's job is to ask them.
+  </p>
+
+  <p class="fade-in">
+    The result: a product where every feature exists, and nobody can use it correctly.
+  </p>
+
+  <!-- Section 3 -->
+  <div class="section-break fade-in">
+    <span class="num">03</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">Where the cost of "good enough" becomes unacceptable</h2>
+
+  <p class="fade-in">
+    In a consumer product, the cost of bad UX is clean and measurable. Users leave. Churn goes up. Revenue goes down. You fix it or you die. The feedback loop is fast and honest.
+  </p>
+
+  <p class="fade-in">
+    In enterprise software, users can't leave. The company chose the tool. IT deployed it. There's a three-year contract. So instead of leaving, users do something worse: <strong>they adapt.</strong> They build workarounds. They skip the intended flow and find their own path. They use the product at 30% of its capability and fill the rest with spreadsheets, Slack messages, and tribal knowledge passed from one team member to the next.
+  </p>
+
+  <p class="fade-in">
+    In many enterprise contexts, this is annoying but survivable. Internal admin tools, project management dashboards, reporting interfaces — suboptimal UX slows people down, but the cost stays contained.
+  </p>
+
+  <p class="fade-in">
+    But there are products where a user workaround isn't just inefficient — it's dangerous.
+  </p>
+
+  <div class="scenario fade-in">
+    <div class="scenario-domain">Security</div>
+    <p>A security admin configures a data protection policy. The interface doesn't make it clear which assets are covered and which aren't. The admin thinks the policy is applied globally. It's not. Sensitive data is exposed for weeks before anyone notices. The product did exactly what the admin told it to do — the admin just couldn't tell what they were telling it to do.</p>
+  </div>
+
+  <div class="scenario fade-in">
+    <div class="scenario-domain">Fintech</div>
+    <p>A compliance officer sets up transaction monitoring rules. The rule builder shows every parameter but doesn't surface which combinations create gaps in coverage. A pattern that should have been flagged passes through. The system worked perfectly. The interface just never helped the user understand what "perfectly" meant in practice.</p>
+  </div>
+
+  <div class="scenario fade-in">
+    <div class="scenario-domain">Healthcare</div>
+    <p>A clinician configures access permissions for patient records. The permission model is technically correct but the interface doesn't visually distinguish between "this role can view" and "this role can export." A role that should only have view access gets export permissions. No error was thrown. The interface just failed to make the difference visible at the moment it mattered.</p>
+  </div>
+
+  <p class="fade-in">
+    None of these are hypothetical bugs. They're the predictable result of interfaces where functional completeness was achieved but UX reasoning — the deliberate structuring of what users see, when, and why — was never applied.
+  </p>
+
+  <p class="fade-in">
+    In these domains, when a user can't tell if they did something right, they either proceed with false confidence or don't act at all. Both outcomes are bad. And neither is visible in a bug report, because the product technically worked as specified.
+  </p>
+
+  <!-- Section 4 -->
+  <div class="section-break fade-in">
+    <span class="num">04</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">Why "hire a designer" isn't the answer</h2>
+
+  <p class="fade-in">
+    The reflexive response to this problem is: hire designers. Fix the ratio. Get it closer to 5:1.
+  </p>
+
+  <p class="fade-in">
+    In theory, correct. In practice, this takes years — and doesn't solve the accumulated problem. An organization at 50:1 has dozens of flows, hundreds of screens, and thousands of micro-decisions that were made without design reasoning. A single designer (or even a small team) joining this organization faces a brutal reality: they need to learn a complex domain, audit years of existing product decisions, and somehow retrofit reasoning onto interfaces that were built without it.
+  </p>
+
+  <div class="callout fade-in">
+    <div class="callout-label">From the field</div>
+    <p>We've seen an enterprise security company — 500+ employees, serving Fortune 500 banks and hospitals — hire their first designer. <strong>Nine months later, the UX mapping for one feature area still wasn't clean.</strong> Not because the designer was bad. Because the problem was structural: years of accumulated UX decisions (or non-decisions) that no single person could unwind manually.</p>
+  </div>
+
+  <p class="fade-in">
+    The 50:1 problem isn't solved by changing the ratio alone. It's solved by changing how UX decisions get made — making them <strong>structured, traceable, and systematic</strong> rather than dependent on the availability and bandwidth of individual humans.
+  </p>
+
+  <!-- Section 5 -->
+  <div class="section-break fade-in">
+    <span class="num">05</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">The missing layer: UX as reasoning, not decoration</h2>
+
+  <p class="fade-in">
+    Engineering organizations already know how to make structured, traceable decisions. Code review exists so that every engineering choice has a reasoning trail: why this architecture, why this pattern, why this tradeoff. When something breaks, you can trace back through the decision chain and understand what happened.
+  </p>
+
+  <p class="fade-in">
+    UX has no equivalent. There's no "design review" that asks: why is this information structured this way? Why does this flow route the user here instead of there? What's the reasoning behind this screen's hierarchy? When a user gets confused, there's no audit trail to trace — because the decision was never explicitly made.
+  </p>
+
+  <p class="fade-in">
+    This is the actual gap at 50:1 organizations. Not the absence of designers. The <strong>absence of a decision-making framework for UX</strong> — one that works at the speed engineering already moves, with the traceability engineering already demands.
+  </p>
+
+  <p class="fade-in">
+    Requirements come in. Code goes out. The layer between them — the reasoning about how information should be structured, how flows should connect, how errors should be surfaced — either exists or it doesn't. At 50:1, it doesn't.
+  </p>
+
+  <div class="pullquote fade-in">
+    <p>If you can't explain why a screen is structured the way it is, you can't maintain it, you can't improve it, and you can't onboard anyone to it. You can only rebuild it.</p>
+  </div>
+
+  <p class="fade-in">
+    That's what happens. Every few years, the org hits a breaking point — support costs too high, sales cycles too long, customer complaints too loud — and someone greenlights a redesign. Six months, a year, sometimes longer. And then the same cycle starts again, because the new interface was built with the same structural gap: features implemented, UX decisions never made.
+  </p>
+
+  <p class="fade-in">
+    The way out isn't more designers or more redesigns. It's building the practice of UX reasoning into how products are built in the first place — the same way engineering built code review, testing, and CI/CD into how software is shipped. Not as a quality gate at the end, but as a structural part of the process.
+  </p>
+
+  <p class="fade-in">
+    If that reasoning can't scale through humans alone at 50:1, then the system itself needs to do the reasoning.
+  </p>
+
+  <!-- End section -->
+  <div class="end-section fade-in">
+    <p>
+      Engineering got 10x faster in the last decade. UX didn't. That's not a design problem. It's a structural one. And structural problems need structural solutions.
+    </p>
+    <div class="author-info">
+      Yunbin Bae — Founder, Heurica<br>
+      <a href="mailto:yunbin@heurica.co">yunbin@heurica.co</a>
+    </div>
+  </div>
+
+</article>
+
+<script>
+  // Build ratio grid: 50 engineers + 1 designer
+  const grid = document.getElementById('ratioGrid');
+  for (let i = 0; i < 51; i++) {
+    const dot = document.createElement('div');
+    dot.className = i < 50 ? 'ratio-dot engineer' : 'ratio-dot designer';
+    dot.style.animationDelay = `${i * 0.02}s`;
+    grid.appendChild(dot);
+  }
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

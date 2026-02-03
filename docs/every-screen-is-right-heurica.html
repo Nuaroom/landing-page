@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Screen Is Right. The Product Is Wrong. — Heurica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #0C0B0F;
+    --color-surface: #141318;
+    --color-surface-raised: #1C1B22;
+    --color-border: #2A2930;
+    --color-text-primary: #E8E6ED;
+    --color-text-secondary: #9B99A3;
+    --color-text-muted: #6B6974;
+    --color-accent: #D4A853;
+    --color-accent-dim: #A38240;
+    --color-highlight: #F0E6CC;
+    --color-red-soft: #C45C5C;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'DM Sans', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12, 11, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .nav-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 840px;
+    margin: 0 auto;
+  }
+
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-dim);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-meta::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--color-accent-dim);
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    max-width: 720px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: 2rem;
+  }
+
+  .hero-reading {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ARTICLE */
+  .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  .article p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.6rem;
+    font-weight: 350;
+  }
+
+  .article p strong {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 4rem 0 3rem;
+  }
+
+  .section-break .num {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--color-accent-dim);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .section-break .line {
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .article h2 {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .pullquote {
+    margin: 3rem 0;
+    padding: 2rem 0 2rem 1.8rem;
+    border-left: 2px solid var(--color-accent-dim);
+  }
+
+  .pullquote p {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--color-highlight);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .callout {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.6rem 1.8rem;
+    margin: 2.5rem 0;
+  }
+
+  .callout-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent-dim);
+    margin-bottom: 0.8rem;
+  }
+
+  .callout p {
+    font-size: 0.92rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+
+  .callout p strong {
+    color: var(--color-text-primary);
+  }
+
+  /* Side-by-side comparison */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 2.5rem 0;
+  }
+
+  .comparison-col {
+    background: var(--color-surface);
+    padding: 1.6rem;
+  }
+
+  .comparison-col.right {
+    background: var(--color-surface-raised);
+  }
+
+  .comparison-header {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .comparison-col:first-child .comparison-header {
+    color: var(--color-text-muted);
+  }
+
+  .comparison-col.right .comparison-header {
+    color: var(--color-accent-dim);
+  }
+
+  .comparison-item {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    padding: 0.4rem 0;
+    line-height: 1.5;
+  }
+
+  .comparison-col.right .comparison-item {
+    color: var(--color-text-primary);
+  }
+
+  .comparison-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin-right: 0.4rem;
+  }
+
+  /* Nav mockup */
+  .nav-mockup {
+    margin: 2.5rem 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .nav-mockup-header {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 1.6rem 0.6rem;
+  }
+
+  .nav-mockup-header.dim { color: var(--color-text-muted); }
+  .nav-mockup-header.accent { color: var(--color-accent-dim); }
+
+  .nav-mockup-items {
+    padding: 0 1.6rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-mockup-item {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 3px;
+    color: var(--color-text-secondary);
+  }
+
+  .nav-mockup-item.active {
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+  }
+
+  .nav-mockup-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 0.8rem 1.6rem;
+  }
+
+  .nav-mockup-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--color-border);
+  }
+
+  .nav-mockup-pair > div {
+    background: var(--color-surface);
+    padding: 1.2rem 1.6rem;
+  }
+
+  .nav-mockup-pair > div:last-child {
+    background: var(--color-surface-raised);
+  }
+
+  /* End CTA */
+  .end-section {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .end-section p {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .end-section .author-info {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2.5rem;
+  }
+
+  .end-section .author-info a {
+    color: var(--color-accent-dim);
+    text-decoration: none;
+  }
+
+  .end-section .author-info a:hover {
+    color: var(--color-accent);
+  }
+
+  /* Animations */
+  .hero-meta, .hero h1, .hero-subtitle, .hero-divider, .hero-reading {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .hero-meta { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero-subtitle { animation-delay: 0.4s; }
+  .hero-divider { animation-delay: 0.55s; }
+  .hero-reading { animation-delay: 0.6s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    html { font-size: 16px; }
+    .hero { padding: 7rem 1.4rem 3rem; }
+    .article { padding: 0 1.4rem 4rem; }
+    .comparison { grid-template-columns: 1fr; }
+    .nav-mockup-pair { grid-template-columns: 1fr; }
+    .pullquote { padding-left: 1.2rem; }
+    .callout { padding: 1.2rem 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">Heurica</div>
+  <div class="nav-label">Perspectives</div>
+</nav>
+
+<header class="hero">
+  <div class="hero-meta">Thought Piece — 2026</div>
+  <h1><em>Every Screen Is Right.</em> The Product Is Wrong.</h1>
+  <p class="hero-subtitle">
+    Enterprise products don't fail on individual screens. They fail in the gaps between them — where no one designed the connections, the sequence, or the logic that ties a workflow together.
+  </p>
+  <div class="hero-divider"></div>
+  <div class="hero-reading">7 min read</div>
+</header>
+
+<article class="article">
+
+  <!-- Section 1 -->
+  <div class="section-break fade-in">
+    <span class="num">01</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">The experience everyone recognizes</h2>
+
+  <p class="fade-in">
+    If you've ever used an enterprise product — really used it, not just watched a demo — you know the feeling. You land on a screen. It makes sense. The fields are there, the buttons are labeled, the data is present. You do what you need to do and move on.
+  </p>
+
+  <p class="fade-in">
+    Then you need to do something that spans three or four screens. Create something here, reference it there, configure a dependency somewhere else, then come back to where you started to activate the whole thing. And suddenly you're lost. Not because any single screen is confusing, but because <strong>nobody designed the journey between them.</strong>
+  </p>
+
+  <p class="fade-in">
+    You find yourself opening multiple tabs of the same product. You screenshot one screen so you can reference its values on another. You ask a colleague, "Wait — do I set up the rule first, or the data element first?" And your colleague answers from memory, because the product never told either of you.
+  </p>
+
+  <p class="fade-in">
+    Each screen is individually correct. The product, as a whole, is broken.
+  </p>
+
+  <!-- Section 2 -->
+  <div class="section-break fade-in">
+    <span class="num">02</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">How products get built screen-by-screen</h2>
+
+  <p class="fade-in">
+    This isn't a design failure. It's a structural inevitability. Follow the chain of how most enterprise products actually get built:
+  </p>
+
+  <p class="fade-in">
+    A PM writes a requirements document organized by feature. "Policy Management" is one section. "Role Management" is another. "Audit Logging" is a third. Each feature becomes a set of tickets. Each ticket becomes a screen or a set of screens. Each screen gets built to satisfy its own requirements — and it does. Every screen passes its acceptance criteria.
+  </p>
+
+  <p class="fade-in">
+    But at no point in this chain did anyone ask: <strong>how do these screens relate to each other from the user's perspective?</strong> What needs to exist before this screen makes sense? Where does the user go after they finish here? If they need information from Screen A while they're on Screen C, how do they get it?
+  </p>
+
+  <p class="fade-in">
+    The answer is usually: they figure it out. Or they don't.
+  </p>
+
+  <div class="pullquote fade-in">
+    <p>The product mirrors the organization's internal structure — databases, API endpoints, feature tickets — not the user's task structure.</p>
+  </div>
+
+  <p class="fade-in">
+    You can see this most clearly in the navigation. Open the sidebar of almost any enterprise product, and the menu is a feature list: Dashboard, Policy Management, Key Management, Data Elements, Roles, Logs, Settings. That's not a navigation designed around what users need to accomplish. That's a list of database tables with human-readable labels.
+  </p>
+
+  <!-- Nav mockup comparison -->
+  <div class="nav-mockup fade-in">
+    <div class="nav-mockup-pair">
+      <div>
+        <div class="nav-mockup-header dim">What most enterprise nav looks like</div>
+        <div class="nav-mockup-items">
+          <div class="nav-mockup-item">Dashboard</div>
+          <div class="nav-mockup-item active">Policy Management</div>
+          <div class="nav-mockup-item">Key Management</div>
+          <div class="nav-mockup-item">Data Classifications</div>
+          <div class="nav-mockup-item">Roles &amp; Member Sources</div>
+          <div class="nav-mockup-item">System</div>
+          <div class="nav-mockup-item">Logs</div>
+          <div class="nav-mockup-item">Settings</div>
+        </div>
+      </div>
+      <div>
+        <div class="nav-mockup-header accent">What it could look like</div>
+        <div class="nav-mockup-items">
+          <div class="nav-mockup-item">Dashboard</div>
+          <div class="nav-mockup-item active">What to protect</div>
+          <div class="nav-mockup-item">Where it lives</div>
+          <div class="nav-mockup-item">Who has access</div>
+          <div class="nav-mockup-item">How to protect it</div>
+          <div class="nav-mockup-item" style="color: var(--color-text-muted); font-size: 0.75rem; padding-top: 0.8rem;">Admin</div>
+          <div class="nav-mockup-item">Audit trail</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fade-in">
+    Same entities. Same capabilities. But the left organizes by <strong>what the system contains</strong>. The right organizes by <strong>what the user is trying to do</strong>. The left is a map of the database. The right is a map of the workflow.
+  </p>
+
+  <!-- Section 3 -->
+  <div class="section-break fade-in">
+    <span class="num">03</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">Screens vs. workflows: two different design questions</h2>
+
+  <p class="fade-in">
+    Screen-based design asks: <strong>"What goes on this page?"</strong> It's a natural question. It produces clear, buildable answers. But it's the wrong unit of analysis for complex products.
+  </p>
+
+  <p class="fade-in">
+    Workflow-based design asks a different question: <strong>"What is the user trying to accomplish, and what sequence of information and actions gets them there?"</strong> The answer might span five screens — or it might collapse three screens into one. The point is that the workflow, not the screen, is the unit of design.
+  </p>
+
+  <div class="comparison fade-in">
+    <div class="comparison-col">
+      <div class="comparison-header">Screen-based thinking</div>
+      <div class="comparison-item">"This page needs a table of policies"</div>
+      <div class="comparison-item">"Add a create button at the top"</div>
+      <div class="comparison-item">"The form needs these 12 fields"</div>
+      <div class="comparison-item">"Put a save button at the bottom"</div>
+    </div>
+    <div class="comparison-col right">
+      <div class="comparison-header">Workflow-based thinking</div>
+      <div class="comparison-item">"User needs to define what data to protect"</div>
+      <div class="comparison-item">"That requires knowing which assets exist first"</div>
+      <div class="comparison-item">"Then selecting a protection method"</div>
+      <div class="comparison-item">"Then verifying before deployment"</div>
+    </div>
+  </div>
+
+  <p class="fade-in">
+    The screen-based version builds a perfectly functional page. The workflow-based version builds a sequence that the user can actually follow to completion. Both result in working software. Only one results in software that users can navigate without tribal knowledge.
+  </p>
+
+  <!-- Section 4 -->
+  <div class="section-break fade-in">
+    <span class="num">04</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">Why enterprise products suffer most</h2>
+
+  <p class="fade-in">
+    Consumer products mostly get away with screen-based design. The flows are short — sign up, set preferences, do the core thing. Three to five screens, linear path, hard to get lost. Even if the connections between screens aren't perfectly designed, the user can brute-force their way through.
+  </p>
+
+  <p class="fade-in">
+    Enterprise products are different in two ways that make screen-based design lethal.
+  </p>
+
+  <p class="fade-in">
+    First, <strong>the workflows are deep.</strong> A single task might require touching six different entity types across four different sections of the product. Creating a data protection policy might require: defining data elements, configuring protection methods, setting up target data stores, assigning roles, creating the policy itself, then deploying it. Each step depends on the previous one. Miss a step and you won't get an error — you'll get a policy that silently doesn't do what you think it does.
+  </p>
+
+  <p class="fade-in">
+    Second, <strong>the dependencies are invisible.</strong> Entity A requires Entity B to exist first. Entity B has a configuration that changes the options available in Entity C. But the product doesn't show you these dependencies. Each screen presents its own world, as if it exists in isolation. The user has to carry the dependency map in their head — or learn it through months of trial and error.
+  </p>
+
+  <div class="callout fade-in">
+    <div class="callout-label">The onboarding symptom</div>
+    <p>When enterprise products take 6, 12, even 18 months to onboard new users, the problem is rarely the complexity of individual screens. It's the <strong>invisible dependency structure</strong> between them. Users aren't learning screens. They're learning the unwritten workflow map that the product never made explicit.</p>
+  </div>
+
+  <p class="fade-in">
+    This is why documentation doesn't fix it. You can write a 200-page user guide, but you're documenting a structure that should have been visible in the product itself. The need for extensive documentation is a symptom, not a solution.
+  </p>
+
+  <!-- Section 5 -->
+  <div class="section-break fade-in">
+    <span class="num">05</span>
+    <span class="line"></span>
+  </div>
+
+  <h2 class="fade-in">From screens to workflows</h2>
+
+  <p class="fade-in">
+    The fix isn't a visual redesign. It's a structural one. Most enterprise products don't need new screens — they need the existing screens reorganized around how users actually accomplish tasks.
+  </p>
+
+  <p class="fade-in">
+    That means making three things explicit that are currently implicit in most enterprise products: <strong>sequence</strong> (what comes before what), <strong>dependency</strong> (what needs to exist for this to work), and <strong>hierarchy</strong> (what matters most on this screen given where the user is in the workflow).
+  </p>
+
+  <p class="fade-in">
+    Engineering organizations already do this for code. Build systems encode dependency order. CI/CD pipelines make sequence explicit. Module architecture makes hierarchy visible. No one would ship a codebase where the only way to understand the build order is to ask the person who wrote it.
+  </p>
+
+  <p class="fade-in">
+    But that's exactly how most enterprise UIs work. The only way to understand the workflow order is to ask someone who's done it before.
+  </p>
+
+  <div class="pullquote fade-in">
+    <p>If your product requires tribal knowledge to use correctly, you haven't shipped a product. You've shipped a codebase with a UI layer on top.</p>
+  </div>
+
+  <p class="fade-in">
+    The transition from screen-based to workflow-based design doesn't require rebuilding the product from scratch. It requires re-examining the information architecture — how entities are grouped, how flows connect, what the user sees first — through the lens of what users are trying to do, rather than what the system contains.
+  </p>
+
+  <p class="fade-in">
+    That re-examination can be done systematically. It should be.
+  </p>
+
+  <!-- End section -->
+  <div class="end-section fade-in">
+    <p>
+      Your screens aren't the problem. The space between them is. And that space can be designed — if someone decides to.
+    </p>
+    <div class="author-info">
+      Yunbin Bae — Founder, Heurica<br>
+      <a href="mailto:yunbin@heurica.co">yunbin@heurica.co</a>
+    </div>
+  </div>
+
+</article>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

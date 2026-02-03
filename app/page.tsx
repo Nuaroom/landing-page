@@ -27,6 +27,19 @@ export function ThemedImage({ lightSrc, darkSrc, alt, className }: { lightSrc: s
 export default function LandingPage() {
   const [isMounted, setIsMounted] = useState(false)
 
+  // Handle hash scrolling when navigating from other pages
+  useEffect(() => {
+    if (window.location.hash) {
+      const hash = window.location.hash
+      const element = document.querySelector(hash)
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
+    }
+  }, [])
+
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -227,11 +240,11 @@ export default function LandingPage() {
         </div>
 
         {/* Before and After Image Boxes - Full width */}
-        <div className="px-2 md:px-4 lg:px-8 mt-12">
+        <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl mt-12">
           <div className="grid md:grid-cols-2 gap-4 md:gap-6 animate-on-scroll">
             {/* Before */}
             <div className="flex flex-col">
-              <span className="text-lg text-muted-foreground mb-3 text-center font-medium">Before</span>
+              <span className="text-lg text-muted-foreground mb-3 text-center font-normal">Before</span>
               <div className="rounded-2xl border overflow-hidden">
                 <img
                   src="/ux-before.svg"
@@ -250,10 +263,11 @@ export default function LandingPage() {
                   opacity: 0.7
                 }}
               ></div>
-              <span className="text-lg mb-3 text-center font-medium relative animate-after-label" style={{ color: 'var(--accent-gold)', textShadow: '0 0 20px rgba(202, 138, 4, 0.3)' }}>After</span>
+              <span className="text-lg mb-3 text-center font-normal relative animate-after-label" style={{ color: 'var(--accent-gold)', textShadow: '0 0 20px rgba(202, 138, 4, 0.3)' }}>After</span>
               <div className="border-[3px] border-dashed rounded-lg overflow-hidden animate-after-image" style={{ borderColor: 'var(--accent-gold)' }}>
-                <img
-                  src="/ux-after.svg"
+                <ThemedImage
+                  lightSrc="/after-light.svg"
+                  darkSrc="/ux-after.svg"
                   alt="After - Clean redesigned interface"
                   className="w-full h-auto object-contain"
                 />
@@ -271,7 +285,7 @@ export default function LandingPage() {
             >
               See how enterprise workflows get redesigned.
             </p>
-            <Button size="lg" className="px-6 py-3 text-base font-semibold" asChild>
+            <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8" asChild>
               <Link href="/contact">
                 Book a Demo
               </Link>
@@ -913,7 +927,7 @@ export default function LandingPage() {
           >
             You wrote the spec. Ship it already.
           </p>
-          <Button size="lg" className="px-6 py-3 text-base font-semibold mt-4" asChild>
+          <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8 mt-4" asChild>
             <Link href="/contact">
               Contact Sales
             </Link>

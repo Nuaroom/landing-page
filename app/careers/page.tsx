@@ -38,7 +38,7 @@ export default function CareersPage() {
                 style={{ color: "var(--accent-gold)" }}
               >
                 contact@heurica.co
-              </a>
+              </a>.
             </p>
           </div>
         </section>

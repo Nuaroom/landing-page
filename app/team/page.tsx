@@ -6,7 +6,7 @@ export default function TeamPage() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Section 1: Why Heurica Exists */}
-        <section className="py-20 md:py-32">
+        <section className="min-h-[calc(100vh-200px)] flex items-center py-20 md:py-32">
           <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
             <div className="max-w-3xl mx-auto text-center">
               {/* Title */}
@@ -26,14 +26,20 @@ export default function TeamPage() {
                   className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer"
                   style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
                 >
-                  Heurica brings structure to that gap. We make UX decisions systematic, explainable, and grounded in how users actually work.
+                  Heurica brings structure to that gap.
+                </p>
+                <p
+                  className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer"
+                  style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                >
+                  We make UX decisions systematic, explainable, and grounded in how users actually work.
                 </p>
 
                 {/* Signature with divider */}
                 <div className="mt-12 pt-8">
                   <div className="w-12 h-px bg-border mb-6 mx-auto"></div>
                   <div className="flex items-center justify-center gap-3">
-                    <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Yunbin Bae, Founder</span>
+                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Yunbin Bae — Founder, Heurica</span>
                     <a
                       href="https://www.linkedin.com/in/yunbinbae/"
                       target="_blank"

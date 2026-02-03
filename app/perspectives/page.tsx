@@ -55,7 +55,8 @@ export default function PerspectivesPage() {
                 <Link
                   key={article.slug}
                   href={`/perspectives/${article.slug}`}
-                  className="group block"
+                  className="group block animate-hero-subtitle"
+                  style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <article className="h-full flex flex-col">
                     {/* Image placeholder */}
@@ -78,12 +79,12 @@ export default function PerspectivesPage() {
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-2xl font-semibold mb-4 group-hover:text-foreground transition-colors leading-tight min-h-[4rem]">
+                    <h2 className="text-2xl font-semibold mb-5 group-hover:text-foreground transition-colors leading-tight">
                       {article.title}
                     </h2>
 
                     {/* Excerpt */}
-                    <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+                    <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
                       {article.excerpt}
                     </p>
 
