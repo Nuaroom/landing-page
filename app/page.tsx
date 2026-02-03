@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Moon, Sun, Menu } from "lucide-react"
+import { FileText, Code, Users, Palette, Monitor, ClipboardCheck, Eye, ShieldCheck, Layers, UserCheck, Target } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
+import { FlowDiagram } from "@/components/FlowDiagram"
+import { Footer } from "@/components/Footer"
 
-export function ThemedImage({ lightSrc, darkSrc, alt, className }) {
+export function ThemedImage({ lightSrc, darkSrc, alt, className }: { lightSrc: string; darkSrc: string; alt: string; className?: string }) {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -21,23 +23,8 @@ export function ThemedImage({ lightSrc, darkSrc, alt, className }) {
   return <img src={resolvedTheme === "dark" ? darkSrc : lightSrc} alt={alt} className={className} />
 }
 
-export function ThemedIcons({ className }) {
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-
-  if (!mounted) {
-    // Return Sun icon during SSR
-    return <Moon className={className} />
-  }
-
-  return resolvedTheme === "dark" ? <Sun className={className} /> : <Moon className={className} />
-}
 
 export default function LandingPage() {
-  const { theme, setTheme } = useTheme()
-
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -69,165 +56,359 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 border-b border-border/20 backdrop-blur-sm z-50 bg-background/95 flex-shrink-0">
-        <div className="container mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-          <span
-            className="text-xl font-medium"
-            style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              color: 'var(--accent-gold)'
-            }}
-          >Heurica</span>
-
-          <div className="flex items-center gap-6">
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/team" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Team
-              </Link>
-              <Link href="/contact" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Contact
-              </Link>
-            </nav>
-            <Button size="sm" className="px-4 py-2 text-sm font-semibold" asChild>
-              <Link href="/contact">
-                Book a Demo
-              </Link>
-            </Button>
-
-            <Button variant="ghost" size="sm" className="hidden">
-              See Example Audit
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="w-9 h-9"
-            >
-              <ThemedIcons className="h-4 w-4" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            <Button variant="ghost" size="icon" className="hidden">
-              <Menu className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/* Hero Section - Keep center-aligned */}
-      <section className="min-h-[calc(100vh-73px)] flex flex-col">
-        <div className="flex-1 flex items-center justify-center">
-          <div className="container mx-auto px-6 lg:px-12 text-center max-w-4xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance leading-tight relative animate-hero-title">
-              Can AI ship Enterprise-ready UX?
+      <section className="flex flex-col dot-grid-bg">
+        <div className="flex items-start justify-center pt-20 md:pt-32 pb-20 relative z-10">
+          <div className="container mx-auto px-8 lg:px-20 text-center max-w-4xl">
+            <h1
+              className="text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight relative animate-hero-title"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Enterprise UX in<br className="hidden md:block" /> weeks, not quarters.
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty animate-hero-subtitle">
-              Heurica turns PRDs into front-end code — with best-practice UX baked in.
-            </p>
+            <div className="flex flex-col gap-1 mb-12 md:mb-16 animate-hero-subtitle text-sm text-muted-foreground">
+              <p>PRDs in, dev-ready UI out.</p>
+              <p>Best-Practice UX through systematic UX reasoning.</p>
+              <p>No more 6-month redesign cycles.</p>
+            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-hero-button">
-              <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-hero-button mb-12 md:mb-16">
+              <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8" asChild>
                 <Link href="/contact">
                   Book a Demo
                 </Link>
               </Button>
+            </div>
 
-              <Button variant="outline" size="lg" className="hidden px-8 py-3 text-base bg-transparent">
-                See Example Audit
-              </Button>
+            <div className="text-center animate-hero-footer">
+              <p className="text-sm text-muted-foreground mb-8">Designed for trust-sensitive domains.</p>
+              <div className="flex items-center justify-center gap-12 opacity-70 mb-6 md:mb-8">
+                <ThemedImage lightSrc="/mtbank.svg" darkSrc="/mtbank_dark.svg" alt="M&T Bank" className="h-4 md:h-5 object-contain" />
+                <ThemedImage lightSrc="/athenahealth.svg" darkSrc="/athenahealth_dark.svg" alt="athenahealth" className="h-4 md:h-5 object-contain" />
+                <ThemedImage lightSrc="/servicenow.svg" darkSrc="/servicenow_dark.svg" alt="ServiceNow" className="h-4 md:h-5 object-contain" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* The Solution + Value Proposition Sections */}
+      <section id="solutions" className="py-28">
+        <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
+          <div className="text-center mb-12 animate-on-scroll">
+            <h2
+              className="text-xl md:text-2xl lg:text-3xl font-normal leading-relaxed"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Enterprise workflows are complex. <br className="hidden md:block" />We get the UX right.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Section 1: No More Waiting on Designers */}
+            <div className="rounded-2xl border px-8 py-6 dot-grid-header overflow-hidden animate-on-scroll h-full value-prop-card">
+              <div className="relative z-10 flex flex-col h-full">
+                <h3 className="text-lg md:text-xl font-normal mb-3 leading-tight">
+                  No More Waiting on Designers
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  No Figma. No mockup handoffs.
+                </p>
+                <div className="flex items-center justify-center gap-3 pt-6 mt-auto">
+                  {/* PRD Document */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--secondary)' }}
+                    >
+                      <FileText className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">PRD</span>
+                  </div>
+
+                  {/* Arrow */}
+                  <svg width="32" height="12" viewBox="0 0 32 12" fill="none" className="text-muted-foreground/50 mb-5">
+                    <path d="M0 6H28M28 6L23 1M28 6L23 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+
+                  {/* Dev-ready UI */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--secondary)' }}
+                    >
+                      <Code className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">Dev-ready UI</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Unblock Your Team */}
+            <div className="rounded-2xl border px-8 py-6 dot-grid-header overflow-hidden animate-on-scroll animate-on-scroll-delay-1 h-full value-prop-card">
+              <div className="relative z-10 flex flex-col h-full">
+                <h3 className="text-lg md:text-xl font-normal mb-3 leading-tight">
+                  Unblock Your Team
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  PMs and engineers collaborate directly on UX.
+                </p>
+                <div className="flex items-center justify-center gap-3 pt-6 mt-auto">
+                  {/* PM + Engineer */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--secondary)' }}
+                    >
+                      <Users className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">PM + Eng</span>
+                  </div>
+
+                  {/* Arrow */}
+                  <svg width="32" height="12" viewBox="0 0 32 12" fill="none" className="text-muted-foreground/50 mb-5">
+                    <path d="M0 6H28M28 6L23 1M28 6L23 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+
+                  {/* Design Output */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--secondary)' }}
+                    >
+                      <Palette className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">Design</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 3: Demo On Day 1 */}
+            <div className="rounded-2xl border px-8 py-6 dot-grid-header overflow-hidden animate-on-scroll animate-on-scroll-delay-2 h-full value-prop-card">
+              <div className="relative z-10 flex flex-col h-full">
+                <h3 className="text-lg md:text-xl font-normal mb-3 leading-tight">
+                  Demo On Day 1
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Stop hiding the demo till the last day.
+                </p>
+                <div className="flex items-center justify-center pt-6 mt-auto">
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--secondary)' }}
+                    >
+                      <Monitor className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                    <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">Live Demo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Configuration Panels Section */}
+      <section className="pt-16 pb-16" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(251, 191, 36, 0.08) 30%, rgba(251, 191, 36, 0.08) 70%, transparent 100%)' }}>
+        <div className="container mx-auto px-8 lg:px-20">
+          <div className="text-center animate-on-scroll">
+            <h2
+              className="text-xl md:text-2xl lg:text-3xl font-normal leading-relaxed"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Configuration panels. Role-based views. Approval workflows.
+            </h2>
+            <p className="text-sm text-muted-foreground mt-4 max-w-xl mx-auto">
+              The interfaces no one wants to touch. Finally designed right.
+            </p>
+          </div>
+        </div>
+
+        {/* Before and After Image Boxes - Full width */}
+        <div className="px-2 md:px-4 lg:px-8 mt-12">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 animate-on-scroll">
+            {/* Before */}
+            <div className="flex flex-col">
+              <span className="text-lg text-muted-foreground mb-3 text-center font-medium">Before</span>
+              <div className="rounded-2xl border overflow-hidden">
+                <img
+                  src="/ux-before.svg"
+                  alt="Before - Complex enterprise interface"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+
+            {/* After */}
+            <div className="flex flex-col relative">
+              <div
+                className="absolute inset-0 blur-3xl -z-10 rounded-2xl animate-pulse-glow"
+                style={{
+                  background: 'radial-gradient(ellipse at center, rgba(251, 191, 36, 0.35) 0%, rgba(245, 158, 11, 0.25) 30%, rgba(251, 191, 36, 0.15) 50%, transparent 75%)',
+                  opacity: 0.7
+                }}
+              ></div>
+              <span className="text-lg mb-3 text-center font-medium relative animate-after-label" style={{ color: 'var(--accent-gold)', textShadow: '0 0 20px rgba(202, 138, 4, 0.3)' }}>After</span>
+              <div className="border-[3px] border-dashed rounded-lg overflow-hidden animate-after-image" style={{ borderColor: 'var(--accent-gold)' }}>
+                <img
+                  src="/ux-after.svg"
+                  alt="After - Clean redesigned interface"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="text-center pb-16 animate-hero-footer">
-          <p className="text-xs font-medium uppercase tracking-wider mb-2" style={{ color: 'var(--accent-gold)' }}>Built for</p>
-          <p className="text-sm text-muted-foreground">Enterprise teams in security, healthcare, fintech, and more.</p>
+        {/* Case Study CTA */}
+        <div className="container mx-auto px-8 lg:px-20">
+          <div className="text-center mt-16 md:mt-20 animate-on-scroll">
+            <p
+              className="text-xl md:text-2xl font-normal mb-4"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              See how enterprise workflows get redesigned.
+            </p>
+            <Button size="lg" className="px-6 py-3 text-base font-semibold" asChild>
+              <Link href="/contact">
+                Book a Demo
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
+      {/* Built on UX Science Section */}
+      <section id="how-it-works" className="pt-40 pb-28">
+        <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 items-start animate-on-scroll">
+            {/* Left: Title + Description (1/3 width) */}
+            <div className="md:col-span-1">
+              <h2
+                className="text-xl md:text-2xl lg:text-3xl font-normal mb-6 leading-tight"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                Built on UX Science,<br />Not Guesswork.
+              </h2>
+              <p className="text-sm text-muted-foreground max-w-xs">
+                Grounded in applied Human-Computer Interaction (HCI) research.
+              </p>
+              <div className="flex items-center gap-4 mt-6 opacity-70">
+                <img src="/hcil.svg" alt="Human-Computer Interaction Lab" className="h-14 object-contain" />
+                <img src="/umd.svg" alt="University of Maryland" className="h-14 object-contain" />
+              </div>
+            </div>
 
-      {/* Problem Section */}
-      <section className="py-20 border-t border-border/20">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="mb-12 animate-on-scroll">
-            <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-pink)' }}>The Problem</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-balance">
-              Complex workflows,<br className="hidden md:block" /> Confusing UX.
+            {/* Right: Flow Diagram (2/3 width) */}
+            <div className="md:col-span-2">
+              <FlowDiagram />
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Enterprise-Ready from Day 1 Section */}
+      <section className="py-28">
+        <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
+          <div className="text-center mb-16 animate-on-scroll">
+            <h2
+              className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              Enterprise-Ready from Day 1.
             </h2>
+            <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+              UX intelligence that fits your security and compliance requirements.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-4">
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-1">
-              <CardContent className="p-5">
-                <h3 className="text-lg font-semibold mb-2">Onboarding Takes Forever</h3>
-                <p className="text-sm text-muted-foreground">18 months to adopt. With hand-holding.</p>
-              </CardContent>
-            </Card>
+            {/* Card 1: Traceable Decisions */}
+            <div className="rounded-2xl p-6 animate-on-scroll" style={{ backgroundColor: 'var(--secondary)' }}>
+              <div className="mb-6">
+                <ClipboardCheck className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-base font-semibold mb-2">Traceable Decisions</h3>
+              <p className="text-sm text-muted-foreground">
+                Every UX decision comes with rationale. Full audit trail for compliance reviews.
+              </p>
+            </div>
 
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-2">
-              <CardContent className="p-5">
-                <h3 className="text-lg font-semibold mb-2">Users Hate Your Product</h3>
-                <p className="text-sm text-muted-foreground">They're not stupid. Your UX is.</p>
-              </CardContent>
-            </Card>
+            {/* Card 2: No Black Box */}
+            <div className="rounded-2xl p-6 animate-on-scroll animate-on-scroll-delay-1" style={{ backgroundColor: 'var(--secondary)' }}>
+              <div className="mb-6">
+                <Eye className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-base font-semibold mb-2">No Black Box</h3>
+              <p className="text-sm text-muted-foreground">
+                Not a prompt-to-UI generator. Systematic reasoning you can review and verify.
+              </p>
+            </div>
 
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-3">
-              <CardContent className="p-5">
-                <h3 className="text-lg font-semibold mb-2">You're Wasting User's Time</h3>
-                <p className="text-sm text-muted-foreground">2+ hours per task completion. They won't come back.</p>
-              </CardContent>
-            </Card>
+            {/* Card 3: Your Data Stays Yours */}
+            <div className="rounded-2xl p-6 animate-on-scroll animate-on-scroll-delay-2" style={{ backgroundColor: 'var(--secondary)' }}>
+              <div className="mb-6">
+                <ShieldCheck className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-base font-semibold mb-2">No Customer Data Required</h3>
+              <p className="text-sm text-muted-foreground">
+                We work from PRDs and specs only. No sensitive customer data needed, simplifying your security review.
+              </p>
+            </div>
+
+            {/* Card 4: Works With Your Stack */}
+            <div className="rounded-2xl p-6 animate-on-scroll" style={{ backgroundColor: 'var(--secondary)' }}>
+              <div className="mb-6">
+                <Layers className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-base font-semibold mb-2">Works With Your Stack</h3>
+              <p className="text-sm text-muted-foreground">
+                Output integrates with your existing component library and design system.
+              </p>
+            </div>
+
+            {/* Card 5: Human in the Loop */}
+            <div className="rounded-2xl p-6 animate-on-scroll animate-on-scroll-delay-1" style={{ backgroundColor: 'var(--secondary)' }}>
+              <div className="mb-6">
+                <UserCheck className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-base font-semibold mb-2">Human in the Loop</h3>
+              <p className="text-sm text-muted-foreground">
+                AI-assisted, human-verified. Your team reviews before anything ships.
+              </p>
+            </div>
+
+            {/* Card 6: Consistent Output */}
+            <div className="rounded-2xl p-6 animate-on-scroll animate-on-scroll-delay-2" style={{ backgroundColor: 'var(--secondary)' }}>
+              <div className="mb-6">
+                <Target className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <h3 className="text-base font-semibold mb-2">Consistent Output</h3>
+              <p className="text-sm text-muted-foreground">
+                Same input, same quality. No hallucination, no random variations.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Solution Section */}
-      <section className="py-20 bg-muted/10">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="mb-12 animate-on-scroll">
-            <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: 'var(--accent-gold)' }}>The Solution</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-balance">
-              PRD in. Dev-ready UI out. <br className="hidden md:block" />Best-practice UX baked in.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-4">
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-1">
-              <CardContent className="p-5 h-full flex flex-col">
-                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Finally Ship On Time</h3>
-                <p className="text-sm text-muted-foreground">No more 'it's in design review.' Just ship.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-2">
-              <CardContent className="p-5 h-full flex flex-col">
-                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Users Actually Get It</h3>
-                <p className="text-sm text-muted-foreground">No training. No support calls. They just get it.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-3">
-              <CardContent className="p-5 h-full flex flex-col">
-                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Onboarding That Actually Works</h3>
-                <p className="text-sm text-muted-foreground">Hours, not months. No hand-holding required.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-border/30 bg-card/30 backdrop-blur-sm h-full transition-colors hover:border-border/50 animate-on-scroll animate-on-scroll-delay-4">
-              <CardContent className="p-5 h-full flex flex-col">
-                <h3 className="text-base font-semibold mb-2 min-h-[3rem]">Demo On Day 1</h3>
-                <p className="text-sm text-muted-foreground">Your sales team stops apologizing. Starts closing.</p>
-              </CardContent>
-            </Card>
-          </div>
+      {/* Quote Section */}
+      <section className="py-28 border-t border-border/20">
+        <div className="container mx-auto px-8 lg:px-20 max-w-3xl text-center">
+          <blockquote
+            className="text-xl md:text-2xl font-normal text-balance leading-relaxed mb-4"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
+            "After 9 months with our designer,<br />users still couldn't tell if they did it right.<br />Heurica fixed it in 2 weeks."
+          </blockquote>
+          <p className="text-sm text-muted-foreground">
+            — Product Director, Data Security Enterprise serving Fortune 500
+          </p>
         </div>
       </section>
-
       <div className="hidden">
         {/* Trust Section */}
-        <section className="py-12 px-6 lg:px-12 border-t border-border/40">
-          <div className="container mx-auto text-center">
+        <section className="py-12 px-8 lg:px-20 border-t border-border/40">
+          <div className="container mx-auto px-8 lg:px-20 text-center">
             <p className="text-sm text-muted-foreground mb-8">We are trusted by top UX and HCI organizations.</p>
             <div className="flex items-center justify-center gap-8 md:gap-12 opacity-60">
               <div className="flex items-center">
@@ -251,8 +432,8 @@ export default function LandingPage() {
         </section>
 
         {/* Features Section - Left-align title and increase margins */}
-        <section className="py-20 px-6 lg:px-12">
-          <div className="container mx-auto max-w-6xl">
+        <section className="py-20 px-8 lg:px-20">
+          <div className="container mx-auto px-8 lg:px-20 max-w-6xl">
             <div className="mb-5">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">
                 Fast-moving teams deserve UX that keeps up.
@@ -313,8 +494,8 @@ export default function LandingPage() {
         </section>
 
         {/* Principle-backed Section - Redesigned with scroll animations */}
-        <section className="py-20 px-6 lg:px-12 bg-muted/20">
-          <div className="container mx-auto max-w-6xl">
+        <section className="py-20 px-8 lg:px-20 bg-muted/20">
+          <div className="container mx-auto px-8 lg:px-20 max-w-6xl">
             <div className="space-y-16">
               {/* Row 1: Intro title and paragraph */}
               <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start">
@@ -644,8 +825,8 @@ export default function LandingPage() {
         </section>
 
         {/* ROI Section - Left-align title and increase margins */}
-        <section className="py-20 px-6 lg:px-12">
-          <div className="container mx-auto max-w-6xl">
+        <section className="py-20 px-8 lg:px-20">
+          <div className="container mx-auto px-8 lg:px-20 max-w-6xl">
             <div className="mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Every $1 invested in UX brings $100 ROI.</h2>
               <p className="text-muted-foreground">— Forrester, 2017</p>
@@ -677,8 +858,8 @@ export default function LandingPage() {
         </section>
 
         {/* Final CTA - Keep center-aligned */}
-        <section className="py-20 px-6 lg:px-12 bg-muted/20">
-          <div className="container mx-auto text-center">
+        <section className="py-20 px-8 lg:px-20 bg-muted/20">
+          <div className="container mx-auto px-8 lg:px-20 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-balance leading-none relative">
               <span>Don't </span>
               <span className="relative inline-block">
@@ -723,33 +904,25 @@ export default function LandingPage() {
           </div>
         </section>
       </div>
-
       {/* CTA Section */}
-      <section className="py-20 border-t border-border/20">
-        <div className="container mx-auto px-6 lg:px-12 text-center animate-on-scroll">
-          <p className="text-sm text-muted-foreground mb-6">
+      <section className="pt-8 pb-48 relative z-10">
+        <div className="container mx-auto px-8 lg:px-20 text-center">
+          <p
+            className="text-xl md:text-2xl font-normal mb-4"
+            style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+          >
             You wrote the spec. Ship it already.
           </p>
-          <Button size="lg" className="px-8 py-3 text-base font-semibold" asChild>
+          <Button size="lg" className="px-6 py-3 text-base font-semibold mt-4" asChild>
             <Link href="/contact">
-              Book a Demo
+              Contact Sales
             </Link>
           </Button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/20 flex-shrink-0">
-        <div className="container mx-auto px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-muted-foreground">© 2025 Heurica</div>
-          <a
-            href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
-            className="text-sm text-muted-foreground"
-          >
-            yunbin@heurica.co
-          </a>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+    </>
   )
 }

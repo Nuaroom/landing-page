@@ -2,10 +2,18 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
+import { Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Header } from "@/components/Header"
 import { Suspense } from "react"
 import "./globals.css"
+
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-instrument-serif",
+})
 
 export const metadata: Metadata = {
   title: "AI-powered UX for Enterprise",
@@ -23,10 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} antialiased`}>
         <Suspense fallback={null}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {children}
+            <div className="min-h-screen bg-background text-foreground flex flex-col">
+              <Header />
+              {children}
+            </div>
           </ThemeProvider>
         </Suspense>
         <Analytics />

@@ -1,36 +1,8 @@
-"use client"
-
-import { Button } from "@/components/ui/button"
-import { Moon, Sun, Clock, Video, CheckCircle2 } from "lucide-react"
-import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
+import { Clock, Video, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
-
-function ThemedIcons({ className }: { className?: string }) {
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-
-  if (!mounted) {
-    return <Moon className={className} />
-  }
-
-  return resolvedTheme === "dark" ? <Sun className={className} /> : <Moon className={className} />
-}
+import { Footer } from "@/components/Footer"
 
 export default function ContactPage() {
-  const { theme, setTheme } = useTheme()
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return null
-  }
-
   const expectations = [
     {
       title: "Personalized Walkthrough",
@@ -51,46 +23,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 border-b border-border/20 backdrop-blur-sm z-50 bg-background/95 flex-shrink-0">
-        <div className="container mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl font-medium"
-            style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              color: 'var(--accent-gold)'
-            }}
-          >Heurica</Link>
-
-          <div className="flex items-center gap-6">
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/team" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Team
-              </Link>
-              <Link href="/contact" className="text-sm font-medium text-foreground transition-colors">
-                Contact
-              </Link>
-            </nav>
-            <Button size="sm" className="px-4 py-2 text-sm font-semibold" asChild>
-              <Link href="/contact">
-                Book a Demo
-              </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="w-9 h-9"
-            >
-              <ThemedIcons className="h-4 w-4" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/* Main Content */}
       <main className="flex-1 py-12 md:py-20">
         <div className="container mx-auto px-6 lg:px-12">
@@ -98,7 +31,10 @@ export default function ContactPage() {
             {/* Left Column - Info */}
             <div className="flex flex-col">
               <p className="text-xs font-medium uppercase tracking-wider mb-3 animate-hero-title" style={{ color: 'var(--accent-gold)' }}>Contact</p>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-hero-subtitle">
+              <h1
+                className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight animate-hero-subtitle"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
                 Book a Demo
               </h1>
               <p className="text-muted-foreground mb-8 text-base md:text-lg animate-hero-button">
@@ -129,7 +65,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-medium text-sm">Duration</h3>
-                    <p className="text-sm text-muted-foreground">30 minutes</p>
+                    <p className="text-sm text-muted-foreground">45 minutes</p>
                   </div>
                 </div>
                 <div className="border border-border/30 rounded-xl bg-card/50 p-4 flex items-center gap-3">
@@ -168,10 +104,10 @@ export default function ContactPage() {
             <div className="pt-6">
               <h3 className="text-sm font-semibold mb-2">Or reach out directly</h3>
               <a
-                href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
+                href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                yunbin@heurica.co
+                contact@heurica.co
               </a>
             </div>
           </div>
@@ -179,17 +115,7 @@ export default function ContactPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/20 flex-shrink-0">
-        <div className="container mx-auto px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-sm text-muted-foreground">© 2025 Heurica</div>
-          <a
-            href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
-            className="text-sm text-muted-foreground"
-          >
-            yunbin@heurica.co
-          </a>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+    </>
   )
 }

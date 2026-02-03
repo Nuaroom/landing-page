@@ -78,7 +78,7 @@ export function Header() {
       <div className={`container mx-auto px-8 lg:px-20 py-2 flex items-center justify-between relative z-10 rounded-full transition-all duration-300 ${hasScrolled ? 'bg-background/95 backdrop-blur-sm' : ''}`}>
         <Link
           href="/"
-          className="text-lg font-medium"
+          className="text-2xl font-medium"
           style={{
             fontFamily: "Georgia, 'Times New Roman', serif",
             color: 'var(--accent-gold)'
