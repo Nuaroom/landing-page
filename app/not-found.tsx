@@ -11,7 +11,7 @@ export default function NotFound() {
             {/* Heading */}
             <h1
               className="text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight animate-hero-subtitle"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Coming Soon
             </h1>
@@ -42,7 +42,7 @@ export default function NotFound() {
                   href="/"
                   className="text-2xl font-medium"
                   style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontFamily: "var(--font-ibm-plex-serif), serif",
                     color: 'var(--accent-gold)'
                   }}
                 >Heurica</Link>

@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef } from "react"
+import { HeroCircles } from "@/components/HeroCircles"
 
 export default function EveryScreenIsRightPage() {
   const articleRef = useRef<HTMLElement>(null)
@@ -28,8 +29,9 @@ export default function EveryScreenIsRightPage() {
     <>
       <main className="flex-1" ref={articleRef}>
         {/* Hero */}
-        <header className="min-h-[80vh] flex flex-col justify-center py-20 md:py-32">
-          <div className="container mx-auto px-6 lg:px-12 max-w-3xl">
+        <header className="min-h-[80vh] flex flex-col justify-center py-20 md:py-32 overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-12 max-w-3xl relative">
+            <HeroCircles />
             <div
               className="text-xs font-mono uppercase tracking-wider mb-8 flex items-center gap-4 animate-hero-title"
               style={{ color: "var(--accent-gold)" }}
@@ -39,9 +41,9 @@ export default function EveryScreenIsRightPage() {
             </div>
             <h1
               className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-subtitle"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              <span style={{ color: "var(--accent-gold)" }}>Every Screen Is Right.</span> The Product Is Wrong.
+              <span style={{ color: "var(--accent-gold)" }}>Each Screen Is Correct.</span> The Product Is Wrong.
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-2xl animate-hero-footer">
               Enterprise products don't fail on individual screens. They fail in the gaps between them — where no one designed the connections, the sequence, or the logic that ties a workflow together.
@@ -66,7 +68,7 @@ export default function EveryScreenIsRightPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               The experience everyone recognizes
             </h2>
@@ -97,7 +99,7 @@ export default function EveryScreenIsRightPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               How products get built screen-by-screen
             </h2>
@@ -125,7 +127,7 @@ export default function EveryScreenIsRightPage() {
             >
               <p
                 className="text-lg italic leading-relaxed"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 The product mirrors the organization's internal structure — databases, API endpoints, feature tickets — not the user's task structure.
               </p>
@@ -187,7 +189,7 @@ export default function EveryScreenIsRightPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Screens vs. workflows: two different design questions
             </h2>
@@ -245,7 +247,7 @@ export default function EveryScreenIsRightPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Why enterprise products suffer most
             </h2>
@@ -296,7 +298,7 @@ export default function EveryScreenIsRightPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               From screens to workflows
             </h2>
@@ -324,7 +326,7 @@ export default function EveryScreenIsRightPage() {
             >
               <p
                 className="text-lg italic leading-relaxed"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 If your product requires tribal knowledge to use correctly, you haven't shipped a product. You've shipped a codebase with a UI layer on top.
               </p>
@@ -369,7 +371,7 @@ export default function EveryScreenIsRightPage() {
                   href="/"
                   className="text-2xl font-medium"
                   style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontFamily: "var(--font-ibm-plex-serif), serif",
                     color: "var(--accent-gold)",
                   }}
                 >

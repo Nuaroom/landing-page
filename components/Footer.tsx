@@ -2,7 +2,20 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <div className="dot-grid-footer pt-64">
+    <div className="pt-64 relative">
+      {/* Container-aligned grid (matches hero grid) */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12 xl:px-16 h-full">
+          <div
+            className="h-full"
+            style={{
+              backgroundImage: 'linear-gradient(to right, rgba(160,160,160,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.12) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+            }}
+          />
+        </div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--background) 0%, transparent 50%)' }} />
+      </div>
       <footer className="flex-shrink-0 cloud-footer relative z-10">
         <div className="container mx-auto px-8 lg:px-20 py-12 relative z-10">
           <div className="flex flex-col md:flex-row mb-12">
@@ -13,7 +26,7 @@ export function Footer() {
                   <span
                     className="text-2xl font-medium"
                     style={{
-                      fontFamily: "Georgia, 'Times New Roman', serif",
+                      fontFamily: "var(--font-ibm-plex-serif), serif",
                       color: 'var(--accent-gold)'
                     }}
                   >Heurica</span>
@@ -74,7 +87,7 @@ export function Footer() {
           </div>
 
           {/* Bottom row */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-border/20">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4">
             <div className="text-sm text-muted-foreground">© 2026 Heurica</div>
             <a
               href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"

@@ -9,7 +9,7 @@ export default function TermsPage() {
           <div className="animate-hero-title">
             <h1
               className="text-2xl md:text-3xl font-normal mb-4 leading-tight"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Terms of Service
             </h1>

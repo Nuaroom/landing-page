@@ -1,4 +1,5 @@
 import { Footer } from "@/components/Footer"
+import { HeroCircles } from "@/components/HeroCircles"
 
 const openings = [
   {
@@ -22,11 +23,12 @@ export default function CareersPage() {
     <>
       <main className="flex-1">
         {/* Header */}
-        <section className="pt-20 pb-12">
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
+        <section className="pt-20 pb-12 overflow-hidden">
+          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl relative">
+            <HeroCircles />
             <h1
               className="text-4xl md:text-5xl font-normal mb-4"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Careers
             </h1>
@@ -45,29 +47,31 @@ export default function CareersPage() {
 
         {/* Open Positions */}
         <section className="py-12">
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
-            <div className="grid md:grid-cols-2 gap-6 animate-hero-footer">
-              {openings.map((job, index) => (
-                <div
-                  key={index}
-                  className="h-full border border-border/50 rounded-lg p-6"
-                >
-                  <h3 className="text-xl font-semibold mb-2">
-                    {job.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    {job.description}
-                  </p>
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <span className="px-2 py-1 rounded border border-border/50">
-                      {job.type}
-                    </span>
-                    <span className="px-2 py-1 rounded border border-border/50">
-                      {job.location}
-                    </span>
+          <div className="border-t border-b border-border/40">
+            <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
+              <div className="grid md:grid-cols-2 animate-hero-footer">
+                {openings.map((job, index) => (
+                  <div
+                    key={index}
+                    className={`h-full p-8 md:p-10 ${index > 0 ? 'border-t md:border-t-0 md:border-l border-border/40' : ''}`}
+                  >
+                    <h3 className="text-xl font-semibold mb-2">
+                      {job.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {job.description}
+                    </p>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span className="px-2 py-1 border border-border/50">
+                        {job.type}
+                      </span>
+                      <span className="px-2 py-1 border border-border/50">
+                        {job.location}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>

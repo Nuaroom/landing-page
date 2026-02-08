@@ -1,49 +1,48 @@
 import { Clock, Video, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { Footer } from "@/components/Footer"
+import { HeroCircles } from "@/components/HeroCircles"
 
 export default function ContactPage() {
   const expectations = [
     {
-      title: "Personalized Walkthrough",
-      description: "Tailored demonstration based on your specific use case and requirements"
+      title: "Your UX Challenge",
+      description: "Bring your messiest PRD. We'll diagnose where UX bottlenecks hit your team."
     },
     {
-      title: "Live UX Generation",
-      description: "See Heurica turn a PRD into dev-ready UI in real-time"
+      title: "Before → After Walkthrough",
+      description: "See a real enterprise redesign: from legacy console to dev-ready UI spec."
     },
     {
-      title: "Q&A Session",
-      description: "Ask questions and explore how Heurica fits into your workflow"
+      title: "How Decisions Get Made",
+      description: "Every design choice traced back to your requirements. No black box."
     },
     {
-      title: "Implementation Discussion",
-      description: "Learn about integration options and next steps for your organization"
+      title: "Fit & Timeline",
+      description: "Honest conversation about whether Heurica is right for your team."
     }
   ]
 
   return (
     <>
       {/* Main Content */}
-      <main className="flex-1 py-12 md:py-20">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+      <main className="flex-1">
+        <div className="min-h-[calc(100vh-200px)] flex items-center py-12 md:py-20 overflow-hidden">
+          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl w-full relative">
+            <HeroCircles />
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
             {/* Left Column - Info */}
             <div className="flex flex-col">
-              <p className="text-xs font-medium uppercase tracking-wider mb-3 animate-hero-title" style={{ color: 'var(--accent-gold)' }}>Contact</p>
               <h1
-                className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight animate-hero-subtitle"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-subtitle"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 Book a Demo
               </h1>
-              <p className="text-muted-foreground mb-8 text-base md:text-lg animate-hero-button">
-                See how Heurica turns PRDs into front-end code with best-practice UX baked in.
-              </p>
 
-              {/* What to Expect Card */}
+              {/* What We'll Cover Card */}
               <div className="border border-border/30 rounded-xl bg-card/50 p-6 mb-6 animate-hero-footer">
-                <h2 className="font-semibold mb-5">What to Expect</h2>
+                <h2 className="font-semibold mb-5">What We'll Cover</h2>
                 <div className="space-y-4">
                   {expectations.map((item, index) => (
                     <div key={index} className="flex gap-3">
@@ -97,18 +96,20 @@ export default function ContactPage() {
                 title="Book a demo with Heurica"
               />
             </div>
-          </div>
+            </div>
 
-          {/* Email Contact - Below the grid */}
-          <div className="lg:w-1/2">
-            <div className="pt-6">
-              <h3 className="text-sm font-semibold mb-2">Or reach out directly</h3>
-              <a
-                href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                contact@heurica.co
-              </a>
+            {/* Email Contact - Below the grid */}
+            <div className="lg:w-1/2">
+              <div className="pt-6">
+                <h3 className="text-sm font-semibold mb-2">Or reach out directly</h3>
+                <a
+                  href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
+                  className="text-sm hover:text-foreground transition-colors"
+                  style={{ color: 'var(--accent-gold)' }}
+                >
+                  contact@heurica.co
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Footer } from "@/components/Footer"
+import { HeroCircles } from "@/components/HeroCircles"
 
 export default function TeamPage() {
   return (
@@ -6,13 +7,27 @@ export default function TeamPage() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Section 1: Why Heurica Exists */}
-        <section className="min-h-[calc(100vh-200px)] flex items-center py-20 md:py-32">
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl">
-            <div className="max-w-3xl mx-auto text-center">
+        <section className="min-h-[calc(100vh-200px)] flex items-center py-20 md:py-32 overflow-hidden relative">
+          {/* Container-aligned grid */}
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="max-w-7xl mx-auto px-8 lg:px-12 xl:px-16 h-full">
+              <div
+                className="h-full"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, rgba(160,160,160,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.12) 1px, transparent 1px)',
+                  backgroundSize: '48px 48px',
+                }}
+              />
+            </div>
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, var(--background) 100%)' }} />
+          </div>
+          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl relative z-10">
+            <div className="max-w-3xl mx-auto text-center relative">
+              <HeroCircles />
               {/* Title */}
               <h1
                 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-title"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 <span style={{ color: 'var(--accent-gold)' }}>Why</span> Heurica Exists
               </h1>
@@ -22,15 +37,12 @@ export default function TeamPage() {
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto animate-hero-subtitle">
                   Enterprise UX doesn't break at launch. It breaks in the decisions that were never made. Features get built exactly as specced — but users still can't figure out how to complete tasks. Not because engineers made bad decisions, but because no one was set up to make UX decisions at all.
                 </p>
-                <p
-                  className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer"
-                  style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-                >
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto animate-hero-footer">
                   Heurica brings structure to that gap.
                 </p>
                 <p
                   className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer"
-                  style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                  style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                 >
                   We make UX decisions systematic, explainable, and grounded in how users actually work.
                 </p>

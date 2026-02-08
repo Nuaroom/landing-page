@@ -1,0 +1,169 @@
+<svg width="680" height="440" viewBox="0 0 680 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-4%" y="-5%" width="108%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Main card with shadow -->
+  <rect x="50" y="40" width="580" height="360" rx="16" fill="white" stroke="#E5E3DD" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Tab bar -->
+  <line x1="50" y1="72" x2="630" y2="72" stroke="#F0EDE6" stroke-width="1"/>
+  <!-- Preview tab (active) -->
+  <rect x="70" y="50" width="62" height="22" rx="5" fill="#F5F4F0"/>
+  <text x="101" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#1C1917">Preview</text>
+  <!-- Code tab -->
+  <text x="155" y="65" font-family="system-ui, sans-serif" font-size="9" fill="#A8A29E">Code</text>
+  <!-- File name -->
+  <text x="610" y="65" text-anchor="end" font-family="monospace" font-size="8" fill="#A8A29E">AccessRules.tsx</text>
+
+  <!-- Vertical divider -->
+  <line x1="340" y1="72" x2="340" y2="400" stroke="#F0EDE6" stroke-width="1"/>
+
+  <!-- LEFT: Screen Preview -->
+  <rect x="75" y="88" width="240" height="290" rx="10" fill="#FAFAF8" stroke="#E5E3DD" stroke-width="0.6"/>
+
+  <!-- Screen header -->
+  <line x1="75" y1="122" x2="315" y2="122" stroke="#E5E3DD" stroke-width="0.6"/>
+  <text x="92" y="110" font-family="system-ui, sans-serif" font-size="11" fill="#A8A29E">←</text>
+  <text x="108" y="110" font-family="Georgia, serif" font-size="11.5" font-weight="600" fill="#1C1917">Access Rules</text>
+  <!-- Status badge -->
+  <rect x="252" y="99" width="48" height="18" rx="9" fill="#ECFDF5"/>
+  <circle cx="263" cy="108" r="3" fill="#10B981"/>
+  <text x="272" y="112" font-family="system-ui, sans-serif" font-size="8" fill="#059669">Active</text>
+
+  <!-- Rule name -->
+  <text x="92" y="146" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#A8A29E" letter-spacing="0.5">RULE NAME</text>
+  <text x="92" y="162" font-family="system-ui, sans-serif" font-size="10" fill="#1C1917">API Rate Limiting</text>
+  <line x1="92" y1="174" x2="298" y2="174" stroke="#F0EDE6" stroke-width="0.6"/>
+
+  <!-- Thresholds -->
+  <text x="92" y="192" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#A8A29E" letter-spacing="0.5">THRESHOLDS</text>
+  <!-- Row 1 -->
+  <rect x="92" y="200" width="206" height="26" rx="5" fill="white" stroke="#E5E3DD" stroke-width="0.5"/>
+  <text x="104" y="217" font-family="system-ui, sans-serif" font-size="9" fill="#57534E">Requests/min</text>
+  <text x="286" y="217" text-anchor="end" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#1C1917">1,000</text>
+  <!-- Row 2 -->
+  <rect x="92" y="230" width="206" height="26" rx="5" fill="white" stroke="#E5E3DD" stroke-width="0.5"/>
+  <text x="104" y="247" font-family="system-ui, sans-serif" font-size="9" fill="#57534E">Burst limit</text>
+  <text x="286" y="247" text-anchor="end" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#1C1917">2,500</text>
+  <!-- Row 3 -->
+  <rect x="92" y="260" width="206" height="26" rx="5" fill="white" stroke="#E5E3DD" stroke-width="0.5"/>
+  <text x="104" y="277" font-family="system-ui, sans-serif" font-size="9" fill="#57534E">Cooldown</text>
+  <text x="286" y="277" text-anchor="end" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#1C1917">30s</text>
+
+  <line x1="92" y1="298" x2="298" y2="298" stroke="#F0EDE6" stroke-width="0.6"/>
+
+  <!-- Action buttons -->
+  <rect x="92" y="310" width="85" height="28" rx="6" fill="#1C1917"/>
+  <text x="134" y="328" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="white">Edit Rule</text>
+  <rect x="184" y="310" width="85" height="28" rx="6" fill="white" stroke="#D6D3CC" stroke-width="0.8"/>
+  <text x="226" y="328" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="500" fill="#57534E">View Logs</text>
+
+  <!-- RIGHT: Code Editor -->
+  <rect x="355" y="88" width="260" height="290" rx="10" fill="#1C1917"/>
+
+  <!-- Line number gutter -->
+  <line x1="380" y1="98" x2="380" y2="368" stroke="#2A2520" stroke-width="0.5"/>
+
+  <!-- Line numbers -->
+  <text x="375" y="112" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">1</text>
+  <text x="375" y="125" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">2</text>
+  <text x="375" y="138" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">3</text>
+  <text x="375" y="151" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">4</text>
+  <text x="375" y="164" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">5</text>
+  <text x="375" y="177" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">6</text>
+  <text x="375" y="190" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">7</text>
+  <text x="375" y="203" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">8</text>
+  <text x="375" y="216" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">9</text>
+  <text x="375" y="229" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">10</text>
+  <text x="375" y="242" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">11</text>
+  <text x="375" y="255" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">12</text>
+  <text x="375" y="268" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">13</text>
+  <text x="375" y="281" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">14</text>
+  <text x="375" y="294" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">15</text>
+  <text x="375" y="307" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">16</text>
+  <text x="375" y="320" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">17</text>
+  <text x="375" y="333" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">18</text>
+  <text x="375" y="346" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">19</text>
+  <text x="375" y="359" text-anchor="end" font-family="monospace" font-size="8" fill="#57534E">20</text>
+
+  <!-- Code lines with syntax coloring -->
+  <!-- L1: export function AccessRules() { -->
+  <text x="385" y="112" font-family="monospace" font-size="8.5" fill="#C084FC">export function</text>
+  <text x="466" y="112" font-family="monospace" font-size="8.5" fill="#E4E4E7">AccessRules() {</text>
+
+  <!-- L2:   const { rule } = useRule() -->
+  <text x="395" y="125" font-family="monospace" font-size="8.5" fill="#C084FC">const</text>
+  <text x="421" y="125" font-family="monospace" font-size="8.5" fill="#E4E4E7">{ rule } =</text>
+  <text x="478" y="125" font-family="monospace" font-size="8.5" fill="#FCD34D">useRule</text>
+  <text x="510" y="125" font-family="monospace" font-size="8.5" fill="#E4E4E7">()</text>
+
+  <!-- L3: (blank) -->
+
+  <!-- L4:   return ( -->
+  <text x="395" y="151" font-family="monospace" font-size="8.5" fill="#C084FC">return</text>
+  <text x="427" y="151" font-family="monospace" font-size="8.5" fill="#E4E4E7">(</text>
+
+  <!-- L5:     <Page> -->
+  <text x="405" y="164" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;Page&gt;</text>
+
+  <!-- L6:       <Header title={rule.name} /> -->
+  <text x="415" y="177" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;Header</text>
+  <text x="457" y="177" font-family="monospace" font-size="8.5" fill="#FCD34D">title</text>
+  <text x="479" y="177" font-family="monospace" font-size="8.5" fill="#E4E4E7">={rule.name}</text>
+  <text x="545" y="177" font-family="monospace" font-size="8.5" fill="#7DD3FC">/&gt;</text>
+
+  <!-- L7:       <StatusBadge status="active" /> -->
+  <text x="415" y="190" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;StatusBadge</text>
+  <text x="478" y="190" font-family="monospace" font-size="8.5" fill="#FCD34D">status</text>
+  <text x="510" y="190" font-family="monospace" font-size="8.5" fill="#E4E4E7">=</text>
+  <text x="516" y="190" font-family="monospace" font-size="8.5" fill="#86EFAC">"active"</text>
+  <text x="558" y="190" font-family="monospace" font-size="8.5" fill="#7DD3FC">/&gt;</text>
+
+  <!-- L8: (blank) -->
+
+  <!-- L9:       <Section title="Thresholds"> -->
+  <text x="415" y="216" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;Section</text>
+  <text x="457" y="216" font-family="monospace" font-size="8.5" fill="#FCD34D">title</text>
+  <text x="479" y="216" font-family="monospace" font-size="8.5" fill="#E4E4E7">=</text>
+  <text x="485" y="216" font-family="monospace" font-size="8.5" fill="#86EFAC">"Thresholds"</text>
+  <text x="545" y="216" font-family="monospace" font-size="8.5" fill="#7DD3FC">&gt;</text>
+
+  <!-- L10:         {rule.thresholds.map(t => ( -->
+  <text x="425" y="229" font-family="monospace" font-size="8.5" fill="#E4E4E7">{rule.thresholds.map(t =&gt; (</text>
+
+  <!-- L11:           <ThresholdRow -->
+  <text x="435" y="242" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;ThresholdRow</text>
+
+  <!-- L12:             key={t.id} -->
+  <text x="445" y="255" font-family="monospace" font-size="8.5" fill="#FCD34D">key</text>
+  <text x="461" y="255" font-family="monospace" font-size="8.5" fill="#E4E4E7">={t.id}</text>
+
+  <!-- L13:             label={t.param} -->
+  <text x="445" y="268" font-family="monospace" font-size="8.5" fill="#FCD34D">label</text>
+  <text x="469" y="268" font-family="monospace" font-size="8.5" fill="#E4E4E7">={t.param}</text>
+
+  <!-- L14:             value={t.limit} -->
+  <text x="445" y="281" font-family="monospace" font-size="8.5" fill="#FCD34D">value</text>
+  <text x="471" y="281" font-family="monospace" font-size="8.5" fill="#E4E4E7">={t.limit}</text>
+
+  <!-- L15:           /> -->
+  <text x="435" y="294" font-family="monospace" font-size="8.5" fill="#7DD3FC">/&gt;</text>
+
+  <!-- L16:         ))} -->
+  <text x="425" y="307" font-family="monospace" font-size="8.5" fill="#E4E4E7">))}</text>
+
+  <!-- L17:       </Section> -->
+  <text x="415" y="320" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;/Section&gt;</text>
+
+  <!-- L18:     </Page> -->
+  <text x="405" y="333" font-family="monospace" font-size="8.5" fill="#7DD3FC">&lt;/Page&gt;</text>
+
+  <!-- L19:   ) -->
+  <text x="395" y="346" font-family="monospace" font-size="8.5" fill="#E4E4E7">)</text>
+
+  <!-- L20: } -->
+  <text x="385" y="359" font-family="monospace" font-size="8.5" fill="#E4E4E7">}</text>
+</svg>

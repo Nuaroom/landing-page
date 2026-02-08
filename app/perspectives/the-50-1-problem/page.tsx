@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef } from "react"
+import { HeroCircles } from "@/components/HeroCircles"
 
 export default function The501ProblemPage() {
   const articleRef = useRef<HTMLElement>(null)
@@ -41,8 +42,9 @@ export default function The501ProblemPage() {
     <>
       <main className="flex-1" ref={articleRef}>
         {/* Hero */}
-        <header className="min-h-[80vh] flex flex-col justify-center py-20 md:py-32">
-          <div className="container mx-auto px-6 lg:px-12 max-w-3xl">
+        <header className="min-h-[80vh] flex flex-col justify-center py-20 md:py-32 overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-12 max-w-3xl relative">
+            <HeroCircles />
             <div
               className="text-xs font-mono uppercase tracking-wider mb-8 flex items-center gap-4 animate-hero-title"
               style={{ color: "var(--accent-gold)" }}
@@ -52,7 +54,7 @@ export default function The501ProblemPage() {
             </div>
             <h1
               className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-subtitle"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               <span style={{ color: "var(--accent-gold)" }}>The 50:1 Problem</span>: Engineer-Heavy Teams Don't Ship Bad UX. They Ship{" "}
               <span style={{ color: "var(--accent-gold)" }}>No UX</span>.
@@ -82,14 +84,14 @@ export default function The501ProblemPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              SAP survived. That's not a compliment.
+              Salesforce survived. That's not a compliment.
             </h2>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
-              SAP has run on roughly the same interface paradigm for three decades. ServiceNow,
-              Splunk, legacy Salesforce — same story. Enterprise software doesn't die from bad
+              Salesforce has run on roughly the same interface paradigm for over two decades.
+              SAP, ServiceNow, Splunk. Same story. Enterprise software doesn't die from bad
               UX. Switching costs are too high, contracts too sticky, migrations too painful.
               The product survives.
             </p>
@@ -119,15 +121,15 @@ export default function The501ProblemPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               The ratio nobody models
             </h2>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               Industry best practice says 5 to 10 engineers per designer. The actual ratio at
-              most B2B SaaS companies — especially in infrastructure, security, and developer
-              tooling — is closer to 50:1. We've seen organizations running at 500:1. Five
+              most B2B SaaS companies, especially in infrastructure, security, and developer
+              tooling, is closer to 50:1. We've seen organizations running at 500:1. Five
               hundred engineers. One designer, hired last year, still ramping up on domain
               knowledge.
             </p>
@@ -151,17 +153,17 @@ export default function The501ProblemPage() {
             </div>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
-              This ratio doesn't produce "bad design." It produces <strong className="text-foreground">no design</strong> — at least not in the way design actually functions. Engineers build every feature the PRD specifies. Every button exists. Every API is connected. Every input field is present. The product is functionally complete.
+              This ratio doesn't produce "bad design." It produces <span className="font-semibold text-foreground/85">no design</span>. At least not in the way design actually functions. Engineers build every feature the PRD specifies. Every button exists. Every API is connected. Every input field is present. The product is functionally complete.
             </p>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               What's missing isn't craft or aesthetics. What's missing is the{" "}
-              <strong className="text-foreground">layer of decision-making</strong> that
+              <span className="font-semibold text-foreground/85">layer of decision-making</span> that
               determines how information is structured on a screen, how flows connect to each
               other, what a user should see first versus last, and what happens when something
               goes wrong. Information hierarchy. Flow architecture. Error state design. The
-              questions that sound simple — "what should the user see when they land on this
-              page?" — but require deliberate reasoning that no one in the org is tasked with
+              questions that sound simple, like &apos;what should the user see when they land on this
+              page?&apos;, but require deliberate reasoning that no one in the org is tasked with
               doing.
             </p>
 
@@ -172,11 +174,12 @@ export default function The501ProblemPage() {
             >
               <p
                 className="text-lg italic leading-relaxed"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                The problem isn't that engineers can't design. It's that the organization never
-                created the role of making UX decisions — and engineers are already busy making
-                engineering decisions.
+                The problem isn't that engineers can't design.
+                <br />
+                It's that the organization never created the role of making UX decisions;
+                and engineers are already busy making engineering decisions.
               </p>
             </div>
 
@@ -207,7 +210,7 @@ export default function The501ProblemPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Where the cost of "good enough" becomes unacceptable
             </h2>
@@ -221,7 +224,7 @@ export default function The501ProblemPage() {
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               In enterprise software, users can't leave. The company chose the tool. IT deployed
               it. There's a three-year contract. So instead of leaving, users do something worse:{" "}
-              <strong className="text-foreground">they adapt.</strong> They build workarounds.
+              <span className="font-semibold text-foreground/85">they adapt.</span> They build workarounds.
               They skip the intended flow and find their own path. They use the product at 30% of
               its capability and fill the rest with spreadsheets, Slack messages, and tribal
               knowledge passed from one team member to the next.
@@ -229,12 +232,12 @@ export default function The501ProblemPage() {
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               In many enterprise contexts, this is annoying but survivable. Internal admin tools,
-              project management dashboards, reporting interfaces — suboptimal UX slows people
+              project management dashboards, reporting interfaces. Suboptimal UX slows people
               down, but the cost stays contained.
             </p>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
-              But there are products where a user workaround isn't just inefficient — it's
+              But there are products where a user workaround isn't just inefficient. It's
               dangerous.
             </p>
 
@@ -289,8 +292,8 @@ export default function The501ProblemPage() {
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               None of these are hypothetical bugs. They're the predictable result of interfaces
-              where functional completeness was achieved but UX reasoning — the deliberate
-              structuring of what users see, when, and why — was never applied.
+              where functional completeness was achieved, but <span className="font-semibold text-foreground/85">UX reasoning</span> was never applied. The deliberate
+              structuring of what users see, when, and why.
             </p>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
@@ -310,7 +313,7 @@ export default function The501ProblemPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Why "hire a designer" isn't the answer
             </h2>
@@ -344,9 +347,9 @@ export default function The501ProblemPage() {
               <p className="text-sm text-muted-foreground">
                 We've seen an enterprise security company — 500+ employees, serving Fortune 500
                 banks and hospitals — hire their first designer.{" "}
-                <strong className="text-foreground">
+                <span className="font-semibold text-foreground/85">
                   Nine months later, the UX mapping for one feature area still wasn't clean.
-                </strong>{" "}
+                </span>{" "}
                 Not because the designer was bad. Because the problem was structural: years of
                 accumulated UX decisions (or non-decisions) that no single person could unwind
                 manually.
@@ -356,7 +359,7 @@ export default function The501ProblemPage() {
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               The 50:1 problem isn't solved by changing the ratio alone. It's solved by changing
               how UX decisions get made — making them{" "}
-              <strong className="text-foreground">structured, traceable, and systematic</strong>{" "}
+              <span className="font-semibold text-foreground/85">structured, traceable, and systematic</span>{" "}
               rather than dependent on the availability and bandwidth of individual humans.
             </p>
 
@@ -370,7 +373,7 @@ export default function The501ProblemPage() {
 
             <h2
               className="text-2xl font-normal mb-6 fade-in"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               The missing layer: UX as reasoning, not decoration
             </h2>
@@ -391,9 +394,9 @@ export default function The501ProblemPage() {
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
               This is the actual gap at 50:1 organizations. Not the absence of designers. The{" "}
-              <strong className="text-foreground">
+              <span className="font-semibold text-foreground/85">
                 absence of a decision-making framework for UX
-              </strong>{" "}
+              </span>{" "}
               — one that works at the speed engineering already moves, with the traceability
               engineering already demands.
             </p>
@@ -411,7 +414,7 @@ export default function The501ProblemPage() {
             >
               <p
                 className="text-lg italic leading-relaxed"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 If you can't explain why a screen is structured the way it is, you can't maintain
                 it, you can't improve it, and you can't onboard anyone to it. You can only rebuild
@@ -420,8 +423,8 @@ export default function The501ProblemPage() {
             </div>
 
             <p className="text-muted-foreground leading-relaxed mb-6 fade-in">
-              That's what happens. Every few years, the org hits a breaking point — support costs
-              too high, sales cycles too long, customer complaints too loud — and someone
+              That's what happens. Every few years, the org hits a breaking point: Support costs
+              too high, sales cycles too long, customer complaints too loud. Someone
               greenlights a redesign. Six months, a year, sometimes longer. And then the same
               cycle starts again, because the new interface was built with the same structural
               gap: features implemented, UX decisions never made.
@@ -471,7 +474,7 @@ export default function The501ProblemPage() {
                   href="/"
                   className="text-2xl font-medium"
                   style={{
-                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontFamily: "var(--font-ibm-plex-serif), serif",
                     color: "var(--accent-gold)",
                   }}
                 >

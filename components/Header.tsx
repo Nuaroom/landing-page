@@ -80,7 +80,7 @@ export function Header() {
           href="/"
           className="text-2xl font-medium"
           style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontFamily: "var(--font-ibm-plex-serif), serif",
             color: 'var(--accent-gold)'
           }}
         >Heurica</Link>
@@ -138,7 +138,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button size="sm" className="px-3 py-1 text-xs font-semibold rounded-md h-7" asChild>
+          <Button size="sm" className="px-3 py-1 text-xs font-semibold rounded-none h-7" asChild>
             <Link href="/contact">
               Book a Demo
             </Link>

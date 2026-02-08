@@ -1,110 +1,322 @@
 "use client"
 
-import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import { FileSearch, GitBranch, Scale, Rocket } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
 interface FlowDiagramProps {
   className?: string
 }
 
+const steps: {
+  number: string
+  label: string
+  description: string
+  Icon: LucideIcon
+  cardText: string
+}[] = [
+  {
+    number: "01",
+    label: "UNDERSTAND",
+    description: "Requirements & Constraints",
+    Icon: FileSearch,
+    cardText: "48 user stories, 3 roles\n→ 1 structured spec",
+  },
+  {
+    number: "02",
+    label: "ANALYZE",
+    description: "Patterns & Structure",
+    Icon: GitBranch,
+    cardText: "Complex admin console\n→ 6 clear modules",
+  },
+  {
+    number: "03",
+    label: "DECIDE",
+    description: "Design Rationale",
+    Icon: Scale,
+    cardText: "Why search-first nav over sidebar?\n→ Decision with 2 references",
+  },
+  {
+    number: "04",
+    label: "SHIP",
+    description: "Production-Ready UX & Code",
+    Icon: Rocket,
+    cardText: "12 screens + code + specs\n→ weeks, not quarters",
+  },
+]
+
+const stepDescriptions: string[] = [
+  "PRDs, user stories, and business rules.\nFully parsed, nothing lost.",
+  "Workflows, user flows, information architecture.\nComplexity organized into clear modules.",
+  "Layout, navigation, interaction.\nEvery choice grounded in proven patterns.",
+  "Dev-ready screens, flows, component code.\nReady for sprint planning.",
+]
+
 export function FlowDiagram({ className = "" }: FlowDiagramProps) {
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [activeStep, setActiveStep] = useState(-1)
+  const [lineProgress, setLineProgress] = useState(0)
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return
 
-  const filterStyle = !mounted || resolvedTheme === "light"
-    ? 'saturate(0.15) brightness(1.1) sepia(0.08)'
-    : 'saturate(0.4) brightness(0.7)'
+      const containerRect = containerRef.current.getBoundingClientRect()
+      const containerTop = containerRect.top
+      const containerHeight = containerRect.height
+      const viewportHeight = window.innerHeight
 
-  const arrowColor = !mounted || resolvedTheme === "light" ? "#1A1A1A" : "white"
+      // Use scroll progress through the container to determine active step
+      // Start activating when container enters viewport, spread steps evenly across scroll
+      const scrollStart = viewportHeight * 0.7 // Start when container top hits 70% of viewport
+      const scrollProgress = (scrollStart - containerTop) / (containerHeight + scrollStart * 0.3)
+      const clampedProgress = Math.max(0, Math.min(1, scrollProgress))
+
+      // Map progress to steps: each step activates at evenly spaced intervals
+      const stepProgress = clampedProgress * steps.length
+      const newActiveStep = Math.floor(stepProgress) - 1 + (stepProgress % 1 > 0.15 ? 1 : 0)
+      setActiveStep(Math.min(newActiveStep, steps.length - 1))
+
+      // Line progress tracks smoothly between steps
+      setLineProgress(clampedProgress)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial check
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <div className={`relative rounded-2xl overflow-hidden ${className}`}>
-      {/* Background Image */}
-      <img
-        src="/greek-bg.svg"
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ filter: filterStyle }}
-      />
-
-      {/* Flow Diagram Content - Scale down on smaller screens */}
-      <div className="relative z-10 flex items-center justify-center px-4 md:px-8 py-8 md:py-16">
-        <div className="flex items-center gap-1 md:gap-2 scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-100 origin-center">
-          {/* Left: PRD and User Stories (stacked) */}
-          <div className="flex flex-col gap-4">
-            <div
-              className="px-5 py-4 rounded-xl border text-center"
-              style={{ backgroundColor: '#F0EDE6', borderColor: 'rgba(255, 255, 255, 0.3)' }}
-            >
-              <span className="text-base font-medium dark:text-gray-900">PRD</span>
-            </div>
-            <div
-              className="px-5 py-4 rounded-xl border text-center"
-              style={{ backgroundColor: '#F0EDE6', borderColor: 'rgba(255, 255, 255, 0.3)' }}
-            >
-              <span className="text-base font-medium whitespace-nowrap dark:text-gray-900">User Stories</span>
-            </div>
-          </div>
-
-          {/* Left Arrows (converging) */}
-          <svg
-            className="w-10 h-20 flex-shrink-0"
-            viewBox="0 0 40 80"
-            fill="none"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <path d="M 5 20 L 32 40" stroke={arrowColor} strokeWidth="2.5" strokeDasharray="4 3" />
-            <path d="M 5 60 L 32 40" stroke={arrowColor} strokeWidth="2.5" strokeDasharray="4 3" />
-            <polygon points="37,40 30,36 30,44" fill={arrowColor} />
-          </svg>
-
-          {/* Middle: UX Decision Intelligence */}
+    <div ref={containerRef} className={`relative ${className}`}>
+      {steps.map((step, index) => {
+        const isOdd = index % 2 === 0 // steps 1,3 (index 0,2) = label left, card right
+        const isActive = index <= activeStep
+        return (
           <div
-            className="px-5 py-5 rounded-xl border text-center flex-shrink-0"
-            style={{
-              backgroundColor: '#F2E3A2',
-              borderColor: 'rgba(255, 255, 255, 0.3)'
-            }}
+            key={step.number}
+            ref={(el) => { stepRefs.current[index] = el }}
+            className="relative"
+            style={{ paddingBottom: index < steps.length - 1 ? '48px' : '0' }}
           >
-            <span className="text-base font-medium whitespace-nowrap dark:text-gray-900">UX Decision<br />Intelligence</span>
-          </div>
+            {/* Timeline line (gray background) */}
+            {index < steps.length - 1 && (
+              <div
+                className="absolute left-1/2 -translate-x-1/2 top-[6px] h-full hidden md:block"
+                style={{ width: '1.5px', backgroundColor: '#C4C4C4' }}
+              />
+            )}
+            {/* Timeline line (gold progress overlay) */}
+            {index < steps.length - 1 && (
+              <div
+                className="absolute left-1/2 -translate-x-1/2 top-[6px] h-full hidden md:block overflow-hidden"
+                style={{ width: '1.5px' }}
+              >
+                <div
+                  className="w-full transition-all duration-700 ease-out"
+                  style={{
+                    backgroundColor: 'var(--accent-gold)',
+                    height: index < activeStep ? '100%' : index === activeStep ? `${Math.max(0, Math.min(1, (lineProgress * steps.length - index))) * 100}%` : '0%',
+                  }}
+                />
+              </div>
+            )}
+            {/* Mobile timeline line (gray) */}
+            {index < steps.length - 1 && (
+              <div
+                className="absolute left-[11px] top-[6px] h-full md:hidden"
+                style={{ width: '1.5px', backgroundColor: '#C4C4C4' }}
+              />
+            )}
+            {/* Mobile timeline line (gold progress) */}
+            {index < steps.length - 1 && (
+              <div
+                className="absolute left-[11px] top-[6px] h-full md:hidden overflow-hidden"
+                style={{ width: '1.5px' }}
+              >
+                <div
+                  className="w-full transition-all duration-700 ease-out"
+                  style={{
+                    backgroundColor: 'var(--accent-gold)',
+                    height: index < activeStep ? '100%' : index === activeStep ? `${Math.max(0, Math.min(1, (lineProgress * steps.length - index))) * 100}%` : '0%',
+                  }}
+                />
+              </div>
+            )}
 
-          {/* Right Arrows (diverging) */}
-          <svg
-            className="w-10 h-20 flex-shrink-0"
-            viewBox="0 0 40 80"
-            fill="none"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <path d="M 5 40 L 32 20" stroke={arrowColor} strokeWidth="2.5" strokeDasharray="4 3" />
-            <path d="M 5 40 L 32 60" stroke={arrowColor} strokeWidth="2.5" strokeDasharray="4 3" />
-            <polygon points="37,20 30,16 30,24" fill={arrowColor} />
-            <polygon points="37,60 30,56 30,64" fill={arrowColor} />
-          </svg>
+            {/* Desktop layout */}
+            <div className="hidden md:grid md:grid-cols-[1fr_24px_1fr] md:gap-6 items-start">
+              {/* Left side */}
+              <div
+                className="flex justify-end transition-all duration-700 ease-out"
+                style={{
+                  opacity: isActive ? 1 : 0.15,
+                  transform: isActive ? 'translateY(0)' : 'translateY(12px)',
+                }}
+              >
+                {isOdd ? (
+                  <StepLabel number={step.number} label={step.label} description={step.description} longDescription={stepDescriptions[index]} align="right" />
+                ) : (
+                  <StepCard Icon={step.Icon} cardText={step.cardText} arrow="right" />
+                )}
+              </div>
 
-          {/* Right: Outputs (stacked) */}
-          <div className="flex flex-col gap-4">
+              {/* Timeline dot */}
+              <div className="flex justify-center pt-1">
+                <div
+                  className="w-3 h-3 rounded-full relative z-10 flex-shrink-0 transition-all duration-500"
+                  style={{
+                    backgroundColor: isActive ? 'var(--accent-gold)' : '#C4C4C4',
+                    boxShadow: isActive ? '0 0 8px rgba(202, 138, 4, 0.4)' : 'none',
+                    transform: isActive ? 'scale(1.2)' : 'scale(1)',
+                  }}
+                />
+              </div>
+
+              {/* Right side */}
+              <div
+                className="flex justify-start transition-all duration-700 ease-out"
+                style={{
+                  opacity: isActive ? 1 : 0.15,
+                  transform: isActive ? 'translateY(0)' : 'translateY(12px)',
+                  transitionDelay: '100ms',
+                }}
+              >
+                {isOdd ? (
+                  <StepCard Icon={step.Icon} cardText={step.cardText} arrow="left" />
+                ) : (
+                  <StepLabel number={step.number} label={step.label} description={step.description} longDescription={stepDescriptions[index]} align="left" />
+                )}
+              </div>
+            </div>
+
+            {/* Mobile layout */}
             <div
-              className="px-5 py-4 rounded-xl border text-center"
+              className="flex md:hidden gap-4 items-start transition-all duration-700 ease-out"
               style={{
-                backgroundColor: '#B3D9EC',
-                borderColor: 'rgba(255, 255, 255, 0.3)'
+                opacity: isActive ? 1 : 0.15,
+                transform: isActive ? 'translateY(0)' : 'translateY(12px)',
               }}
             >
-              <span className="text-base font-medium whitespace-nowrap dark:text-gray-900">Explainable<br />UX Design</span>
-            </div>
-            <div
-              className="px-5 py-4 rounded-xl border text-center"
-              style={{
-                backgroundColor: '#B3D9EC',
-                borderColor: 'rgba(255, 255, 255, 0.3)'
-              }}
-            >
-              <span className="text-base font-medium whitespace-nowrap dark:text-gray-900">Dev-Ready<br />Frontend Code</span>
+              {/* Timeline dot */}
+              <div className="flex-shrink-0 pt-1">
+                <div
+                  className="w-[12px] h-[12px] rounded-full relative z-10 transition-all duration-500"
+                  style={{
+                    backgroundColor: isActive ? 'var(--accent-gold)' : '#C4C4C4',
+                    boxShadow: isActive ? '0 0 8px rgba(202, 138, 4, 0.4)' : 'none',
+                    transform: isActive ? 'scale(1.2)' : 'scale(1)',
+                  }}
+                />
+              </div>
+
+              {/* Content stacked */}
+              <div className="flex-1 space-y-3">
+                <StepLabel number={step.number} label={step.label} description={step.description} longDescription={stepDescriptions[index]} align="left" />
+                <StepCard Icon={step.Icon} cardText={step.cardText} arrow="left" mobile />
+              </div>
             </div>
           </div>
+        )
+      })}
+
+    </div>
+  )
+}
+
+function StepLabel({
+  number,
+  label,
+  description,
+  longDescription,
+  align,
+}: {
+  number: string
+  label: string
+  description: string
+  longDescription: string
+  align: "left" | "right"
+}) {
+  return (
+    <div className={`${align === 'right' ? 'text-right' : 'text-left'}`}>
+      <div className={`mb-2 ${align === 'right' ? 'text-right' : ''}`}>
+        <span
+          className="text-xs font-mono tracking-wider"
+          style={{ color: 'var(--accent-gold)' }}
+        >
+          {number} {label}
+        </span>
+      </div>
+      <h3
+        className="text-xl font-normal leading-tight"
+        style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+      >
+        {description}
+      </h3>
+      <p className="text-xs text-muted-foreground mt-3 whitespace-pre-line">{longDescription}</p>
+    </div>
+  )
+}
+
+function StepCard({
+  Icon,
+  cardText,
+  arrow,
+  mobile = false,
+}: {
+  Icon: LucideIcon
+  cardText: string
+  arrow: "left" | "right"
+  mobile?: boolean
+}) {
+  return (
+    <div className={`relative ${mobile ? 'w-full' : 'max-w-[240px]'}`}>
+      {/* Speech bubble arrow */}
+      {!mobile && (
+        <div
+          className="absolute top-[14px] hidden md:block"
+          style={{
+            [arrow === 'left' ? 'left' : 'right']: '-8px',
+            width: 0,
+            height: 0,
+            borderTop: '8px solid transparent',
+            borderBottom: '8px solid transparent',
+            ...(arrow === 'left'
+              ? { borderRight: '8px solid #E5E5E5' }
+              : { borderLeft: '8px solid #E5E5E5' }),
+          }}
+        />
+      )}
+      {!mobile && (
+        <div
+          className="absolute top-[14px] hidden md:block"
+          style={{
+            [arrow === 'left' ? 'left' : 'right']: '-6.5px',
+            width: 0,
+            height: 0,
+            borderTop: '8px solid transparent',
+            borderBottom: '8px solid transparent',
+            ...(arrow === 'left'
+              ? { borderRight: '8px solid #FDFCF9' }
+              : { borderLeft: '8px solid #FDFCF9' }),
+          }}
+        />
+      )}
+      <div
+        className="rounded-none border px-5 py-4"
+        style={{
+          backgroundColor: '#FDFCF9',
+          borderColor: '#E5E5E5',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+        }}
+      >
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 mt-0.5">
+            <Icon className="w-4 h-4 text-muted-foreground" />
+          </div>
+          <p className="text-xs text-muted-foreground whitespace-pre-line">
+            {cardText}
+          </p>
         </div>
       </div>
     </div>
