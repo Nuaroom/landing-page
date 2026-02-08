@@ -67,6 +67,31 @@
   --option-button-selected: #bfdbfe; /* blue-200 equivalent */
   --waitlist-bg: #FAF8F3;
   --waitlist-bubble: #718096;
+  --case-study-bg: #F5F4F0;
+  --step-bg-base: #D5CFC6;
+  --step-bg-highlight: rgba(255,255,255,0.85);
+  --step-bg-highlight-2: rgba(255,255,255,0.7);
+  --step-bg-highlight-3: rgba(255,255,255,0.6);
+  --step-bg-accent: rgba(210,200,185,0.5);
+  --step-card-active: #FDFCF7;
+  /* Mockup component theme */
+  --mock-bg: #ffffff;
+  --mock-bg-alt: #fafaf9;
+  --mock-bg-hover: #f5f5f4;
+  --mock-bg-accent: rgba(168,162,158,0.24);
+  --mock-border: #e7e5e4;
+  --mock-border-light: #f5f5f4;
+  --mock-border-dashed: #d6d3d1;
+  --mock-text-1: #292524;
+  --mock-text-2: #44403c;
+  --mock-text-3: #57534e;
+  --mock-text-4: #78716c;
+  --mock-text-5: #a8a29e;
+  --mock-text-6: #d6d3d1;
+  --mock-btn-bg: #44403c;
+  --mock-btn-text: #ffffff;
+  --mock-amber-bg: #fffbeb;
+  --mock-amber-text: #b45309;
 }
 
 /* Dark mode colors matching Heurica demo */
@@ -118,6 +143,31 @@
   --option-button-selected: #1d4ed8; /* blue-700 equivalent */
   --waitlist-bg: #343434;
   --waitlist-bubble: #bebebe;
+  --case-study-bg: #2A2725;
+  --step-bg-base: #1C1917;
+  --step-bg-highlight: rgba(40,40,35,0.85);
+  --step-bg-highlight-2: rgba(40,40,35,0.7);
+  --step-bg-highlight-3: rgba(40,40,35,0.6);
+  --step-bg-accent: rgba(50,45,35,0.5);
+  --step-card-active: #2A2A26;
+  /* Mockup component theme - dark */
+  --mock-bg: #1c1917;
+  --mock-bg-alt: #151311;
+  --mock-bg-hover: #292524;
+  --mock-bg-accent: rgba(168,162,158,0.12);
+  --mock-border: #3d3a37;
+  --mock-border-light: #292524;
+  --mock-border-dashed: #57534e;
+  --mock-text-1: #e7e5e4;
+  --mock-text-2: #d6d3d1;
+  --mock-text-3: #a8a29e;
+  --mock-text-4: #78716c;
+  --mock-text-5: #57534e;
+  --mock-text-6: #44403c;
+  --mock-btn-bg: #d6d3d1;
+  --mock-btn-text: #1c1917;
+  --mock-amber-bg: #451a03;
+  --mock-amber-text: #fbbf24;
 }
 
 @theme inline {

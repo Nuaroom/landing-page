@@ -36,9 +36,9 @@ export default function PerspectivesPage() {
       <main className="flex-1">
         {/* Header */}
         <section className="pt-20 pb-12 overflow-hidden">
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl relative">
+          <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl relative">
             <HeroCircles />
-            <div className="flex items-center justify-between">
+            <div className="px-8 md:px-10">
               <h1
                 className="text-4xl md:text-5xl font-normal"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
@@ -53,7 +53,7 @@ export default function PerspectivesPage() {
         <section className="py-12">
           <div className="border-t border-b border-border/40">
             <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
-              <div className="grid md:grid-cols-2">
+              <div className="grid md:grid-cols-2 border-l border-r border-border/40">
                 {articles.map((article, index) => (
                   <Link
                     key={article.slug}
@@ -99,11 +99,10 @@ export default function PerspectivesPage() {
                             <div className="w-6 h-6 rounded-full bg-neutral-200 dark:bg-neutral-700 overflow-hidden flex-shrink-0">
                               <img
                                 src="/yunbin-profile.jpg"
-                                alt={article.author}
+                                alt="Author"
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            <span className="text-xs text-muted-foreground whitespace-nowrap">{article.author}</span>
                           </div>
                         </div>
                       </div>

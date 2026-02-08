@@ -3,17 +3,15 @@ import Link from "next/link"
 export function Footer() {
   return (
     <div className="pt-64 relative">
-      {/* Container-aligned grid (matches hero grid) */}
+      {/* Full-width grid */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="max-w-7xl mx-auto px-8 lg:px-12 xl:px-16 h-full">
-          <div
-            className="h-full"
-            style={{
-              backgroundImage: 'linear-gradient(to right, rgba(160,160,160,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.12) 1px, transparent 1px)',
-              backgroundSize: '48px 48px',
-            }}
-          />
-        </div>
+        <div
+          className="h-full"
+          style={{
+            backgroundImage: 'linear-gradient(to right, rgba(160,160,160,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.12) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--background) 0%, transparent 50%)' }} />
       </div>
       <footer className="flex-shrink-0 cloud-footer relative z-10">

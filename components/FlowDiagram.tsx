@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { useTheme } from "next-themes"
 import { FileSearch, GitBranch, Scale, Rocket } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
@@ -57,6 +58,8 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
   const stepRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeStep, setActiveStep] = useState(-1)
   const [lineProgress, setLineProgress] = useState(0)
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === "dark"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,7 +106,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
             {index < steps.length - 1 && (
               <div
                 className="absolute left-1/2 -translate-x-1/2 top-[6px] h-full hidden md:block"
-                style={{ width: '1.5px', backgroundColor: '#C4C4C4' }}
+                style={{ width: '1.5px', backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
               />
             )}
             {/* Timeline line (gold progress overlay) */}
@@ -125,7 +128,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
             {index < steps.length - 1 && (
               <div
                 className="absolute left-[11px] top-[6px] h-full md:hidden"
-                style={{ width: '1.5px', backgroundColor: '#C4C4C4' }}
+                style={{ width: '1.5px', backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
               />
             )}
             {/* Mobile timeline line (gold progress) */}
@@ -166,7 +169,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
                 <div
                   className="w-3 h-3 rounded-full relative z-10 flex-shrink-0 transition-all duration-500"
                   style={{
-                    backgroundColor: isActive ? 'var(--accent-gold)' : '#C4C4C4',
+                    backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
                     boxShadow: isActive ? '0 0 8px rgba(202, 138, 4, 0.4)' : 'none',
                     transform: isActive ? 'scale(1.2)' : 'scale(1)',
                   }}
@@ -203,7 +206,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
                 <div
                   className="w-[12px] h-[12px] rounded-full relative z-10 transition-all duration-500"
                   style={{
-                    backgroundColor: isActive ? 'var(--accent-gold)' : '#C4C4C4',
+                    backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
                     boxShadow: isActive ? '0 0 8px rgba(202, 138, 4, 0.4)' : 'none',
                     transform: isActive ? 'scale(1.2)' : 'scale(1)',
                   }}
@@ -269,6 +272,11 @@ function StepCard({
   arrow: "left" | "right"
   mobile?: boolean
 }) {
+  const { resolvedTheme } = useTheme()
+  const dark = resolvedTheme === "dark"
+  const cardBg = dark ? '#262626' : '#FDFCF9'
+  const cardBorder = dark ? '#404040' : '#E5E5E5'
+
   return (
     <div className={`relative ${mobile ? 'w-full' : 'max-w-[240px]'}`}>
       {/* Speech bubble arrow */}
@@ -282,8 +290,8 @@ function StepCard({
             borderTop: '8px solid transparent',
             borderBottom: '8px solid transparent',
             ...(arrow === 'left'
-              ? { borderRight: '8px solid #E5E5E5' }
-              : { borderLeft: '8px solid #E5E5E5' }),
+              ? { borderRight: `8px solid ${cardBorder}` }
+              : { borderLeft: `8px solid ${cardBorder}` }),
           }}
         />
       )}
@@ -297,17 +305,17 @@ function StepCard({
             borderTop: '8px solid transparent',
             borderBottom: '8px solid transparent',
             ...(arrow === 'left'
-              ? { borderRight: '8px solid #FDFCF9' }
-              : { borderLeft: '8px solid #FDFCF9' }),
+              ? { borderRight: `8px solid ${cardBg}` }
+              : { borderLeft: `8px solid ${cardBg}` }),
           }}
         />
       )}
       <div
         className="rounded-none border px-5 py-4"
         style={{
-          backgroundColor: '#FDFCF9',
-          borderColor: '#E5E5E5',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+          backgroundColor: cardBg,
+          borderColor: cardBorder,
+          boxShadow: dark ? '0 2px 8px rgba(0,0,0,0.2)' : '0 2px 8px rgba(0,0,0,0.06)',
         }}
       >
         <div className="flex items-start gap-3">

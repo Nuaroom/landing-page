@@ -24,24 +24,26 @@ export default function CareersPage() {
       <main className="flex-1">
         {/* Header */}
         <section className="pt-20 pb-12 overflow-hidden">
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl relative">
+          <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl relative">
             <HeroCircles />
-            <h1
-              className="text-4xl md:text-5xl font-normal mb-4"
-              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-            >
-              Careers
-            </h1>
-            <p className="text-muted-foreground">
-              To apply, email us at{" "}
-              <a
-                href="mailto:contact@heurica.co"
-                className="hover:text-foreground transition-colors"
-                style={{ color: "var(--accent-gold)" }}
+            <div className="px-8 md:px-10">
+              <h1
+                className="text-4xl md:text-5xl font-normal mb-4"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                contact@heurica.co
-              </a>.
-            </p>
+                Careers
+              </h1>
+              <p className="text-muted-foreground">
+                To apply, email us at{" "}
+                <a
+                  href="mailto:contact@heurica.co"
+                  className="hover:text-foreground transition-colors"
+                  style={{ color: "var(--accent-gold)" }}
+                >
+                  contact@heurica.co
+                </a>.
+              </p>
+            </div>
           </div>
         </section>
 
