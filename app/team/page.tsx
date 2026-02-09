@@ -7,7 +7,7 @@ export default function TeamPage() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Section 1: Why Heurica Exists */}
-        <section className="min-h-[calc(100vh-200px)] flex items-center py-20 md:py-32 overflow-hidden relative">
+        <section className="min-h-[calc(100vh-200px)] flex items-center py-14 sm:py-20 md:py-32 overflow-hidden relative">
           {/* Container-aligned grid */}
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <div className="max-w-7xl mx-auto px-8 lg:px-12 xl:px-16 h-full">
@@ -21,7 +21,7 @@ export default function TeamPage() {
             </div>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, var(--background) 100%)' }} />
           </div>
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-32 xl:px-40 max-w-7xl relative z-10">
             <div className="max-w-3xl mx-auto text-center relative">
               <HeroCircles />
               {/* Title */}
@@ -29,7 +29,7 @@ export default function TeamPage() {
                 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-title"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                <span style={{ color: 'var(--accent-gold)' }}>Why</span> Heurica Exists
+                <span style={{ color: 'var(--accent-gold)' }}>Why</span> Heurica Exists;
               </h1>
 
               {/* Body content */}

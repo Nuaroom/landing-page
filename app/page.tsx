@@ -73,9 +73,9 @@ function RotatingText() {
   }, [])
 
   return (
-    <div className="h-[2em] flex items-center justify-center min-w-[300px]">
+    <div className="h-[2em] flex items-center justify-center min-w-0 sm:min-w-[300px]">
       <p
-        className="text-xl md:text-2xl font-normal whitespace-nowrap"
+        className="text-lg sm:text-xl md:text-2xl font-normal whitespace-nowrap"
         style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
       >
         {displayText}
@@ -755,22 +755,22 @@ function StepShowcase() {
     <div ref={containerRef} className="animate-on-scroll">
       {/* Step cards in blocky layout */}
       <div className="border-t border-b border-border/40">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-4">
           {steps.map((step, i) => (
             <button
               key={step.number}
               onClick={() => setSelectedMockup(i)}
-              className={`text-left cursor-pointer border-none p-6 md:p-8 transition-all duration-300 flex flex-col justify-start hover:bg-[var(--step-card-active)] ${i > 0 ? 'border-l border-border/40' : ''}`}
+              className={`text-left cursor-pointer border-none p-4 sm:p-6 md:p-8 transition-all duration-300 flex flex-col justify-start hover:bg-[var(--step-card-active)] ${i > 0 ? 'md:border-l border-border/40' : ''} ${i >= 2 ? 'border-t md:border-t-0 border-border/40' : ''} ${i === 1 ? 'border-l border-border/40' : ''} ${i === 3 ? 'border-l border-border/40' : ''}`}
               style={{
                 opacity: activePos >= i ? 1 : 0.45,
                 backgroundColor: visiblePos === i ? 'var(--step-card-active)' : undefined,
               }}
             >
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-xl font-normal leading-tight transition-colors duration-300" style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: visiblePos === i ? 'var(--accent-gold)' : activePos >= i ? 'var(--accent-gold)' : undefined }}>{step.number}</span>
-                <h3 className={`text-lg font-normal leading-tight transition-colors duration-300 ${activePos >= i ? 'text-foreground' : 'text-muted-foreground/40'}`} style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}>{step.title}</h3>
+              <div className="flex items-baseline gap-2 mb-1 sm:mb-2">
+                <span className="text-lg sm:text-xl font-normal leading-tight transition-colors duration-300" style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: visiblePos === i ? 'var(--accent-gold)' : activePos >= i ? 'var(--accent-gold)' : undefined }}>{step.number}</span>
+                <h3 className={`text-base sm:text-lg font-normal leading-tight transition-colors duration-300 ${activePos >= i ? 'text-foreground' : 'text-muted-foreground/40'}`} style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}>{step.title}</h3>
               </div>
-              <p className={`text-sm transition-colors duration-300 ml-5 whitespace-pre-line ${activePos >= i ? 'text-muted-foreground' : 'text-muted-foreground/30'}`}>{step.description}</p>
+              <p className={`text-xs sm:text-sm transition-colors duration-300 ml-5 whitespace-pre-line ${activePos >= i ? 'text-muted-foreground' : 'text-muted-foreground/30'}`}>{step.description}</p>
             </button>
           ))}
         </div>
@@ -778,10 +778,11 @@ function StepShowcase() {
 
       {/* Mockup area */}
       <div
-        className="relative overflow-hidden px-6 md:px-8 py-6 md:py-8 flex flex-col justify-center mt-0"
+        className="relative overflow-hidden px-3 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 flex flex-col justify-center mt-0"
         style={{ background: stepBg }}
       >
-        <div className="relative" style={{ minHeight: 560 }}>
+        <div className="relative mockup-scale-wrapper overflow-hidden">
+          <div className="relative mockup-scale-inner" style={{ minHeight: 560 }}>
           {/* Step 1: Upload → Extraction */}
           <div
             className="w-full transition-opacity duration-500"
@@ -810,6 +811,7 @@ function StepShowcase() {
           >
             <Step4Mockup />
           </div>
+          </div>
         </div>
         {/* Caption */}
         <p className="text-[10px] text-stone-500 mt-3 transition-opacity duration-500">
@@ -834,14 +836,14 @@ const useCaseItems = [
 
 function UseCasesSection() {
   return (
-    <section className="py-20">
+    <section className="py-14 sm:py-20">
       {/* Full-width top/bottom borders for block feel */}
       <div className="border-t border-b border-border/40 animate-on-scroll">
-        <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1C1917]">
             <div className="grid md:grid-cols-2">
               {/* Left: Title + Description */}
-              <div className="p-10 md:p-14 flex flex-col justify-center">
+              <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-center">
                 <p
                   className="text-xs font-mono tracking-wider mb-3"
                   style={{ color: 'var(--accent-gold)' }}
@@ -870,7 +872,7 @@ function UseCasesSection() {
                 {useCaseItems.map((uc) => (
                   <div
                     key={uc.name}
-                    className="p-8 border-l border-t border-stone-300/40 dark:border-white/10"
+                    className="p-4 sm:p-8 border-l border-t border-stone-300/40 dark:border-white/10"
                   >
                     <div className="w-10 h-10 border border-stone-300/60 dark:border-white/15 flex items-center justify-center mb-4">
                       <uc.Icon className="w-5 h-5 text-muted-foreground" />
@@ -937,11 +939,11 @@ export default function LandingPage() {
     <div className="relative">
       {/* Vertical guide lines at container edges */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="hidden sm:block absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{ zIndex: 1 }}
       >
-        <div className="max-w-7xl mx-auto px-8 lg:px-12 xl:px-16 h-full">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 h-full">
           <div className="h-full border-l border-r border-border/40" />
         </div>
       </div>
@@ -959,18 +961,18 @@ export default function LandingPage() {
           />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, var(--background) 100%)' }} />
         </div>
-        <div className="flex items-start justify-center pt-24 md:pt-32 relative z-10">
-          <div className="container mx-auto px-8 lg:px-20 text-center max-w-4xl relative">
+        <div className="flex items-start justify-center pt-16 sm:pt-24 md:pt-32 relative z-10">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-20 text-center max-w-4xl relative">
             <HeroCircles />
 
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-normal mb-6 leading-tight relative animate-hero-title"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-4 sm:mb-6 leading-tight relative animate-hero-title"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              UX co-pilot for<br className="hidden md:block" /> B2B product teams.
+              UX co-pilot for<br className="hidden sm:block" /> B2B product teams.
             </h1>
 
-            <div className="flex flex-col gap-1 mb-8 md:mb-10 animate-hero-subtitle text-base text-muted-foreground">
+            <div className="flex flex-col gap-1 mb-6 sm:mb-8 md:mb-10 animate-hero-subtitle text-sm sm:text-base text-muted-foreground">
               <p>Configuration panels. Approval workflows. Role-based views.</p>
               <p>Your users shouldn&rsquo;t need a training manual to use them.</p>
             </div>
@@ -987,8 +989,8 @@ export default function LandingPage() {
         </div>
       </section>
       {/* The Solution + Value Proposition Sections */}
-      <section id="solutions" className="pt-14 pb-20 border-t border-border/40">
-        <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
+      <section id="solutions" className="pt-10 sm:pt-14 pb-14 sm:pb-20 border-t border-border/40">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="mb-10 animate-on-scroll text-center">
             <p
               className="text-xs font-mono tracking-wider mb-1"
@@ -1007,18 +1009,18 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
-        <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <StepShowcase />
         </div>
       </section>
       {/* UX Decision Intelligence Section */}
-      <section id="how-it-works" className="py-20 border-t border-border/40">
-        <div className="container mx-auto pl-18 md:pl-22 lg:pl-26 xl:pl-30 pr-8 lg:pr-12 xl:pr-16 max-w-7xl">
+      <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/40">
+        <div className="container mx-auto px-6 sm:px-8 md:pl-22 lg:pl-26 xl:pl-30 md:pr-8 lg:pr-12 xl:pr-16 max-w-7xl">
           <div className="grid md:grid-cols-3 gap-8 md:gap-6 items-start animate-on-scroll">
             {/* Left: Title + Description + Logos (1/3 width) */}
             <div className="md:col-span-1">
               <h2
-                className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight lg:whitespace-nowrap"
+                className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 UX Decision Intelligence.
@@ -1026,9 +1028,9 @@ export default function LandingPage() {
               <p className="text-base text-muted-foreground">
                 Grounded in usability science and Human-Computer Interaction (HCI) research. Every design decision traceable to your requirement.
               </p>
-              <div className="flex items-center gap-4 mt-6 opacity-70">
-                <img src="/hcil.svg" alt="Human-Computer Interaction Lab" className="h-14 object-contain" />
-                <img src="/umd.svg" alt="University of Maryland" className="h-14 object-contain" />
+              <div className="flex flex-col gap-3 mt-6 opacity-70">
+                <img src="/hcil.svg" alt="Human-Computer Interaction Lab" className="h-8 object-contain object-left" />
+                <img src="/umd.svg" alt="University of Maryland" className="h-8 object-contain object-left" />
               </div>
             </div>
 
@@ -1040,11 +1042,11 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Configuration Panels Section */}
-      <section className="py-20 border-t border-border/40">
-        <div className="container mx-auto px-18 md:px-22 lg:px-26 xl:px-30 max-w-7xl">
+      <section className="py-14 sm:py-20 border-t border-border/40">
+        <div className="container mx-auto px-6 sm:px-8 md:px-22 lg:px-26 xl:px-30 max-w-7xl">
           <div className="animate-on-scroll">
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-normal leading-tight max-w-2xl"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight max-w-2xl"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               Complex interfaces.<br />
@@ -1061,13 +1063,13 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Case Study Section */}
-      <section className="py-20 border-t border-border/40">
+      <section className="py-14 sm:py-20 border-t border-border/40">
         <div className="border-t border-b border-border/40 animate-on-scroll">
-          <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="overflow-hidden" style={{ backgroundColor: 'var(--case-study-bg)' }}>
             <div className="grid md:grid-cols-2">
               {/* Left: Content */}
-              <div className="p-10 md:p-14 flex flex-col justify-between">
+              <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-between">
                 <div>
                   <p
                     className="text-xs font-mono tracking-wider mb-3"
@@ -1076,16 +1078,16 @@ export default function LandingPage() {
                     CASE STUDY
                   </p>
                   <h2
-                    className="text-xl md:text-2xl font-normal mb-4 leading-tight text-foreground"
+                    className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-tight text-foreground"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                   >
-                    &ldquo;Redesign took 10 months.<br />Users still couldn&rsquo;t tell if they did it right.<br />Heurica fixed it in 2 weeks.&rdquo;
+                    &ldquo;Redesign took 10 months.<br className="hidden sm:block" />Users still couldn&rsquo;t tell if they did it right.<br className="hidden sm:block" />Heurica fixed it in 2 weeks.&rdquo;
                   </h2>
-                  <p className="text-sm text-muted-foreground mt-1">&mdash; Product Director, Enterprise Data Security serving Fortune 500</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">&mdash; Product Director, Enterprise Data Security serving Fortune 500</p>
                 </div>
 
                 {/* Stats */}
-                <div className="flex gap-12 mt-10">
+                <div className="flex gap-8 sm:gap-12 mt-8 sm:mt-10">
                   <div>
                     <p
                       className="text-3xl md:text-4xl font-normal tracking-tight"
@@ -1109,11 +1111,18 @@ export default function LandingPage() {
 
               {/* Right: Image */}
               <div className="relative overflow-hidden flex items-center justify-center">
-                {/* Seamless gradient fade from content bg into image */}
+                {/* Gradient fade: left on desktop (image beside text), top on mobile (image below text) */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 hidden md:block"
                   style={{
                     background: 'linear-gradient(to right, var(--case-study-bg) 0%, var(--case-study-bg) 5%, transparent 40%)',
+                    zIndex: 2,
+                  }}
+                />
+                <div
+                  className="absolute inset-0 md:hidden"
+                  style={{
+                    background: 'linear-gradient(to bottom, var(--case-study-bg) 0%, var(--case-study-bg) 5%, transparent 40%)',
                     zIndex: 2,
                   }}
                 />
@@ -1134,8 +1143,8 @@ export default function LandingPage() {
       {/* Built for */}
       <UseCasesSection />
       {/* Enterprise-Ready from Day 1 Section */}
-      <section className="py-20 border-t border-border/40">
-        <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
+      <section className="py-14 sm:py-20 border-t border-border/40">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="text-center mb-8 animate-on-scroll">
             <h2
               className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
@@ -1151,10 +1160,10 @@ export default function LandingPage() {
 
         {/* Full-width grid lines that extend beyond container */}
         <div className="border-t border-b border-border/40 animate-on-scroll">
-          <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
-            <div className="grid md:grid-cols-4">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
+            <div className="grid sm:grid-cols-2 md:grid-cols-4">
               {/* Card 1: Traceable Decisions */}
-              <div className="p-8 border-b md:border-b-0 md:border-r border-border/40">
+              <div className="p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-border/40 sm:[&:nth-child(2)]:border-r-0 md:[&:nth-child(2)]:border-r">
                 <div className="mb-6">
                   <ClipboardCheck className="w-6 h-6 text-muted-foreground" />
                 </div>
@@ -1165,7 +1174,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 2: No Customer Data Required */}
-              <div className="p-8 border-b md:border-b-0 md:border-r border-border/40">
+              <div className="p-6 sm:p-8 border-b sm:border-b md:border-b-0 md:border-r border-border/40">
                 <div className="mb-6">
                   <ShieldCheck className="w-6 h-6 text-muted-foreground" />
                 </div>
@@ -1176,7 +1185,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 3: Works With Your Stack */}
-              <div className="p-8 border-b md:border-b-0 md:border-r border-border/40">
+              <div className="p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-border/40">
                 <div className="mb-6">
                   <Layers className="w-6 h-6 text-muted-foreground" />
                 </div>
@@ -1187,7 +1196,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 4: Human in the Loop */}
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <div className="mb-6">
                   <UserCheck className="w-6 h-6 text-muted-foreground" />
                 </div>

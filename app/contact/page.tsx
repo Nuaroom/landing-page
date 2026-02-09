@@ -27,14 +27,14 @@ export default function ContactPage() {
     <>
       {/* Main Content */}
       <main className="flex-1">
-        <div className="min-h-[calc(100vh-200px)] flex items-center py-12 md:py-20 overflow-hidden">
-          <div className="container mx-auto px-8 lg:px-32 xl:px-40 max-w-7xl w-full relative">
+        <div className="min-h-[calc(100vh-200px)] flex items-center py-10 sm:py-12 md:py-20 overflow-hidden">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-32 xl:px-40 max-w-7xl w-full relative">
             <HeroCircles />
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-stretch">
             {/* Left Column - Info */}
             <div className="flex flex-col">
               <h1
-                className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-subtitle"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-6 sm:mb-8 leading-tight animate-hero-subtitle"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
                 Book a Demo
@@ -92,7 +92,7 @@ export default function ContactPage() {
                 width="100%"
                 height="700"
                 frameBorder="0"
-                className="w-full"
+                className="w-full min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]"
                 title="Book a demo with Heurica"
               />
             </div>

@@ -165,13 +165,12 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
               </div>
 
               {/* Timeline dot */}
-              <div className="flex justify-center pt-1">
+              <div className="flex justify-center items-center" style={{ height: 24 }}>
                 <div
-                  className="w-3 h-3 rounded-full relative z-10 flex-shrink-0 transition-all duration-500"
+                  className="w-2 h-2 rounded-full relative z-10 flex-shrink-0 transition-all duration-500"
                   style={{
                     backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                    boxShadow: isActive ? '0 0 8px rgba(202, 138, 4, 0.4)' : 'none',
-                    transform: isActive ? 'scale(1.2)' : 'scale(1)',
+                    boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
                   }}
                 />
               </div>
@@ -202,13 +201,12 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
               }}
             >
               {/* Timeline dot */}
-              <div className="flex-shrink-0 pt-1">
+              <div className="flex-shrink-0 flex items-center" style={{ width: 12, height: 24 }}>
                 <div
-                  className="w-[12px] h-[12px] rounded-full relative z-10 transition-all duration-500"
+                  className="w-2 h-2 rounded-full relative z-10 transition-all duration-500 mx-auto"
                   style={{
                     backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                    boxShadow: isActive ? '0 0 8px rgba(202, 138, 4, 0.4)' : 'none',
-                    transform: isActive ? 'scale(1.2)' : 'scale(1)',
+                    boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
                   }}
                 />
               </div>

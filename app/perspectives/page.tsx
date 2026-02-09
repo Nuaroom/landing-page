@@ -35,32 +35,32 @@ export default function PerspectivesPage() {
     <>
       <main className="flex-1">
         {/* Header */}
-        <section className="pt-20 pb-12 overflow-hidden">
-          <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl relative">
+        <section className="pt-16 sm:pt-20 pb-8 sm:pb-12 overflow-hidden">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl relative">
             <HeroCircles />
             <h1
               className="text-4xl md:text-5xl font-normal"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Perspectives
+              Perspectives.
             </h1>
           </div>
         </section>
 
         {/* Featured Articles */}
-        <section className="py-12">
+        <section className="py-8 sm:py-12">
           <div className="border-t border-b border-border/40">
-            <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
-              <div className="grid md:grid-cols-2 gap-8">
+            <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
+              <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 {articles.map((article, index) => (
                   <Link
                     key={article.slug}
                     href={`/perspectives/${article.slug}`}
-                    className="group block border-l border-r border-border/40"
+                    className="group block border border-border/40 md:border-0 md:border-l md:border-r"
                   >
                     <article className="h-full flex flex-col">
                       {/* Image */}
-                      <div className="aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+                      <div className="aspect-[16/9] overflow-hidden bg-neutral-100 dark:bg-neutral-800 relative">
                         <div
                           className="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-700 dark:to-neutral-800"
                           style={{
@@ -69,10 +69,11 @@ export default function PerspectivesPage() {
                             backgroundPosition: "center",
                           }}
                         />
+                        <div className="absolute inset-0 hidden dark:block bg-black/40" />
                       </div>
 
                       {/* Content with padding */}
-                      <div className="p-8 md:p-10 flex flex-col flex-1">
+                      <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
                         {/* Meta */}
                         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                           <span>{article.readTime}</span>

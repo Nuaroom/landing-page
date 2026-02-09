@@ -232,6 +232,32 @@
   }
 }
 
+/* Mockup scale-down on small screens */
+.mockup-scale-wrapper {
+  min-height: 560px;
+}
+.mockup-scale-inner {
+  transform-origin: top left;
+}
+@media (max-width: 639px) {
+  .mockup-scale-wrapper {
+    min-height: 390px;
+  }
+  .mockup-scale-inner {
+    width: 166.67%;
+    transform: scale(0.6);
+  }
+}
+@media (min-width: 400px) and (max-width: 639px) {
+  .mockup-scale-wrapper {
+    min-height: 430px;
+  }
+  .mockup-scale-inner {
+    width: 142.86%;
+    transform: scale(0.7);
+  }
+}
+
 /* Custom shadow for tagline */
 .tagline-shadow {
   box-shadow: 0 4px 20px rgba(97, 97, 97, 0.1);

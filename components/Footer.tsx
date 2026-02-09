@@ -15,8 +15,8 @@ export function Footer() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--background) 0%, transparent 50%)' }} />
       </div>
       <footer className="flex-shrink-0 cloud-footer relative z-10">
-        <div className="container mx-auto px-8 lg:px-20 py-12 relative z-10">
-          <div className="flex flex-col md:flex-row mb-12">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-20 py-8 sm:py-12 relative z-10">
+          <div className="flex flex-col md:flex-row mb-8 sm:mb-12">
             {/* Logo */}
             <div className="md:w-1/3">
               <Link href="/" className="block">

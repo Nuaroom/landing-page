@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Moon, Sun, ChevronDown } from "lucide-react"
+import { Moon, Sun, ChevronDown, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
@@ -28,6 +28,7 @@ export function Header() {
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isCompanyOpen, setIsCompanyOpen] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const isHomePage = pathname === "/"
   const isPerspectivesPage = pathname?.startsWith("/perspectives")
@@ -138,7 +139,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button size="sm" className="px-3 py-1 text-xs font-semibold rounded-none h-7" asChild>
+          <Button size="sm" className="hidden sm:inline-flex px-3 py-1 text-xs font-semibold rounded-none h-7" asChild>
             <Link href="/contact">
               Book a Demo
             </Link>
@@ -152,8 +153,66 @@ export function Header() {
             <ThemedIcons className="h-3 w-3" />
             <span className="sr-only">Toggle theme</span>
           </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-7 h-7 md:hidden"
+          >
+            {isMobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </Button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-background/95 backdrop-blur-sm border-t border-border/20 mt-2 mx-4 rounded-xl p-4">
+          <nav className="flex flex-col gap-4">
+            <a
+              href="/#solutions"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Solutions
+            </a>
+            <a
+              href="/#how-it-works"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              How It Works
+            </a>
+            <Link
+              href="/perspectives"
+              className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Perspectives
+            </Link>
+            <Link
+              href="/team"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/careers"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Careers
+            </Link>
+            <div className="pt-2 border-t border-border/20">
+              <Button size="sm" className="w-full px-3 py-1 text-xs font-semibold rounded-none h-8" asChild>
+                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  Book a Demo
+                </Link>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
