@@ -972,7 +972,7 @@ export default function LandingPage() {
 
             <div className="flex flex-col gap-1 mb-8 md:mb-10 animate-hero-subtitle text-base text-muted-foreground">
               <p>Configuration panels. Approval workflows. Role-based views.</p>
-              <p>Heurica analyzes your requirements, structures your UX, and ships dev-ready code.</p>
+              <p>Your users shouldn&rsquo;t need a training manual to use them.</p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-hero-button mb-12 md:mb-14">

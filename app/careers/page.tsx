@@ -5,14 +5,14 @@ const openings = [
   {
     title: "Founding Design Engineer",
     type: "Full-time",
-    location: "Remote (US)",
+    location: "On-Site (San Francisco, CA)",
     description:
       "Join as our first design engineer to shape the future of enterprise UX. You'll work at the intersection of design and engineering, building the tools that help teams ship better products.",
   },
   {
     title: "Founding UX Researcher",
     type: "Full-time",
-    location: "Remote (US)",
+    location: "On-Site (San Francisco, CA)",
     description:
       "Lead user research to deeply understand enterprise workflows and pain points. You'll shape product direction through insights that bridge the gap between complex systems and human needs.",
   },
@@ -51,11 +51,11 @@ export default function CareersPage() {
         <section className="py-12">
           <div className="border-t border-b border-border/40">
             <div className="container mx-auto px-8 lg:px-12 xl:px-16 max-w-7xl">
-              <div className="grid md:grid-cols-2 animate-hero-footer">
+              <div className="grid md:grid-cols-2 gap-8">
                 {openings.map((job, index) => (
                   <div
                     key={index}
-                    className={`h-full p-8 md:p-10 ${index > 0 ? 'border-t md:border-t-0 md:border-l border-border/40' : ''}`}
+                    className="h-full p-8 md:p-10 border-l border-r border-border/40"
                   >
                     <h3 className="text-xl font-semibold mb-2">
                       {job.title}
