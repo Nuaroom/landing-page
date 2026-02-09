@@ -68,12 +68,12 @@
   --waitlist-bg: #FAF8F3;
   --waitlist-bubble: #718096;
   --case-study-bg: #F5F4F0;
-  --step-bg-base: #D5CFC6;
-  --step-bg-highlight: rgba(255,255,255,0.85);
-  --step-bg-highlight-2: rgba(255,255,255,0.7);
-  --step-bg-highlight-3: rgba(255,255,255,0.6);
-  --step-bg-accent: rgba(210,200,185,0.5);
-  --step-card-active: #FDFCF7;
+  --step-bg-base: #EEEAE4;
+  --step-bg-highlight: rgba(255,255,255,0.9);
+  --step-bg-highlight-2: rgba(255,255,255,0.8);
+  --step-bg-highlight-3: rgba(255,255,255,0.7);
+  --step-bg-accent: rgba(230,225,215,0.4);
+  --step-card-active: #FDFCF8;
   /* Mockup component theme */
   --mock-bg: #ffffff;
   --mock-bg-alt: #fafaf9;
@@ -149,7 +149,7 @@
   --step-bg-highlight-2: rgba(40,40,35,0.7);
   --step-bg-highlight-3: rgba(40,40,35,0.6);
   --step-bg-accent: rgba(50,45,35,0.5);
-  --step-card-active: #2A2A26;
+  --step-card-active: #1C1917;
   /* Mockup component theme - dark */
   --mock-bg: #1c1917;
   --mock-bg-alt: #151311;

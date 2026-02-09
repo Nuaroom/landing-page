@@ -755,15 +755,15 @@ function StepShowcase() {
     <div ref={containerRef} className="animate-on-scroll">
       {/* Step cards in blocky layout */}
       <div className="border-t border-b border-border/40">
-        <div className="grid grid-cols-4 items-stretch">
+        <div className="grid grid-cols-4">
           {steps.map((step, i) => (
             <button
               key={step.number}
               onClick={() => setSelectedMockup(i)}
-              className={`text-left cursor-pointer border-none p-6 md:p-8 transition-all duration-300 h-full ${i > 0 ? 'border-l border-border/40' : ''}`}
+              className={`text-left cursor-pointer border-none p-6 md:p-8 transition-all duration-300 flex flex-col justify-start hover:bg-[var(--step-card-active)] ${i > 0 ? 'border-l border-border/40' : ''}`}
               style={{
                 opacity: activePos >= i ? 1 : 0.45,
-                backgroundColor: visiblePos === i ? 'var(--step-card-active)' : 'transparent',
+                backgroundColor: visiblePos === i ? 'var(--step-card-active)' : undefined,
               }}
             >
               <div className="flex items-baseline gap-2 mb-2">
