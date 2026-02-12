@@ -1083,7 +1083,6 @@ export default function LandingPage() {
                   >
                     &ldquo;Redesign took 10 months.<br className="hidden sm:block" />Users still couldn&rsquo;t tell if they did it right.<br className="hidden sm:block" />Heurica fixed it in 2 weeks.&rdquo;
                   </h2>
-                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">&mdash; Product Director, Enterprise Data Security serving Fortune 500</p>
                 </div>
 
                 {/* Stats */}
