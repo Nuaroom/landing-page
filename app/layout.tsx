@@ -22,7 +22,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "Heurica, AI UX Design Agency for Legacy B2B SaaS",
+  title: "Heurica — Legacy B2B SaaS, redesigned",
   description: "Heurica redesigns legacy B2B SaaS with AI-powered UX.",
   generator: "v0.app",
   icons: {
