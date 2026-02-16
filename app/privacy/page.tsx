@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             </ul>
 
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:contact@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>contact@heurica.co</a>.
+              <strong>Questions or concerns?</strong> Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:yunbin@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>yunbin@heurica.co</a>.
             </p>
 
             {/* Summary */}
@@ -262,7 +262,7 @@ export default function PrivacyPage() {
             <section id="contact" className="mt-12">
               <h2 className="text-lg font-semibold mb-4">14. How Can You Contact Us About This Notice?</h2>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                If you have questions or comments about this notice, you may email us at <a href="mailto:contact@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>contact@heurica.co</a> or contact us by post at:
+                If you have questions or comments about this notice, you may email us at <a href="mailto:yunbin@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>yunbin@heurica.co</a> or contact us by post at:
               </p>
               <address className="text-sm text-muted-foreground not-italic">
                 Nuaroom, Inc.<br />
@@ -275,7 +275,7 @@ export default function PrivacyPage() {
             <section id="request" className="mt-12 mb-8">
               <h2 className="text-lg font-semibold mb-4">15. How Can You Review, Update, or Delete the Data We Collect From You?</h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Based on the applicable laws of your country or state of residence in the US, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. To request to review, update, or delete your personal information, please email us at <a href="mailto:contact@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>contact@heurica.co</a>.
+                Based on the applicable laws of your country or state of residence in the US, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. To request to review, update, or delete your personal information, please email us at <a href="mailto:yunbin@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>yunbin@heurica.co</a>.
               </p>
             </section>
           </div>

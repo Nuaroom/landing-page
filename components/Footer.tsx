@@ -36,7 +36,7 @@ export function Footer() {
             </div>
 
             {/* Pages, Company and Legal grouped together */}
-            <div className="flex flex-col md:flex-row gap-12 md:gap-24 mt-8 md:mt-0 md:flex-1 md:justify-end">
+            <div className="grid grid-cols-3 gap-8 sm:gap-12 md:gap-24 mt-8 md:mt-0 md:flex-1 md:flex md:flex-row md:justify-end">
               {/* Pages */}
               <div>
                 <h4 className="text-xs text-muted-foreground mb-3">Pages</h4>
@@ -79,13 +79,13 @@ export function Footer() {
           </div>
 
           {/* Bottom row */}
-          <div className="flex flex-col items-start gap-2 pt-4">
+          <div className="flex flex-row justify-between items-center pt-4">
             <div className="text-xs text-muted-foreground">© 2026 Heurica</div>
             <a
-              href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
+              href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
               className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
-              contact@heurica.co
+              yunbin@heurica.co
             </a>
           </div>
         </div>

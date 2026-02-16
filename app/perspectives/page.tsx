@@ -42,7 +42,7 @@ export default function PerspectivesPage() {
               className="text-4xl md:text-5xl font-normal"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Perspectives.
+              Philosophy.
             </h1>
           </div>
         </section>

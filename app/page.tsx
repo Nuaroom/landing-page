@@ -310,7 +310,7 @@ export default function LandingPage() {
         <div className="border-t border-b border-border/40 animate-on-scroll">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="overflow-hidden" style={{ backgroundColor: 'var(--case-study-bg)' }}>
-            <div className="grid md:grid-cols-2">
+            <div className="grid sm:grid-cols-2">
               {/* Left: Content */}
               <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-between">
                 <div>
@@ -321,7 +321,7 @@ export default function LandingPage() {
                     CASE STUDY
                   </p>
                   <h2
-                    className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-tight text-foreground"
+                    className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-relaxed text-foreground"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                   >
                     &ldquo;Users couldn&rsquo;t finish a task without hand-holding. We tried fixing it internally for a year. Heurica redesigned it in 3 weeks.&rdquo;
@@ -329,24 +329,24 @@ export default function LandingPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-12 mt-8 sm:mt-10">
-                  <div className="flex items-start gap-4 sm:block">
+                <div className="flex flex-row gap-8 sm:gap-12 mt-8 sm:mt-10">
+                  <div className="flex items-start gap-3 sm:block">
                     <p
                       className="text-3xl md:text-4xl font-normal tracking-tight shrink-0"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
                       20x
                     </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">Faster production-level design delivery</p>
+                    <p className="text-sm text-muted-foreground sm:mt-1">Faster UX Design</p>
                   </div>
-                  <div className="flex items-start gap-4 sm:block">
+                  <div className="flex items-start gap-3 sm:block">
                     <p
                       className="text-3xl md:text-4xl font-normal tracking-tight shrink-0"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
                       98
                     </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">User stories analyzed in a week</p>
+                    <p className="text-sm text-muted-foreground sm:mt-1">User stories analyzed in 1 week</p>
                   </div>
                 </div>
               </div>
@@ -383,7 +383,7 @@ export default function LandingPage() {
       {/* UX Reasoning Engine Section */}
       <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/40">
         <div className="container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl">
-          <div className="text-center mb-10 animate-on-scroll">
+          <div className="mb-10 animate-on-scroll">
             <p
               className="text-xs font-mono tracking-wider mb-3"
               style={{ color: 'var(--accent-gold)' }}
@@ -394,12 +394,9 @@ export default function LandingPage() {
               className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              UX Reasoning Engine.
+              UX Reasoning Engine grounded in HCI research.
             </h2>
-            <p className="text-base text-muted-foreground">
-              Grounded in HCI research.
-            </p>
-            <div className="flex items-center justify-center gap-6 mt-6 opacity-70">
+            <div className="flex items-center gap-6 mt-6 opacity-70">
               <img src="/hcil.svg" alt="Human-Computer Interaction Lab" className="h-12 object-contain" />
               <img src="/umd.svg" alt="University of Maryland" className="h-12 object-contain" />
             </div>
@@ -429,7 +426,7 @@ export default function LandingPage() {
 
         {/* Cards grid - border lines extend full width */}
         <div className="border-t border-b border-border/40 animate-on-scroll">
-          <div className="container mx-auto px-6 sm:px-10 lg:px-[72px] xl:px-[88px] max-w-7xl">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="grid sm:grid-cols-3">
               {/* Card 1: Traceable Decisions */}
               <div className="p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-border/40">

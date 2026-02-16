@@ -76,7 +76,7 @@ export function Header() {
 
   return (
     <header className={`sticky top-3 z-50 flex-shrink-0 transition-all duration-300 ${isNavVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
-      <div className={`container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl py-2 flex items-center justify-between relative z-10 rounded-full transition-all duration-300 ${hasScrolled ? 'bg-background/95 backdrop-blur-sm' : ''}`}>
+      <div className={`container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl py-4 flex items-center justify-between relative z-10 rounded-full transition-all duration-300 ${hasScrolled ? 'bg-background/95 backdrop-blur-sm' : ''}`}>
         <Link
           href="/"
           className="text-2xl font-medium"
@@ -108,6 +108,11 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <Button size="sm" className="hidden md:inline-flex px-4 py-1.5 text-xs font-semibold h-8 rounded-none" asChild>
+            <Link href="/contact">
+              Start now &rsaquo;
+            </Link>
+          </Button>
           <Button
             variant="ghost"
             size="icon"

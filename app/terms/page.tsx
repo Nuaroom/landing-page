@@ -27,7 +27,7 @@ export default function TermsPage() {
                 We operate heurica.co, as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                You can contact us by email at <a href="mailto:contact@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>contact@heurica.co</a>.
+                You can contact us by email at <a href="mailto:yunbin@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>yunbin@heurica.co</a>.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and Nuaroom, Inc., concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
@@ -315,7 +315,7 @@ export default function TermsPage() {
               <address className="text-sm text-muted-foreground not-italic">
                 Nuaroom, Inc.<br />
                 (doing business as Heurica)<br />
-                <a href="mailto:contact@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>contact@heurica.co</a>
+                <a href="mailto:yunbin@heurica.co" className="hover:text-foreground transition-colors" style={{ color: 'var(--accent-gold)' }}>yunbin@heurica.co</a>
               </address>
             </section>
           </div>

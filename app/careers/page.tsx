@@ -36,11 +36,11 @@ export default function CareersPage() {
               <p className="text-muted-foreground">
                 To apply, email us at{" "}
                 <a
-                  href="mailto:contact@heurica.co"
+                  href="mailto:yunbin@heurica.co"
                   className="hover:text-foreground transition-colors"
                   style={{ color: "var(--accent-gold)" }}
                 >
-                  contact@heurica.co
+                  yunbin@heurica.co
                 </a>.
               </p>
             </div>

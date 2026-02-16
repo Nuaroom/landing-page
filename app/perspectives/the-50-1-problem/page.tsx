@@ -546,10 +546,10 @@ export default function The501ProblemPage() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-border/20">
               <div className="text-sm text-muted-foreground">© 2026 Heurica</div>
               <a
-                href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
+                href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                contact@heurica.co
+                yunbin@heurica.co
               </a>
             </div>
           </div>

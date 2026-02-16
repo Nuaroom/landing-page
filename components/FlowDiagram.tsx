@@ -41,7 +41,7 @@ const steps: {
 
 const stepDescriptions: string[] = [
   "Share your requirements. PRDs, user stories, existing UI.",
-  "We map workflows, dependencies, and information architecture.",
+  "We figure out what screens to build and how they connect.",
   "Production-ready screens and code, grounded in UX research.",
 ]
 
@@ -80,106 +80,138 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
-      {/* Horizontal layout */}
       <div className="relative">
-        {/* Vertical line (gray) - mobile only */}
-        <div
-          className="absolute sm:hidden"
-          style={{
-            width: '1.5px',
-            top: '29px',
-            bottom: '5px',
-            left: '4.5px',
-            backgroundColor: isDark ? '#404040' : '#C4C4C4',
-          }}
-        />
-        {/* Vertical line (gold progress) - mobile only */}
-        <div
-          className="absolute sm:hidden overflow-hidden"
-          style={{
-            width: '1.5px',
-            top: '29px',
-            left: '4.5px',
-            height: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
-            transition: 'height 700ms ease-out',
-          }}
-        >
-          <div className="w-full h-full" style={{ backgroundColor: 'var(--accent-gold)' }} />
-        </div>
-        {/* Horizontal line (gray) - desktop only */}
-        <div
-          className="absolute hidden sm:block"
-          style={{
-            height: '1.5px',
-            top: '5px',
-            left: 0,
-            right: 0,
-            backgroundColor: isDark ? '#404040' : '#C4C4C4',
-          }}
-        />
-        {/* Horizontal line (gold progress) - desktop only */}
-        <div
-          className="absolute hidden sm:block overflow-hidden"
-          style={{
-            height: '1.5px',
-            top: '5px',
-            left: 0,
-            width: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
-            transition: 'width 700ms ease-out',
-          }}
-        >
-          <div className="w-full h-full" style={{ backgroundColor: 'var(--accent-gold)' }} />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0">
+        {/* Mobile layout - vertical with dots and line */}
+        <div className="sm:hidden relative">
+          {/* Vertical line (gray) */}
+          <div
+            className="absolute"
+            style={{
+              width: '1.5px',
+              top: '31px',
+              bottom: '31px',
+              left: '4.5px',
+              backgroundColor: isDark ? '#404040' : '#C4C4C4',
+            }}
+          />
+          {/* Vertical line (gold progress) */}
+          <div
+            className="absolute overflow-hidden"
+            style={{
+              width: '1.5px',
+              top: '31px',
+              bottom: '31px',
+              left: '4.5px',
+              height: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
+              transition: 'height 700ms ease-out',
+            }}
+          >
+            <div className="w-full h-full" style={{ backgroundColor: 'var(--accent-gold)' }} />
+          </div>
           {steps.map((step, index) => {
             const isActive = index <= activeStep
-            const smDotJustify = index === 0 ? 'sm:justify-start' : index === steps.length - 1 ? 'sm:justify-end' : 'sm:justify-center'
-            const smItemAlign = index === 0 ? 'sm:items-start' : index === steps.length - 1 ? 'sm:items-end' : 'sm:items-center'
             return (
-              <div
-                key={step.number}
-                className={`relative text-left ${smItemAlign} sm:flex sm:flex-col`}
-              >
-                {/* Mobile: horizontal row with dot left, text right */}
-                <div className="flex items-start gap-6 sm:block py-6 sm:py-0">
-                  {/* Dot */}
-                  <div className={`flex justify-start ${smDotJustify} sm:mb-5 pt-1 sm:pt-0 shrink-0`}>
-                    <div
-                      className="w-[10px] h-[10px] rounded-full relative z-10"
-                      style={{
-                        backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                        boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                        transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
-                      }}
-                    />
-                  </div>
-                  {/* Label */}
+              <div key={step.number} className="flex items-start gap-6 py-6">
+                <div className="flex items-center justify-start shrink-0 h-4">
                   <div
-                    className="sm:w-[200px]"
+                    className="w-[10px] h-[10px] rounded-full relative z-10"
+                    style={{
+                      backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
+                      boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
+                      transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    opacity: isActive ? 1 : 0.3,
+                    transform: isActive ? 'translateY(0)' : 'translateY(8px)',
+                    transition: `opacity 500ms ease-out ${index * 200}ms, transform 500ms ease-out ${index * 200}ms`,
+                  }}
+                >
+                  <span className="text-xs font-mono tracking-wider" style={{ color: 'var(--accent-gold)' }}>
+                    {step.number}
+                  </span>
+                  <h3 className="text-lg font-normal leading-tight mt-1" style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}>
+                    {step.description}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-2">{stepDescriptions[index]}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Desktop layout - horizontal with arrows */}
+        <div className="hidden sm:flex items-start gap-0">
+          {steps.map((step, index) => {
+            const isActive = index <= activeStep
+            const isArrowActive = index < activeStep
+            return (
+              <div key={step.number} className="flex items-start" style={{ flex: index < steps.length - 1 ? 1 : undefined }}>
+                {/* Step content: dot on top of text */}
+                <div className="flex flex-col items-start shrink-0" style={{ maxWidth: '200px' }}>
+                  <div
+                    className="w-[10px] h-[10px] rounded-full mb-4 relative z-10"
+                    style={{
+                      backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
+                      boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
+                      transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
+                    }}
+                  />
+                  <div
                     style={{
                       opacity: isActive ? 1 : 0.3,
                       transform: isActive ? 'translateY(0)' : 'translateY(8px)',
                       transition: `opacity 500ms ease-out ${index * 200}ms, transform 500ms ease-out ${index * 200}ms`,
                     }}
                   >
-                    <span
-                      className="text-xs font-mono tracking-wider"
-                      style={{ color: 'var(--accent-gold)' }}
-                    >
+                    <span className="text-xs font-mono tracking-wider" style={{ color: 'var(--accent-gold)' }}>
                       {step.number}
                     </span>
                     <h3
-                      className="text-lg font-normal leading-tight mt-1"
+                      className="text-xl md:text-2xl font-normal leading-tight mt-1"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
                       {step.description}
                     </h3>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      {stepDescriptions[index]}
-                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">{stepDescriptions[index]}</p>
                   </div>
                 </div>
+
+                {/* Arrow between steps */}
+                {index < steps.length - 1 && (
+                  <div className="flex items-center flex-1 pt-[4px] px-4">
+                    <div className="relative w-full h-[1.5px]">
+                      {/* Gray line */}
+                      <div
+                        className="absolute inset-0"
+                        style={{ backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
+                      />
+                      {/* Gold progress line */}
+                      <div
+                        className="absolute top-0 left-0 h-full"
+                        style={{
+                          width: isArrowActive ? '100%' : '0%',
+                          backgroundColor: 'var(--accent-gold)',
+                          transition: 'width 700ms ease-out',
+                        }}
+                      />
+                      {/* Arrowhead */}
+                      <div
+                        className="absolute right-0 top-1/2 -translate-y-1/2"
+                        style={{
+                          width: 0,
+                          height: 0,
+                          borderTop: '5px solid transparent',
+                          borderBottom: '5px solid transparent',
+                          borderLeft: `7px solid ${isArrowActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4')}`,
+                          transition: 'border-left-color 700ms ease-out',
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             )
           })}
