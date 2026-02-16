@@ -76,7 +76,7 @@ export function Header() {
 
   return (
     <header className={`sticky top-3 z-50 flex-shrink-0 transition-all duration-300 ${isNavVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'}`}>
-      <div className={`container mx-auto px-8 lg:px-20 py-2 flex items-center justify-between relative z-10 rounded-full transition-all duration-300 ${hasScrolled ? 'bg-background/95 backdrop-blur-sm' : ''}`}>
+      <div className={`container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl py-2 flex items-center justify-between relative z-10 rounded-full transition-all duration-300 ${hasScrolled ? 'bg-background/95 backdrop-blur-sm' : ''}`}>
         <Link
           href="/"
           className="text-2xl font-medium"
@@ -87,61 +87,30 @@ export function Header() {
         >Heurica</Link>
 
         <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          <a
-            href="/#solutions"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Solutions
-          </a>
-          <a
-            href="/#how-it-works"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            How It Works
-          </a>
           <Link
             href="/perspectives"
             className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
           >
-            Perspectives
+            Philosophy
           </Link>
-          <div className="relative company-dropdown">
-            <button
-              onClick={() => setIsCompanyOpen(!isCompanyOpen)}
-              className={`text-sm transition-colors flex items-center gap-1 ${isCompanyPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-            >
-              Company
-              <ChevronDown className={`w-3 h-3 transition-transform ${isCompanyOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {isCompanyOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 p-5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-2xl">
-                <div className="flex gap-8">
-                  <Link
-                    href="/team"
-                    className="group min-w-[180px]"
-                    onClick={() => setIsCompanyOpen(false)}
-                  >
-                    <p className="text-sm font-medium mb-1 group-hover:text-foreground transition-colors">About</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">The team and the problem we're solving</p>
-                  </Link>
-                  <Link
-                    href="/careers"
-                    className="group min-w-[180px]"
-                    onClick={() => setIsCompanyOpen(false)}
-                  >
-                    <p className="text-sm font-medium mb-1 group-hover:text-foreground transition-colors">Careers</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">Open positions</p>
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+          <Link
+            href="/team"
+            className={`text-sm transition-colors ${pathname === '/team' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+          >
+            About
+          </Link>
+          <Link
+            href="/careers"
+            className={`text-sm transition-colors ${pathname === '/careers' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+          >
+            Careers
+          </Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <Button size="sm" className="hidden sm:inline-flex px-3 py-1 text-xs font-semibold rounded-none h-7" asChild>
             <Link href="/contact">
-              Book a Demo
+              Start a Project &rsaquo;
             </Link>
           </Button>
           <Button
@@ -168,26 +137,12 @@ export function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-sm border-t border-border/20 mt-2 mx-4 rounded-xl p-4">
           <nav className="flex flex-col gap-4">
-            <a
-              href="/#solutions"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Solutions
-            </a>
-            <a
-              href="/#how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              How It Works
-            </a>
             <Link
               href="/perspectives"
               className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Perspectives
+              Philosophy
             </Link>
             <Link
               href="/team"
@@ -206,7 +161,7 @@ export function Header() {
             <div className="pt-2 border-t border-border/20">
               <Button size="sm" className="w-full px-3 py-1 text-xs font-semibold rounded-none h-8" asChild>
                 <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Book a Demo
+                  Start a Project &rsaquo;
                 </Link>
               </Button>
             </div>

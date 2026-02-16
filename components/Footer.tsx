@@ -15,7 +15,7 @@ export function Footer() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--background) 0%, transparent 50%)' }} />
       </div>
       <footer className="flex-shrink-0 cloud-footer relative z-10">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-20 py-8 sm:py-12 relative z-10">
+        <div className="container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl py-8 sm:py-12 relative z-10">
           <div className="flex flex-col md:flex-row mb-8 sm:mb-12">
             {/* Logo */}
             <div className="md:w-1/3">
@@ -39,45 +39,39 @@ export function Footer() {
             <div className="flex flex-col md:flex-row gap-12 md:gap-24 mt-8 md:mt-0 md:flex-1 md:justify-end">
               {/* Pages */}
               <div>
-                <h4 className="text-sm text-muted-foreground mb-4">Pages</h4>
-                <ul className="space-y-3">
+                <h4 className="text-xs text-muted-foreground mb-3">Pages</h4>
+                <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/#solutions" className="text-sm hover:text-foreground transition-colors">Solutions</Link>
+                    <Link href="/perspectives" className="text-xs hover:text-foreground transition-colors">Philosophy</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/#how-it-works" className="text-sm hover:text-foreground transition-colors">How It Works</Link>
-                  </li>
-                  <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/perspectives" className="text-sm hover:text-foreground transition-colors">Perspectives</Link>
-                  </li>
-                  <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/contact" className="text-sm hover:text-foreground transition-colors">Book a Demo</Link>
+                    <Link href="/contact" className="text-xs hover:text-foreground transition-colors">Start a Project &rsaquo;</Link>
                   </li>
                 </ul>
               </div>
 
               {/* Company */}
               <div>
-                <h4 className="text-sm text-muted-foreground mb-4">Company</h4>
-                <ul className="space-y-3">
+                <h4 className="text-xs text-muted-foreground mb-3">Company</h4>
+                <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/team" className="text-sm hover:text-foreground transition-colors">About</Link>
+                    <Link href="/team" className="text-xs hover:text-foreground transition-colors">About</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/careers" className="text-sm hover:text-foreground transition-colors">Careers</Link>
+                    <Link href="/careers" className="text-xs hover:text-foreground transition-colors">Careers</Link>
                   </li>
                 </ul>
               </div>
 
               {/* Legal */}
               <div>
-                <h4 className="text-sm text-muted-foreground mb-4">Legal</h4>
-                <ul className="space-y-3">
+                <h4 className="text-xs text-muted-foreground mb-3">Legal</h4>
+                <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/privacy" className="text-sm hover:text-foreground transition-colors">Privacy Policy</Link>
+                    <Link href="/privacy" className="text-xs hover:text-foreground transition-colors">Privacy Policy</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/terms" className="text-sm hover:text-foreground transition-colors">Terms of Service</Link>
+                    <Link href="/terms" className="text-xs hover:text-foreground transition-colors">Terms of Service</Link>
                   </li>
                 </ul>
               </div>
@@ -85,11 +79,11 @@ export function Footer() {
           </div>
 
           {/* Bottom row */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4">
-            <div className="text-sm text-muted-foreground">© 2026 Heurica</div>
+          <div className="flex flex-col items-start gap-2 pt-4">
+            <div className="text-xs text-muted-foreground">© 2026 Heurica</div>
             <a
               href="mailto:contact@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               contact@heurica.co
             </a>

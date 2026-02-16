@@ -400,7 +400,7 @@ export default function EveryScreenIsRightPage() {
                     </li>
                     <li className="transition-transform duration-200 hover:-translate-y-0.5">
                       <Link href="/contact" className="text-sm font-medium hover:text-foreground transition-colors">
-                        Book a Demo
+                        Start a Project &rsaquo;
                       </Link>
                     </li>
                   </ul>

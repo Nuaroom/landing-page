@@ -18,46 +18,36 @@ const steps: {
 }[] = [
   {
     number: "01",
-    label: "UNDERSTAND",
-    description: "Requirements & Constraints",
+    label: "",
+    description: "Understand",
     Icon: FileSearch,
-    cardText: "48 user stories, 3 roles\n→ 1 structured spec",
+    cardText: "",
   },
   {
     number: "02",
-    label: "ANALYZE",
-    description: "Patterns & Structure",
+    label: "",
+    description: "Analyze",
     Icon: GitBranch,
-    cardText: "Complex admin console\n→ 6 clear modules",
+    cardText: "",
   },
   {
     number: "03",
-    label: "DECIDE",
-    description: "Design Rationale",
+    label: "",
+    description: "Design",
     Icon: Scale,
-    cardText: "Why search-first nav over sidebar?\n→ Decision with 2 references",
-  },
-  {
-    number: "04",
-    label: "SHIP",
-    description: "Production-Ready UX & Code",
-    Icon: Rocket,
-    cardText: "12 screens + code + specs\n→ weeks, not quarters",
+    cardText: "",
   },
 ]
 
 const stepDescriptions: string[] = [
-  "PRDs, user stories, and business rules.\nFully parsed, nothing lost.",
-  "Workflows, user flows, information architecture.\nComplexity organized into clear modules.",
-  "Layout, navigation, interaction.\nEvery choice grounded in proven patterns.",
-  "Dev-ready screens, flows, component code.\nReady for sprint planning.",
+  "Share your requirements. PRDs, user stories, existing UI.",
+  "We map workflows, dependencies, and information architecture.",
+  "Production-ready screens and code, grounded in UX research.",
 ]
 
 export function FlowDiagram({ className = "" }: FlowDiagramProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeStep, setActiveStep] = useState(-1)
-  const [lineProgress, setLineProgress] = useState(0)
   const { resolvedTheme } = useTheme()
   const isDark = resolvedTheme === "dark"
 
@@ -66,161 +56,135 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
       if (!containerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const containerTop = containerRect.top
-      const containerHeight = containerRect.height
       const viewportHeight = window.innerHeight
 
-      // Use scroll progress through the container to determine active step
-      // Start activating when container enters viewport, spread steps evenly across scroll
-      const scrollStart = viewportHeight * 0.7 // Start when container top hits 70% of viewport
-      const scrollProgress = (scrollStart - containerTop) / (containerHeight + scrollStart * 0.3)
-      const clampedProgress = Math.max(0, Math.min(1, scrollProgress))
+      // Each step activates at a distinct scroll threshold
+      const triggerPoint = viewportHeight * 0.75
+      const distanceIntoView = triggerPoint - containerRect.top
 
-      // Map progress to steps: each step activates at evenly spaced intervals
-      const stepProgress = clampedProgress * steps.length
-      const newActiveStep = Math.floor(stepProgress) - 1 + (stepProgress % 1 > 0.15 ? 1 : 0)
-      setActiveStep(Math.min(newActiveStep, steps.length - 1))
-
-      // Line progress tracks smoothly between steps
-      setLineProgress(clampedProgress)
+      if (distanceIntoView < 0) {
+        setActiveStep(-1)
+      } else if (distanceIntoView < 80) {
+        setActiveStep(0)
+      } else if (distanceIntoView < 180) {
+        setActiveStep(1)
+      } else {
+        setActiveStep(2)
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Initial check
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
-      {steps.map((step, index) => {
-        const isOdd = index % 2 === 0 // steps 1,3 (index 0,2) = label left, card right
-        const isActive = index <= activeStep
-        return (
-          <div
-            key={step.number}
-            ref={(el) => { stepRefs.current[index] = el }}
-            className="relative"
-            style={{ paddingBottom: index < steps.length - 1 ? '48px' : '0' }}
-          >
-            {/* Timeline line (gray background) */}
-            {index < steps.length - 1 && (
+      {/* Horizontal layout */}
+      <div className="relative">
+        {/* Vertical line (gray) - mobile only */}
+        <div
+          className="absolute sm:hidden"
+          style={{
+            width: '1.5px',
+            top: '29px',
+            bottom: '5px',
+            left: '4.5px',
+            backgroundColor: isDark ? '#404040' : '#C4C4C4',
+          }}
+        />
+        {/* Vertical line (gold progress) - mobile only */}
+        <div
+          className="absolute sm:hidden overflow-hidden"
+          style={{
+            width: '1.5px',
+            top: '29px',
+            left: '4.5px',
+            height: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
+            transition: 'height 700ms ease-out',
+          }}
+        >
+          <div className="w-full h-full" style={{ backgroundColor: 'var(--accent-gold)' }} />
+        </div>
+        {/* Horizontal line (gray) - desktop only */}
+        <div
+          className="absolute hidden sm:block"
+          style={{
+            height: '1.5px',
+            top: '5px',
+            left: 0,
+            right: 0,
+            backgroundColor: isDark ? '#404040' : '#C4C4C4',
+          }}
+        />
+        {/* Horizontal line (gold progress) - desktop only */}
+        <div
+          className="absolute hidden sm:block overflow-hidden"
+          style={{
+            height: '1.5px',
+            top: '5px',
+            left: 0,
+            width: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
+            transition: 'width 700ms ease-out',
+          }}
+        >
+          <div className="w-full h-full" style={{ backgroundColor: 'var(--accent-gold)' }} />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0">
+          {steps.map((step, index) => {
+            const isActive = index <= activeStep
+            const smDotJustify = index === 0 ? 'sm:justify-start' : index === steps.length - 1 ? 'sm:justify-end' : 'sm:justify-center'
+            const smItemAlign = index === 0 ? 'sm:items-start' : index === steps.length - 1 ? 'sm:items-end' : 'sm:items-center'
+            return (
               <div
-                className="absolute left-1/2 -translate-x-1/2 top-[6px] h-full hidden md:block"
-                style={{ width: '1.5px', backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
-              />
-            )}
-            {/* Timeline line (gold progress overlay) */}
-            {index < steps.length - 1 && (
-              <div
-                className="absolute left-1/2 -translate-x-1/2 top-[6px] h-full hidden md:block overflow-hidden"
-                style={{ width: '1.5px' }}
+                key={step.number}
+                className={`relative text-left ${smItemAlign} sm:flex sm:flex-col`}
               >
-                <div
-                  className="w-full transition-all duration-700 ease-out"
-                  style={{
-                    backgroundColor: 'var(--accent-gold)',
-                    height: index < activeStep ? '100%' : index === activeStep ? `${Math.max(0, Math.min(1, (lineProgress * steps.length - index))) * 100}%` : '0%',
-                  }}
-                />
+                {/* Mobile: horizontal row with dot left, text right */}
+                <div className="flex items-start gap-6 sm:block py-6 sm:py-0">
+                  {/* Dot */}
+                  <div className={`flex justify-start ${smDotJustify} sm:mb-5 pt-1 sm:pt-0 shrink-0`}>
+                    <div
+                      className="w-[10px] h-[10px] rounded-full relative z-10"
+                      style={{
+                        backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
+                        boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
+                        transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
+                      }}
+                    />
+                  </div>
+                  {/* Label */}
+                  <div
+                    className="sm:w-[200px]"
+                    style={{
+                      opacity: isActive ? 1 : 0.3,
+                      transform: isActive ? 'translateY(0)' : 'translateY(8px)',
+                      transition: `opacity 500ms ease-out ${index * 200}ms, transform 500ms ease-out ${index * 200}ms`,
+                    }}
+                  >
+                    <span
+                      className="text-xs font-mono tracking-wider"
+                      style={{ color: 'var(--accent-gold)' }}
+                    >
+                      {step.number}
+                    </span>
+                    <h3
+                      className="text-lg font-normal leading-tight mt-1"
+                      style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                    >
+                      {step.description}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      {stepDescriptions[index]}
+                    </p>
+                  </div>
+                </div>
               </div>
-            )}
-            {/* Mobile timeline line (gray) */}
-            {index < steps.length - 1 && (
-              <div
-                className="absolute left-[11px] top-[6px] h-full md:hidden"
-                style={{ width: '1.5px', backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
-              />
-            )}
-            {/* Mobile timeline line (gold progress) */}
-            {index < steps.length - 1 && (
-              <div
-                className="absolute left-[11px] top-[6px] h-full md:hidden overflow-hidden"
-                style={{ width: '1.5px' }}
-              >
-                <div
-                  className="w-full transition-all duration-700 ease-out"
-                  style={{
-                    backgroundColor: 'var(--accent-gold)',
-                    height: index < activeStep ? '100%' : index === activeStep ? `${Math.max(0, Math.min(1, (lineProgress * steps.length - index))) * 100}%` : '0%',
-                  }}
-                />
-              </div>
-            )}
-
-            {/* Desktop layout */}
-            <div className="hidden md:grid md:grid-cols-[1fr_24px_1fr] md:gap-6 items-start">
-              {/* Left side */}
-              <div
-                className="flex justify-end transition-all duration-700 ease-out"
-                style={{
-                  opacity: isActive ? 1 : 0.15,
-                  transform: isActive ? 'translateY(0)' : 'translateY(12px)',
-                }}
-              >
-                {isOdd ? (
-                  <StepLabel number={step.number} label={step.label} description={step.description} longDescription={stepDescriptions[index]} align="right" />
-                ) : (
-                  <StepCard Icon={step.Icon} cardText={step.cardText} arrow="right" />
-                )}
-              </div>
-
-              {/* Timeline dot */}
-              <div className="flex justify-center items-center" style={{ height: 24 }}>
-                <div
-                  className="w-2 h-2 rounded-full relative z-10 flex-shrink-0 transition-all duration-500"
-                  style={{
-                    backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                    boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                  }}
-                />
-              </div>
-
-              {/* Right side */}
-              <div
-                className="flex justify-start transition-all duration-700 ease-out"
-                style={{
-                  opacity: isActive ? 1 : 0.15,
-                  transform: isActive ? 'translateY(0)' : 'translateY(12px)',
-                  transitionDelay: '100ms',
-                }}
-              >
-                {isOdd ? (
-                  <StepCard Icon={step.Icon} cardText={step.cardText} arrow="left" />
-                ) : (
-                  <StepLabel number={step.number} label={step.label} description={step.description} longDescription={stepDescriptions[index]} align="left" />
-                )}
-              </div>
-            </div>
-
-            {/* Mobile layout */}
-            <div
-              className="flex md:hidden gap-4 items-start transition-all duration-700 ease-out"
-              style={{
-                opacity: isActive ? 1 : 0.15,
-                transform: isActive ? 'translateY(0)' : 'translateY(12px)',
-              }}
-            >
-              {/* Timeline dot */}
-              <div className="flex-shrink-0 flex items-center" style={{ width: 12, height: 24 }}>
-                <div
-                  className="w-2 h-2 rounded-full relative z-10 transition-all duration-500 mx-auto"
-                  style={{
-                    backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                    boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                  }}
-                />
-              </div>
-
-              {/* Content stacked */}
-              <div className="flex-1 space-y-3">
-                <StepLabel number={step.number} label={step.label} description={step.description} longDescription={stepDescriptions[index]} align="left" />
-                <StepCard Icon={step.Icon} cardText={step.cardText} arrow="left" mobile />
-              </div>
-            </div>
-          </div>
-        )
-      })}
-
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }

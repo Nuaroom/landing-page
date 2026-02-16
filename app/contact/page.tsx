@@ -37,7 +37,7 @@ export default function ContactPage() {
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-6 sm:mb-8 leading-tight animate-hero-subtitle"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                Book a Demo
+                Start a Project
               </h1>
 
               {/* What We'll Cover Card */}

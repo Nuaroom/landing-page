@@ -21,10 +21,10 @@ export default function NotFound() {
               Book a demo to learn more.
             </p>
 
-            {/* Book a Demo Button */}
+            {/* Start a Project Button */}
             <Button size="lg" className="px-6 py-3 text-sm font-semibold animate-hero-footer" asChild>
               <Link href="/contact">
-                Book a Demo
+                Start a Project &rsaquo;
               </Link>
             </Button>
           </div>
@@ -67,7 +67,7 @@ export default function NotFound() {
                       <Link href="/blog" className="text-sm font-medium hover:text-foreground transition-colors">Blog</Link>
                     </li>
                     <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                      <Link href="/contact" className="text-sm font-medium hover:text-foreground transition-colors">Book a Demo</Link>
+                      <Link href="/contact" className="text-sm font-medium hover:text-foreground transition-colors">Start a Project &rsaquo;</Link>
                     </li>
                   </ul>
                 </div>
