@@ -108,11 +108,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button size="sm" className="hidden sm:inline-flex px-3 py-1 text-xs font-semibold rounded-none h-7" asChild>
-            <Link href="/contact">
-              Start a Project &rsaquo;
-            </Link>
-          </Button>
           <Button
             variant="ghost"
             size="icon"
@@ -158,13 +153,6 @@ export function Header() {
             >
               Careers
             </Link>
-            <div className="pt-2 border-t border-border/20">
-              <Button size="sm" className="w-full px-3 py-1 text-xs font-semibold rounded-none h-8" asChild>
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Start a Project &rsaquo;
-                </Link>
-              </Button>
-            </div>
           </nav>
         </div>
       )}
