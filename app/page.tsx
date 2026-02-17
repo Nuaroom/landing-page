@@ -301,7 +301,7 @@ export default function LandingPage() {
             className="text-xl sm:text-2xl md:text-3xl font-normal leading-relaxed animate-on-scroll text-center"
             style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
           >
-            Your users hate it.<br />Your sales team hides the demo till the last day.
+            Your users hate it.<br />Your sales team hides the demo till the last day.<br />Your product deserves good UX.
           </h2>
         </div>
       </section>
