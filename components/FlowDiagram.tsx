@@ -145,42 +145,36 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
         {/* Desktop layout - horizontal with one continuous line through dots */}
         <div className="hidden sm:block">
           {/* Continuous line + dots row */}
-          <div className="relative flex items-center">
-            {/* Gray base line spanning from first dot to arrow end */}
+          <div className="relative flex items-center justify-between">
+            {/* Gray base line */}
             <div
-              className="absolute h-[1.5px]"
-              style={{
-                left: '4px',
-                right: '0',
-                backgroundColor: isDark ? '#404040' : '#C4C4C4',
-              }}
+              className="absolute h-[1.5px] left-[4px] right-0"
+              style={{ backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
             />
             {/* Gold progress line */}
             <div
-              className="absolute h-[1.5px]"
+              className="absolute h-[1.5px] left-[4px]"
               style={{
-                left: '4px',
                 width: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
                 backgroundColor: 'var(--accent-gold)',
                 transition: 'width 700ms ease-out',
               }}
             />
-            {/* Dots evenly spaced */}
+            {/* Dots */}
             {steps.map((step, index) => (
-              <div key={step.number} style={{ flex: 1 }}>
-                <div
-                  className="w-[10px] h-[10px] rounded-full relative z-10 shrink-0"
-                  style={{
-                    backgroundColor: index <= activeStep ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                    boxShadow: index <= activeStep ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                    transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
-                  }}
-                />
-              </div>
+              <div
+                key={step.number}
+                className="w-[10px] h-[10px] rounded-full relative z-10 shrink-0"
+                style={{
+                  backgroundColor: index <= activeStep ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
+                  boxShadow: index <= activeStep ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
+                  transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
+                }}
+              />
             ))}
-            {/* Triangle arrowhead at the end */}
+            {/* Triangle arrowhead at far right */}
             <div
-              className="relative z-10 shrink-0 ml-[-1px]"
+              className="relative z-10 shrink-0"
               style={{
                 width: 0,
                 height: 0,
