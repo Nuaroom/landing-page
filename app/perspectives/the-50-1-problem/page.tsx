@@ -56,13 +56,13 @@ export default function The501ProblemPage() {
               className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-subtitle"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              <span style={{ color: "var(--accent-gold)" }}>The 50:1 Problem</span>: Engineer-Heavy Teams Don't Ship Bad UX. They Ship{" "}
-              <span style={{ color: "var(--accent-gold)" }}>No UX</span>.
+              <span style={{ color: "var(--accent-gold)" }}>The 50:1 Problem</span>: When Nobody Owns UX, Users Pay the Price
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-2xl animate-hero-footer">
-              The best-practice ratio is 5 engineers per designer. The reality at most B2B
-              companies is 50:1. Some run at 500:1. That gap doesn't produce ugly interfaces.
-              It produces interfaces where no one made a design decision at all.
+              The best-practice ratio is 5 engineers per designer. Most B2B SaaS teams run at
+              50:1. Some at 500:1. The result? Users clicking 57 times to do something that
+              should take 5. Opening 12 tabs for one task. Building spreadsheet workarounds
+              because the product technically works but practically doesn&apos;t.
             </p>
             <div className="w-12 h-px bg-border mb-6 animate-hero-footer" />
             <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider animate-hero-footer">

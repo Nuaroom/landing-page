@@ -7,10 +7,10 @@ const articles = [
   {
     slug: "the-50-1-problem",
     title: "The 50:1 Problem.",
-    excerpt: "Engineer-Heavy Teams Don't Ship Bad UX. They Ship No UX.",
-    titleHighlight: ["The 50:1 Problem", "No UX"],
+    excerpt: "When Nobody Owns UX, Users Pay the Price.",
+    titleHighlight: ["The 50:1 Problem"],
     description:
-      "The best-practice ratio is 5 engineers per designer. The reality at most B2B companies is 50:1. That gap doesn't produce ugly interfaces — it produces interfaces where no one made a design decision at all.",
+      "The best-practice ratio is 5 engineers per designer. Most B2B SaaS teams run at 50:1. Some at 500:1. The result? Users clicking 57 times to do something that should take 5.",
     date: "Jan 2026",
     readTime: "8 min read",
     author: "Yunbin Bae",
