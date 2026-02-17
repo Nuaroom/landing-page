@@ -142,23 +142,62 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
           })}
         </div>
 
-        {/* Desktop layout - horizontal with arrows */}
-        <div className="hidden sm:flex items-start gap-0">
-          {steps.map((step, index) => {
-            const isActive = index <= activeStep
-            const isArrowActive = index < activeStep
-            return (
-              <div key={step.number} className="flex items-start" style={{ flex: index < steps.length - 1 ? 1 : undefined }}>
-                {/* Step content: dot on top of text */}
-                <div className="flex flex-col items-start shrink-0" style={{ maxWidth: '200px' }}>
-                  <div
-                    className="w-[10px] h-[10px] rounded-full mb-4 relative z-10"
-                    style={{
-                      backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                      boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                      transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
-                    }}
-                  />
+        {/* Desktop layout - horizontal with one continuous line through dots */}
+        <div className="hidden sm:block">
+          {/* Continuous line + dots row */}
+          <div className="relative flex items-center">
+            {/* Gray base line spanning from first dot to arrow end */}
+            <div
+              className="absolute h-[1.5px]"
+              style={{
+                left: '4px',
+                right: '0',
+                backgroundColor: isDark ? '#404040' : '#C4C4C4',
+              }}
+            />
+            {/* Gold progress line */}
+            <div
+              className="absolute h-[1.5px]"
+              style={{
+                left: '4px',
+                width: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
+                backgroundColor: 'var(--accent-gold)',
+                transition: 'width 700ms ease-out',
+              }}
+            />
+            {/* Dots evenly spaced */}
+            {steps.map((step, index) => (
+              <div key={step.number} style={{ flex: 1 }}>
+                <div
+                  className="w-[10px] h-[10px] rounded-full relative z-10 shrink-0"
+                  style={{
+                    backgroundColor: index <= activeStep ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
+                    boxShadow: index <= activeStep ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
+                    transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
+                  }}
+                />
+              </div>
+            ))}
+            {/* Triangle arrowhead at the end */}
+            <div
+              className="relative z-10 shrink-0 ml-[-1px]"
+              style={{
+                width: 0,
+                height: 0,
+                borderTop: '5px solid transparent',
+                borderBottom: '5px solid transparent',
+                borderLeft: `7px solid ${activeStep >= steps.length - 1 ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4')}`,
+                transition: 'border-left-color 700ms ease-out',
+              }}
+            />
+          </div>
+
+          {/* Text labels below dots */}
+          <div className="flex mt-4">
+            {steps.map((step, index) => {
+              const isActive = index <= activeStep
+              return (
+                <div key={step.number} style={{ flex: 1 }}>
                   <div
                     style={{
                       opacity: isActive ? 1 : 0.3,
@@ -178,43 +217,9 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
                     <p className="text-sm text-muted-foreground mt-2">{stepDescriptions[index]}</p>
                   </div>
                 </div>
-
-                {/* Arrow between steps */}
-                {index < steps.length - 1 && (
-                  <div className="flex items-center flex-1 pt-[4px] px-4">
-                    <div className="relative w-full h-[1.5px]">
-                      {/* Gray line */}
-                      <div
-                        className="absolute inset-0"
-                        style={{ backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
-                      />
-                      {/* Gold progress line */}
-                      <div
-                        className="absolute top-0 left-0 h-full"
-                        style={{
-                          width: isArrowActive ? '100%' : '0%',
-                          backgroundColor: 'var(--accent-gold)',
-                          transition: 'width 700ms ease-out',
-                        }}
-                      />
-                      {/* Arrowhead */}
-                      <div
-                        className="absolute right-0 top-1/2 -translate-y-1/2"
-                        style={{
-                          width: 0,
-                          height: 0,
-                          borderTop: '5px solid transparent',
-                          borderBottom: '5px solid transparent',
-                          borderLeft: `7px solid ${isArrowActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4')}`,
-                          transition: 'border-left-color 700ms ease-out',
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
       </div>
     </div>
