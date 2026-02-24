@@ -326,6 +326,7 @@ export default function LandingPage() {
                   >
                     &ldquo;Users couldn&rsquo;t finish a task without hand-holding. We tried fixing it internally for a year. Heurica redesigned it in 3 weeks.&rdquo;
                   </h2>
+                  <p className="text-sm text-muted-foreground">&mdash; VP of Product</p>
                 </div>
 
                 {/* Stats */}

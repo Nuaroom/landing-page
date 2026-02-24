@@ -31,7 +31,7 @@ export default function ContactPage() {
               {/* Right - Calendar */}
               <div className="border border-border/30 rounded-xl bg-card/50 overflow-hidden animate-hero-card">
                 <iframe
-                  src="https://calendar.notion.so/meet/yunbin-ujrj02gip/heurica"
+                  src="https://calendar.notion.so/meet/yunbinbbae/heurica"
                   width="100%"
                   height="700"
                   frameBorder="0"
