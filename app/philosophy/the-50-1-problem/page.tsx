@@ -497,8 +497,8 @@ export default function The501ProblemPage() {
                       </Link>
                     </li>
                     <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                      <Link href="/perspectives" className="text-sm font-medium hover:text-foreground transition-colors">
-                        Perspectives
+                      <Link href="/philosophy" className="text-sm font-medium hover:text-foreground transition-colors">
+                        Philosophy
                       </Link>
                     </li>
                     <li className="transition-transform duration-200 hover:-translate-y-0.5">

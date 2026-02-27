@@ -31,7 +31,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const isHomePage = pathname === "/"
-  const isPerspectivesPage = pathname?.startsWith("/perspectives")
+  const isPerspectivesPage = pathname?.startsWith("/philosophy")
   const isCompanyPage = pathname === "/team" || pathname === "/careers"
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           <Link
-            href="/perspectives"
+            href="/philosophy"
             className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
           >
             Philosophy
@@ -138,7 +138,7 @@ export function Header() {
         <div className="md:hidden bg-background/95 backdrop-blur-sm border-t border-border/20 mt-2 mx-4 rounded-xl p-4">
           <nav className="flex flex-col gap-4">
             <Link
-              href="/perspectives"
+              href="/philosophy"
               className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >

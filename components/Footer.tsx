@@ -42,7 +42,7 @@ export function Footer() {
                 <h4 className="text-xs text-muted-foreground mb-3">Pages</h4>
                 <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/perspectives" className="text-xs hover:text-foreground transition-colors">Philosophy</Link>
+                    <Link href="/philosophy" className="text-xs hover:text-foreground transition-colors">Philosophy</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
                     <Link href="/contact" className="text-xs hover:text-foreground transition-colors">Start a Project &rsaquo;</Link>

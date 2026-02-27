@@ -55,7 +55,7 @@ export default function PerspectivesPage() {
                 {articles.map((article, index) => (
                   <Link
                     key={article.slug}
-                    href={`/perspectives/${article.slug}`}
+                    href={`/philosophy/${article.slug}`}
                     className="group block border border-border/40 md:border-0 md:border-l md:border-r"
                   >
                     <article className="h-full flex flex-col">
