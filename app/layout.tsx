@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import { Instrument_Serif, IBM_Plex_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/components/language-context"
 import { Header } from "@/components/Header"
 import { Suspense } from "react"
 import "./globals.css"
@@ -40,10 +41,12 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} ${ibmPlexSerif.variable} antialiased`}>
         <Suspense fallback={null}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <div className="min-h-screen bg-background text-foreground flex flex-col">
-              <Header />
-              {children}
-            </div>
+            <LanguageProvider>
+              <div className="min-h-screen bg-background text-foreground flex flex-col">
+                <Header />
+                {children}
+              </div>
+            </LanguageProvider>
           </ThemeProvider>
         </Suspense>
         <Analytics />

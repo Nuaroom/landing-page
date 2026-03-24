@@ -4,9 +4,11 @@ import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { HeroCircles } from "@/components/HeroCircles"
 import { Footer } from "@/components/Footer"
+import { useLanguage } from "@/components/language-context"
 
 export default function EnterpriseDataSecurityCaseStudy() {
   const articleRef = useRef<HTMLElement>(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +39,7 @@ export default function EnterpriseDataSecurityCaseStudy() {
               className="text-xs font-mono uppercase tracking-wider mb-8 flex items-center gap-4"
               style={{ color: "var(--accent-gold)" }}
             >
-              <span>Case Study</span>
+              <span>{t("cs.label")}</span>
               <span className="h-px flex-1 bg-border/40" />
             </div>
 
@@ -45,19 +47,38 @@ export default function EnterpriseDataSecurityCaseStudy() {
               className="text-3xl sm:text-4xl md:text-5xl font-normal leading-tight mb-6"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Redesigning a Fortune 100-serving enterprise data security platform,{" "}
-              <em style={{ color: "var(--accent-gold)" }}>without rebuilding it.</em>
+              {t("cs.hero.title")}{" "}
+              <em style={{ color: "var(--accent-gold)" }}>{t("cs.hero.titleEmphasis")}</em>
             </h1>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mb-6">
-              Years of engineer-made design left customers unable to finish basic tasks without handholding. Sales hid the demo until the last slide. Their CEO wanted to scrap the whole UI. Heurica shipped the redesign in 2 weeks.
+              {t("cs.hero.description")}
             </p>
 
             <p className="text-xs sm:text-sm text-muted-foreground">
-              Enterprise Data Security &middot; Policy Management Console &middot; 98 user stories &middot; 2 weeks
+              {t("cs.hero.meta")}
             </p>
           </div>
         </header>
+
+        {/* Testimonial */}
+        <section className="border-t border-border/40 py-16 sm:py-20">
+          <div className="container mx-auto px-6 lg:px-12 max-w-3xl fade-in">
+            <div
+              className="p-8 sm:p-12 rounded-none border border-border/40 text-center bg-[#FDFCF8] dark:bg-[#1C1917]"
+            >
+              <p
+                className="text-lg sm:text-xl md:text-2xl font-normal leading-relaxed max-w-xl mx-auto mb-4"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                &ldquo;{t("cs.testimonial.quote")}&rdquo;
+              </p>
+              <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                &mdash; {t("cs.testimonial.role")}
+              </span>
+            </div>
+          </div>
+        </section>
 
         {/* The Problem */}
         <section className="border-t border-border/40 py-16 sm:py-20">
@@ -66,28 +87,23 @@ export default function EnterpriseDataSecurityCaseStudy() {
               className="text-xs font-mono uppercase tracking-wider mb-3 fade-in"
               style={{ color: "var(--accent-gold)" }}
             >
-              The Problem
+              {t("cs.problem.label")}
             </div>
             <h2
               className="text-2xl sm:text-3xl font-normal mb-6 fade-in"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              A world-class product nobody could use.
+              {t("cs.problem.title")}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-10 fade-in">
-              The product worked. The technology was best-in-class. The interface was killing them.
+              {t("cs.problem.description")}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 fade-in">
-              {[
-                { number: "18 mo", label: "for customer adoption with hand-holding" },
-                { number: "2+ hr", label: "to complete basic tasks" },
-                { number: "600+", label: "policies created (8 is normal). Nobody could track them." },
-                { number: "0", label: "guided workflows in the entire product" },
-              ].map((stat) => (
+              {[1, 2, 3, 4].map((i) => (
                 <div
-                  key={stat.number}
+                  key={i}
                   className="p-5 border border-border/40 rounded-none text-center"
                   style={{ backgroundColor: "var(--case-study-bg)" }}
                 >
@@ -95,34 +111,59 @@ export default function EnterpriseDataSecurityCaseStudy() {
                     className="text-2xl sm:text-3xl font-normal mb-2"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "var(--accent-gold)" }}
                   >
-                    {stat.number}
+                    {t(`cs.stat.${i}.number`)}
                   </p>
-                  <p className="text-xs text-muted-foreground leading-snug">{stat.label}</p>
+                  <p className="text-xs text-muted-foreground leading-snug">{t(`cs.stat.${i}.label`)}</p>
                 </div>
               ))}
             </div>
 
-            {/* Quotes */}
-            <div className="grid sm:grid-cols-3 gap-6 fade-in">
-              {[
-                { text: "Tell us how to do things instead of letting us screw up.", role: "Fortune 500 Customer" },
-                { text: "I hide the demo till the very last day.", role: "Sales Head" },
-                { text: "At this point, just scrap the whole UI.", role: "CEO" },
-              ].map((quote) => (
-                <div
-                  key={quote.role}
-                  className="p-6 border border-border/40 rounded-none flex flex-col justify-between"
-                  style={{ backgroundColor: "var(--case-study-bg)" }}
-                >
-                  <p
-                    className="text-base font-normal mb-4 leading-relaxed"
-                    style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+            {/* Quotes - Row 1: Business Impact */}
+            <div className="fade-in mb-6">
+              <span className="inline-block text-[11px] font-mono uppercase tracking-wider px-3 py-1 rounded mb-4 bg-muted text-red-500">
+                {t("cs.quote.row1.label")}
+              </span>
+              <div className="grid sm:grid-cols-3 gap-6">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="p-6 border border-border/40 rounded-none flex flex-col justify-between"
+                    style={{ backgroundColor: "var(--case-study-bg)" }}
                   >
-                    &ldquo;{quote.text}&rdquo;
-                  </p>
-                  <span className="text-xs font-mono text-muted-foreground mt-auto">{quote.role}</span>
-                </div>
-              ))}
+                    <p
+                      className="text-base font-normal mb-4 leading-relaxed"
+                      style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                    >
+                      &ldquo;{t(`cs.quote.${i}.text`)}&rdquo;
+                    </p>
+                    <span className="text-xs font-mono text-muted-foreground mt-auto">{t(`cs.quote.${i}.role`)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quotes - Row 2: UX Problems */}
+            <div className="fade-in">
+              <span className="inline-block text-[11px] font-mono uppercase tracking-wider px-3 py-1 rounded mb-4 bg-muted text-red-500">
+                {t("cs.quote.row2.label")}
+              </span>
+              <div className="grid sm:grid-cols-3 gap-6">
+                {[4, 5, 6].map((i) => (
+                  <div
+                    key={i}
+                    className="p-6 border border-border/40 rounded-none flex flex-col justify-between"
+                    style={{ backgroundColor: "var(--case-study-bg)" }}
+                  >
+                    <p
+                      className="text-base font-normal mb-4 leading-relaxed"
+                      style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                    >
+                      &ldquo;{t(`cs.quote.${i}.text`)}&rdquo;
+                    </p>
+                    <span className="text-xs font-mono text-muted-foreground mt-auto">{t(`cs.quote.${i}.role`)}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -134,48 +175,28 @@ export default function EnterpriseDataSecurityCaseStudy() {
               className="text-xs font-mono uppercase tracking-wider mb-3 fade-in"
               style={{ color: "var(--accent-gold)" }}
             >
-              What We Found
+              {t("cs.found.label")}
             </div>
             <h2
               className="text-2xl sm:text-3xl font-normal mb-6 fade-in"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              98 user stories. 0 UX decisions.
+              {t("cs.found.title")}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4 fade-in">
-              The team had written 98 detailed user stories for a single feature. But none of them addressed the questions that actually determine whether users can get their job done: How should the product be organized? What needs to be set up before what? Why does this screen exist here and not there?
+              {t("cs.found.p1")}
             </p>
             <p className="text-muted-foreground leading-relaxed mb-10 fade-in">
-              Engineers had been making these calls on the fly for years. Nobody noticed until customers started leaving.
+              {t("cs.found.p2")}
             </p>
 
             {/* Process cards */}
             <div className="grid sm:grid-cols-2 gap-4 fade-in">
               {[
-                {
-                  number: "18",
-                  title: "Types of things to configure",
-                  description:
-                    "All treated identically by the interface. No hierarchy, no relationships. Users memorized connections through weeks of training.",
-                },
-                {
-                  number: "77",
-                  title: "Tasks with zero guidance",
-                  description:
-                    "None connected in a logical flow. Complex tasks that required 5 other things to exist first just let you fail silently.",
-                },
-                {
-                  number: "7",
-                  title: "Features buried in the wrong place",
-                  description:
-                    "Organized by how engineers built them, not how admins use them. Users hunted across unrelated sections to find connected capabilities.",
-                },
-                {
-                  number: "12",
-                  title: "Invisible steps before you could start",
-                  description:
-                    "The product never told you what to set up first. Weeks of training were actually teaching an invisible order of operations that existed nowhere in the interface.",
-                },
+                { number: "18", key: "1" },
+                { number: "77", key: "2" },
+                { number: "7", key: "3" },
+                { number: "12", key: "4" },
               ].map((card) => (
                 <div
                   key={card.number}
@@ -185,8 +206,8 @@ export default function EnterpriseDataSecurityCaseStudy() {
                   <span className="text-6xl font-normal text-foreground/15 mb-3" style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}>
                     {card.number}
                   </span>
-                  <h3 className="text-base font-semibold mb-3">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
+                  <h3 className="text-base font-semibold mb-3">{t(`cs.process.${card.key}.title`)}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(`cs.process.${card.key}.description`)}</p>
                 </div>
               ))}
             </div>
@@ -200,36 +221,29 @@ export default function EnterpriseDataSecurityCaseStudy() {
               className="text-xs font-mono uppercase tracking-wider mb-3 fade-in"
               style={{ color: "var(--accent-gold)" }}
             >
-              The Result
+              {t("cs.result.label")}
             </div>
             <h2
               className="text-2xl sm:text-3xl font-normal mb-6 fade-in"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              From &ldquo;squirrel-brain sandbox&rdquo; to guided workflows.
+              {t("cs.result.title")}
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-10 fade-in">
-              The product went from a sandbox where users could do anything and screw everything up, to guided workflows where the system tells you what to do and in what order. Every design decision documented and traceable.
+              {t("cs.result.description")}
             </p>
 
             {/* What we delivered */}
             <div className="fade-in mb-10">
-              <span className="inline-block text-[11px] font-mono uppercase tracking-wider px-3 py-1 rounded mb-4 bg-green-500/10 text-green-500">
-                What we delivered
+              <span className="inline-block text-[11px] font-mono uppercase tracking-wider px-3 py-1 rounded mb-4 bg-muted text-green-500">
+                {t("cs.result.deliveredLabel")}
               </span>
               <div className="p-6 border border-border/40 rounded-none" style={{ backgroundColor: "var(--case-study-bg)" }}>
                 <ul className="space-y-3">
-                  {[
-                    "Product reorganized from 19 flat menu items into 5 clear sections that match how admins actually think about their work",
-                    "Step-by-step creation flows. The product tells users what to set up first, instead of letting them fail silently.",
-                    "Relationships between features visible on screen. No more jumping between 5 different pages to understand how things connect.",
-                    "7 misplaced features moved to where users actually look for them.",
-                    "Complete screen-by-screen architecture for 75+ pages, ready for engineering to build",
-                    "Every decision linked back to the product spec. No opinions, just traceable logic.",
-                  ].map((item, i) => (
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
                       <span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 shrink-0" />
-                      {item}
+                      {t(`cs.result.delivered.${i}`)}
                     </li>
                   ))}
                 </ul>
@@ -238,51 +252,16 @@ export default function EnterpriseDataSecurityCaseStudy() {
 
             {/* Outcome cards */}
             <div className="grid sm:grid-cols-3 gap-4 fade-in">
-              {[
-                {
-                  title: "2 Weeks, Not 12 Months",
-                  description:
-                    "Full product architecture for an enterprise platform with dozens of features. Their internal team spent a year and got nowhere. Heurica shipped it in 2 weeks.",
-                },
-                {
-                  title: "Explainable Decisions",
-                  description:
-                    "Every screen, every button, every menu item traces back to a product requirement. No more \"it just felt right.\" Engineering knows exactly what to build and why.",
-                },
-                {
-                  title: "Dev-Ready Output",
-                  description:
-                    "Not wireframes. Not Figma files. Architecture spec and production-ready front-end code. No interpretation gaps, no handoff meetings.",
-                },
-              ].map((card) => (
+              {[1, 2, 3].map((i) => (
                 <div
-                  key={card.title}
+                  key={i}
                   className="p-6 border border-border/40 rounded-none"
                   style={{ backgroundColor: "var(--case-study-bg)" }}
                 >
-                  <h3 className="text-base font-semibold mb-2">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{card.description}</p>
+                  <h3 className="text-base font-semibold mb-2">{t(`cs.outcome.${i}.title`)}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(`cs.outcome.${i}.description`)}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonial */}
-        <section className="border-t border-border/40 py-16 sm:py-20">
-          <div className="container mx-auto px-6 lg:px-12 max-w-3xl fade-in">
-            <div
-              className="p-8 sm:p-12 rounded-none border border-border/40 text-center bg-[#FDFCF8] dark:bg-[#1C1917]"
-            >
-              <p
-                className="text-lg sm:text-xl md:text-2xl font-normal leading-relaxed max-w-xl mx-auto mb-4"
-                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-              >
-                &ldquo;We burnt a year trying to fix &lsquo;squirrel-brain sandbox design.&rsquo; Got nowhere. Heurica fixed in 2 weeks.&rdquo;
-              </p>
-              <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                &mdash; VP of Product
-              </span>
             </div>
           </div>
         </section>
@@ -294,20 +273,20 @@ export default function EnterpriseDataSecurityCaseStudy() {
               className="text-lg sm:text-xl md:text-2xl font-normal text-foreground leading-relaxed mb-2"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Your product deserves better UX decisions.
+              {t("cs.cta.line1")}
             </p>
             <p
               className="text-lg sm:text-xl md:text-2xl font-normal text-foreground leading-relaxed mb-8"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              3-day analysis. 2-week redesign.
+              {t("cs.cta.line2")}
             </p>
             <Link
               href="/contact"
               className="inline-flex items-center px-6 text-base font-semibold h-10 rounded-none transition-colors"
               style={{ backgroundColor: "var(--accent-gold)", color: "var(--background)" }}
             >
-              Start a Project &rsaquo;
+              {t("cs.cta.button")} &rsaquo;
             </Link>
           </div>
         </section>

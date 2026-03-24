@@ -6,6 +6,7 @@ import { Moon, Sun, ChevronDown, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
+import { useLanguage } from "@/components/language-context"
 
 function ThemedIcons({ className }: { className?: string }) {
   const { resolvedTheme } = useTheme()
@@ -22,6 +23,7 @@ function ThemedIcons({ className }: { className?: string }) {
 
 export function Header() {
   const { theme, setTheme } = useTheme()
+  const { locale, setLocale } = useLanguage()
   const pathname = usePathname()
   const [isMounted, setIsMounted] = useState(false)
   const [isNavVisible, setIsNavVisible] = useState(true)
@@ -128,6 +130,15 @@ export function Header() {
           >
             <ThemedIcons className="h-3 w-3" />
             <span className="sr-only">Toggle theme</span>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setLocale(locale === "en" ? "ko" : "en")}
+            className="w-7 h-7 text-xs font-mono"
+          >
+            {locale === "en" ? "KO" : "EN"}
+            <span className="sr-only">Toggle language</span>
           </Button>
           <Button
             variant="ghost"
