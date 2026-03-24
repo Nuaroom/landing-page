@@ -273,7 +273,7 @@ export default function LandingPage() {
                 transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
               }}
             >
-              <p>Your console has 47 columns, 20 filter dropdowns,<br className="hidden sm:block" /> and a toolbar that needs its own training session.</p>
+              <p>Your console has 47 columns, 20 filter dropdowns, and a toolbar<br className="hidden sm:block" /> that needs its own 3 hours training session.</p>
             </div>
 
             <div
@@ -284,7 +284,7 @@ export default function LandingPage() {
                 transition: 'opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s',
               }}
             >
-              <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8 rounded-none" asChild>
+              <Button size="default" className="px-6 py-2.5 text-base font-semibold h-10 rounded-none" asChild>
                 <Link href="/contact">
                   Start a Project &rsaquo;
                 </Link>
@@ -292,17 +292,6 @@ export default function LandingPage() {
             </div>
 
           </div>
-        </div>
-      </section>
-      {/* Statement Section */}
-      <section className="py-14 sm:py-20 border-t border-border/40">
-        <div className="container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl">
-          <h2
-            className="text-xl sm:text-2xl md:text-3xl font-normal leading-relaxed animate-on-scroll text-center"
-            style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-          >
-            Your sales team hides the demo till the last day.<br />Your product deserves good UX.
-          </h2>
         </div>
       </section>
       {/* Case Study Section */}
@@ -401,10 +390,6 @@ export default function LandingPage() {
             >
               UX Reasoning Engine grounded in HCI research.
             </h2>
-            <div className="flex items-center gap-6 mt-6 opacity-70">
-              <img src="/hcil.svg" alt="Human-Computer Interaction Lab" className="h-12 object-contain" />
-              <img src="/umd.svg" alt="University of Maryland" className="h-12 object-contain" />
-            </div>
           </div>
           <div className="animate-on-scroll">
             <FlowDiagram />
@@ -471,30 +456,6 @@ export default function LandingPage() {
         </div>
       </section>
       <div className="hidden">
-        {/* Trust Section */}
-        <section className="py-12 px-8 lg:px-20 border-t border-border/40">
-          <div className="container mx-auto px-8 lg:px-20 text-center">
-            <p className="text-sm text-muted-foreground mb-8">We are trusted by top UX and HCI organizations.</p>
-            <div className="flex items-center justify-center gap-8 md:gap-12 opacity-60">
-              <div className="flex items-center">
-                <ThemedImage
-                  lightSrc="/university-of-maryland-light.png"
-                  darkSrc="/uom-dark.png"
-                  alt="Spot usability gaps interface"
-                  className="h-15"
-                />
-              </div>
-              <div className="flex items-center">
-                <ThemedImage
-                  lightSrc="/hcil-logo.png"
-                  darkSrc="/hcil-logo-dark.png"
-                  alt="Spot usability gaps interface"
-                  className="h-17"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Features Section - Left-align title and increase margins */}
         <section className="py-20 px-8 lg:px-20">
@@ -973,7 +934,7 @@ export default function LandingPage() {
       <section className="pt-8 pb-32 relative z-10">
         <div className="container mx-auto px-8 lg:px-20 text-center flex flex-col items-center">
           <RotatingText />
-          <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8 mt-6 rounded-none" asChild>
+          <Button size="default" className="px-6 py-2.5 text-base font-semibold h-10 mt-6 rounded-none" asChild>
             <Link href="/contact">
               Start a project &rsaquo;
             </Link>

@@ -290,15 +290,21 @@ export default function EnterpriseDataSecurityCaseStudy() {
         {/* CTA */}
         <section className="py-20 sm:py-28">
           <div className="container mx-auto px-6 lg:px-12 max-w-3xl text-center fade-in">
-            <p className="text-base sm:text-lg text-foreground leading-relaxed mb-2">
+            <p
+              className="text-lg sm:text-xl md:text-2xl font-normal text-foreground leading-relaxed mb-2"
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+            >
               Your product deserves better UX decisions.
             </p>
-            <p className="text-base sm:text-lg text-foreground leading-relaxed mb-8">
+            <p
+              className="text-lg sm:text-xl md:text-2xl font-normal text-foreground leading-relaxed mb-8"
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+            >
               3-day analysis. 2-week redesign.
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-3 text-sm font-semibold rounded-none transition-colors"
+              className="inline-flex items-center px-6 text-base font-semibold h-10 rounded-none transition-colors"
               style={{ backgroundColor: "var(--accent-gold)", color: "var(--background)" }}
             >
               Start a Project &rsaquo;

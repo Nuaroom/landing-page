@@ -28,7 +28,10 @@ export default function CaseStudyPage() {
             >
               Case Study;
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground mt-4">
+            <p
+              className="text-lg sm:text-xl mt-4 font-normal"
+              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+            >
               Enterprise platforms redesigned, without rebuilding them.
             </p>
           </div>
@@ -71,7 +74,6 @@ export default function CaseStudyPage() {
                 {/* Coming soon card */}
                 <div
                   className="block border border-border/40"
-                  style={{ backgroundColor: "var(--case-study-bg)" }}
                 >
                   <article className="h-full flex flex-col">
                     <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
@@ -94,7 +96,6 @@ export default function CaseStudyPage() {
                 {/* Financial card */}
                 <div
                   className="block border border-border/40"
-                  style={{ backgroundColor: "var(--case-study-bg)" }}
                 >
                   <article className="h-full flex flex-col">
                     <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
