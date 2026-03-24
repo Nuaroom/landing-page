@@ -32,8 +32,8 @@ const translations: Record<string, Record<Locale, string>> = {
     ko: "처음부터 다시 만들지 않고.",
   },
   "cs.hero.description": {
-    en: "Years of engineer-made design left customers unable to finish basic tasks without handholding. Sales hid the demo until the last slide. Their CEO wanted to scrap the whole UI. Heurica shipped the redesign in 2 weeks.",
-    ko: "수년간 엔지니어가 만든 디자인으로 인해 고객들은 도움 없이는 기본 작업조차 완료할 수 없었습니다. 영업팀은 마지막 슬라이드까지 데모를 숨겼고, CEO는 UI 전체를 폐기하고 싶어 했습니다. Heurica는 2주 만에 리디자인을 완료했습니다.",
+    en: "Decades of engineer-made design left customers unable to finish basic tasks without handholding. Sales hid the demo until the last slide. Their CEO wanted to scrap the whole UI. Heurica shipped the redesign in 2 weeks.",
+    ko: "수십 년간 엔지니어가 만든 디자인으로 인해 고객들은 도움 없이는 기본 작업조차 완료할 수 없었습니다. 영업팀은 마지막 슬라이드까지 데모를 숨겼고, CEO는 UI 전체를 폐기하고 싶어 했습니다. Heurica는 2주 만에 리디자인을 완료했습니다.",
   },
   "cs.hero.meta": {
     en: "Enterprise Data Security · Policy Management Console · 98 user stories · 2 weeks",

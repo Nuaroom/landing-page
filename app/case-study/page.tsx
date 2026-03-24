@@ -7,7 +7,7 @@ const caseStudies = [
     slug: "enterprise-data-security",
     title: "Redesigning a Fortune 100-serving enterprise data security platform.",
     excerpt:
-      "Years of engineer-made design left customers unable to finish basic tasks without handholding. Sales hid the demo until the last slide. Their CEO wanted to scrap the whole UI. Heurica shipped the redesign in 2 weeks.",
+      "Decades of engineer-made design left customers unable to finish basic tasks without handholding. Sales hid the demo until the last slide. Their CEO wanted to scrap the whole UI. Heurica shipped the redesign in 2 weeks.",
     meta: {
       industry: "data security",
     },

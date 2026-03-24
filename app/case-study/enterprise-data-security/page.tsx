@@ -62,7 +62,7 @@ export default function EnterpriseDataSecurityCaseStudy() {
         </header>
 
         {/* Testimonial */}
-        <section className="border-t border-border/40 py-16 sm:py-20">
+        <section className="py-16 sm:py-20">
           <div className="container mx-auto px-6 lg:px-12 max-w-3xl fade-in">
             <div
               className="p-8 sm:p-12 rounded-none border border-border/40 text-center bg-[#FDFCF8] dark:bg-[#1C1917]"
