@@ -73,7 +73,7 @@ export default function PerspectivesPage() {
                       </div>
 
                       {/* Content with padding */}
-                      <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
+                      <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1" style={{ backgroundColor: "var(--case-study-bg)" }}>
                         {/* Meta */}
                         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                           <span>{article.readTime}</span>

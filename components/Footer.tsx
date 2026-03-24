@@ -15,7 +15,7 @@ export function Footer() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--background) 0%, transparent 50%)' }} />
       </div>
       <footer className="flex-shrink-0 cloud-footer relative z-10">
-        <div className="container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl py-8 sm:py-12 relative z-10">
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl py-8 sm:py-12 relative z-10">
           <div className="flex flex-col md:flex-row mb-8 sm:mb-12">
             {/* Logo */}
             <div className="md:w-1/3">
@@ -43,6 +43,9 @@ export function Footer() {
                 <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
                     <Link href="/philosophy" className="text-xs hover:text-foreground transition-colors">Philosophy</Link>
+                  </li>
+                  <li className="transition-transform duration-200 hover:-translate-y-0.5">
+                    <Link href="/case-study" className="text-xs hover:text-foreground transition-colors">Case Study</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
                     <Link href="/contact" className="text-xs hover:text-foreground transition-colors">Start a Project &rsaquo;</Link>

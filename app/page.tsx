@@ -154,7 +154,7 @@ export default function LandingPage() {
   const [isMounted, setIsMounted] = useState(false)
   const [typedText, setTypedText] = useState("")
   const [heroTyped, setHeroTyped] = useState(false)
-  const heroTitle = "Legacy B2B SaaS, redesigned."
+  const heroTitle = "Designed by engineers. Hated by users."
 
   // Handle hash scrolling when navigating from other pages
   useEffect(() => {
@@ -184,7 +184,7 @@ export default function LandingPage() {
         clearInterval(interval)
         setTimeout(() => setHeroTyped(true), 300)
       }
-    }, 40)
+    }, 28)
     return () => clearInterval(interval)
   }, [isMounted])
 
@@ -258,7 +258,7 @@ export default function LandingPage() {
             <HeroCircles />
 
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-4 sm:mb-6 leading-tight relative"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal mb-4 sm:mb-6 leading-tight relative lg:whitespace-nowrap"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               {typedText}
@@ -301,7 +301,7 @@ export default function LandingPage() {
             className="text-xl sm:text-2xl md:text-3xl font-normal leading-relaxed animate-on-scroll text-center"
             style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
           >
-            Your users hate it.<br />Your sales team hides the demo till the last day.<br />Your product deserves good UX.
+            Your sales team hides the demo till the last day.<br />Your product deserves good UX.
           </h2>
         </div>
       </section>
@@ -324,32 +324,33 @@ export default function LandingPage() {
                     className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-relaxed text-foreground"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                   >
-                    &ldquo;Users couldn&rsquo;t finish a task without hand-holding. We tried fixing it internally for a year. Heurica redesigned it in 3 weeks.&rdquo;
+                    &ldquo;We burnt a year trying to fix &lsquo;squirrel-brain sandbox design.&rsquo; Got nowhere. Heurica fixed in 2 weeks.&rdquo;
                   </h2>
-                  <p className="text-sm text-muted-foreground">&mdash; VP of Product</p>
+                  <p className="text-sm text-muted-foreground">&mdash; VP of Product, Data Security Enterprise serving Fortune 100</p>
                 </div>
 
                 {/* Stats */}
                 <div className="flex flex-row gap-8 sm:gap-12 mt-8 sm:mt-10">
                   <div className="flex items-start gap-3 sm:block">
                     <p
-                      className="text-3xl md:text-4xl font-normal tracking-tight shrink-0"
+                      className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
-                      20x
+                      2 weeks
                     </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">Faster UX Design</p>
+                    <p className="text-sm text-muted-foreground sm:mt-1">Full redesign delivered</p>
                   </div>
                   <div className="flex items-start gap-3 sm:block">
                     <p
-                      className="text-3xl md:text-4xl font-normal tracking-tight shrink-0"
+                      className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
-                      98
+                      3 days
                     </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">User stories analyzed in 1 week</p>
+                    <p className="text-sm text-muted-foreground sm:mt-1">98 user stories analyzed</p>
                   </div>
                 </div>
+
               </div>
 
               {/* Right: Image */}
@@ -375,6 +376,9 @@ export default function LandingPage() {
                   className="w-full h-full object-cover"
                   style={{ opacity: 0.55 }}
                 />
+                <Link href="/case-study/enterprise-data-security" className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 md:bottom-14 md:right-14 inline-flex items-center text-sm leading-normal font-medium hover:opacity-80 transition-opacity px-4 py-2 rounded-none" style={{ color: '#f5c542', backgroundColor: '#333', zIndex: 3 }}>
+                  Read case study &rsaquo;
+                </Link>
               </div>
             </div>
             </div>

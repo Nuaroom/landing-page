@@ -32,6 +32,7 @@ export function Header() {
 
   const isHomePage = pathname === "/"
   const isPerspectivesPage = pathname?.startsWith("/philosophy")
+  const isCaseStudyPage = pathname?.startsWith("/case-study")
   const isCompanyPage = pathname === "/team" || pathname === "/careers"
 
   useEffect(() => {
@@ -89,19 +90,25 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           <Link
             href="/philosophy"
-            className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+            className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${isPerspectivesPage ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
             Philosophy
           </Link>
           <Link
+            href="/case-study"
+            className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${isCaseStudyPage ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
+          >
+            Case Study
+          </Link>
+          <Link
             href="/team"
-            className={`text-sm transition-colors ${pathname === '/team' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+            className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${pathname === '/team' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
             About
           </Link>
           <Link
             href="/careers"
-            className={`text-sm transition-colors ${pathname === '/careers' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+            className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${pathname === '/careers' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
             Careers
           </Link>
@@ -143,6 +150,13 @@ export function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Philosophy
+            </Link>
+            <Link
+              href="/case-study"
+              className={`text-sm transition-colors ${isCaseStudyPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Case Study
             </Link>
             <Link
               href="/team"
