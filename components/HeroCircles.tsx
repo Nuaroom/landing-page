@@ -1,54 +1,64 @@
 export function HeroCircles() {
   return (
     <div className="absolute pointer-events-none inset-0 -z-10" aria-hidden="true">
-      {/* Medium circle - top left corner */}
+      {/* Large circle - top left */}
       <div
         className="absolute rounded-full border border-border/25"
         style={{
-          width: 280,
-          height: 280,
-          top: -140,
-          left: -40,
+          width: 380,
+          height: 380,
+          top: -180,
+          left: -60,
         }}
       />
-      {/* Large circle - above header */}
+      {/* Large circle - top right */}
+      <div
+        className="absolute rounded-full border border-border/25"
+        style={{
+          width: 380,
+          height: 380,
+          top: -180,
+          right: -60,
+        }}
+      />
+      {/* Small circle - center left */}
       <div
         className="absolute rounded-full border border-border/30"
         style={{
-          width: 420,
-          height: 420,
-          top: -220,
-          right: -80,
+          width: 160,
+          height: 160,
+          top: -40,
+          left: '20%',
         }}
       />
-      {/* Small circle - higher up */}
+      {/* Small circle - center right */}
       <div
-        className="absolute rounded-full border border-border/35"
+        className="absolute rounded-full border border-border/30"
         style={{
           width: 160,
           height: 160,
-          top: -60,
-          right: 100,
+          top: -40,
+          right: '20%',
         }}
       />
-      {/* Tiny accent dot - upper left area */}
+      {/* Tiny accent dot - left */}
       <div
         className="absolute rounded-full bg-border/40"
         style={{
           width: 8,
           height: 8,
           top: 60,
-          left: 120,
+          left: '15%',
         }}
       />
-      {/* Tiny accent dot - right area */}
+      {/* Tiny accent dot - right */}
       <div
         className="absolute rounded-full bg-border/35"
         style={{
           width: 6,
           height: 6,
-          top: '35%',
-          right: 180,
+          top: 60,
+          right: '15%',
         }}
       />
       {/* Speed square — bottom left, subtle like circles */}

@@ -26,7 +26,7 @@ export default function CaseStudyPage() {
               className="text-4xl md:text-5xl font-normal"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Case Study.
+              Case Study;
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground mt-4">
               Enterprise platforms redesigned, without rebuilding them.
@@ -83,6 +83,29 @@ export default function CaseStudyPage() {
                       </h2>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                         Years of engineering-led design left security operators drowning in alerts they couldn&rsquo;t act on. The product protected major enterprises but its own dashboard needed weeks of training to use.
+                      </p>
+                      <span className="text-sm font-medium mt-auto text-muted-foreground">
+                        Coming soon
+                      </span>
+                    </div>
+                  </article>
+                </div>
+
+                {/* Financial card */}
+                <div
+                  className="block border border-border/40"
+                  style={{ backgroundColor: "var(--case-study-bg)" }}
+                >
+                  <article className="h-full flex flex-col">
+                    <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">financial</span>
+                      </div>
+                      <h2 className="text-2xl font-semibold mb-5 leading-tight">
+                        Redesigning a financial services platform processing millions in transactions.
+                      </h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                        A fast-moving product team building with AI but making UX decisions by gut. Three product areas, no designer, no structured way to decide or evaluate what to build next.
                       </p>
                       <span className="text-sm font-medium mt-auto text-muted-foreground">
                         Coming soon
