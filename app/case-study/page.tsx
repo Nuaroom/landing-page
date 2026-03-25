@@ -1,20 +1,13 @@
+"use client"
+
 import Link from "next/link"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
-
-const caseStudies = [
-  {
-    slug: "enterprise-data-security",
-    title: "Redesigning a Fortune 100-serving enterprise data security platform.",
-    excerpt:
-      "Decades of engineer-made design left customers unable to finish basic tasks without handholding. Sales hid the demo until the last slide. Their CEO wanted to scrap the whole UI. Heurica shipped the redesign in 2 weeks.",
-    meta: {
-      industry: "data security",
-    },
-  },
-]
+import { useLanguage } from "@/components/language-context"
 
 export default function CaseStudyPage() {
+  const { t } = useLanguage()
+
   return (
     <>
       <main className="flex-1">
@@ -26,13 +19,13 @@ export default function CaseStudyPage() {
               className="text-4xl md:text-5xl font-normal"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Case Study;
+              {t("csl.title")}
             </h1>
             <p
               className="text-lg sm:text-xl mt-4 font-normal"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Enterprise platforms redesigned, without rebuilding them.
+              {t("csl.subtitle")}
             </p>
           </div>
         </section>
@@ -42,34 +35,32 @@ export default function CaseStudyPage() {
           <div className="border-t border-b border-border/40">
             <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
               <div className="flex flex-col gap-6 sm:gap-8">
-                {caseStudies.map((study) => (
-                  <Link
-                    key={study.slug}
-                    href={`/case-study/${study.slug}`}
-                    className="group block border border-border/40"
-                    style={{ backgroundColor: "var(--case-study-bg)" }}
-                  >
-                    <article className="h-full flex flex-col">
-                      <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
-                        <div className="flex items-center gap-2 mb-4">
-                          <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">{study.meta.industry}</span>
-                        </div>
-                        <h2 className="text-2xl font-semibold mb-5 group-hover:text-foreground transition-colors leading-tight">
-                          {study.title}
-                        </h2>
-                        <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                          {study.excerpt}
-                        </p>
-                        <span
-                          className="text-sm font-medium mt-auto"
-                          style={{ color: "var(--accent-gold)" }}
-                        >
-                          Read case study &rsaquo;
-                        </span>
+                {/* Card 1 - Enterprise Data Security */}
+                <Link
+                  href="/case-study/enterprise-data-security"
+                  className="group block border border-border/40"
+                  style={{ backgroundColor: "var(--case-study-bg)" }}
+                >
+                  <article className="h-full flex flex-col">
+                    <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">{t("csl.card1.industry")}</span>
                       </div>
-                    </article>
-                  </Link>
-                ))}
+                      <h2 className="text-2xl font-semibold mb-5 group-hover:text-foreground transition-colors leading-tight">
+                        {t("csl.card1.title")}
+                      </h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                        {t("csl.card1.excerpt")}
+                      </p>
+                      <span
+                        className="text-sm font-medium mt-auto"
+                        style={{ color: "var(--accent-gold)" }}
+                      >
+                        {t("csl.readmore")} &rsaquo;
+                      </span>
+                    </div>
+                  </article>
+                </Link>
 
                 {/* Coming soon card */}
                 <div
@@ -78,16 +69,16 @@ export default function CaseStudyPage() {
                   <article className="h-full flex flex-col">
                     <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
                       <div className="flex items-center gap-2 mb-4">
-                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">cybersecurity</span>
+                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">{t("csl.card2.industry")}</span>
                       </div>
                       <h2 className="text-2xl font-semibold mb-5 leading-tight">
-                        Redesigning a Fortune 500-serving threat detection platform.
+                        {t("csl.card2.title")}
                       </h2>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                        Years of engineering-led design left security operators drowning in alerts they couldn&rsquo;t act on. The product protected major enterprises but its own dashboard needed weeks of training to use.
+                        {t("csl.card2.excerpt")}
                       </p>
                       <span className="text-sm font-medium mt-auto text-muted-foreground">
-                        Coming soon
+                        {t("csl.comingsoon")}
                       </span>
                     </div>
                   </article>
@@ -100,16 +91,16 @@ export default function CaseStudyPage() {
                   <article className="h-full flex flex-col">
                     <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
                       <div className="flex items-center gap-2 mb-4">
-                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">financial</span>
+                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">{t("csl.card3.industry")}</span>
                       </div>
                       <h2 className="text-2xl font-semibold mb-5 leading-tight">
-                        Redesigning a financial services platform processing millions in transactions.
+                        {t("csl.card3.title")}
                       </h2>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                        A fast-moving product team building with AI but making UX decisions by gut. Three product areas, no designer, no structured way to decide or evaluate what to build next.
+                        {t("csl.card3.excerpt")}
                       </p>
                       <span className="text-sm font-medium mt-auto text-muted-foreground">
-                        Coming soon
+                        {t("csl.comingsoon")}
                       </span>
                     </div>
                   </article>

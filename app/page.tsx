@@ -7,6 +7,7 @@ import { ArrowRight, ClipboardCheck, Eye, ShieldCheck, Layers, UserCheck, Target
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { FlowDiagram } from "@/components/FlowDiagram"
+import { useLanguage } from "@/components/language-context"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
 
@@ -24,22 +25,27 @@ export function ThemedImage({ lightSrc, darkSrc, alt, className }: { lightSrc: s
   return <img src={resolvedTheme === "dark" ? darkSrc : lightSrc} alt={alt} className={className} />
 }
 
-const rotatingTexts = [
-  "Your requirements, finally designed right.",
-  "You wrote the spec. Ship it already.",
-]
-
 function RotatingText() {
+  const { t } = useLanguage()
   const [displayText, setDisplayText] = useState("")
   const textIndexRef = useRef(0)
   const phaseRef = useRef<"typing" | "pausing" | "deleting">("typing")
   const charIndexRef = useRef(0)
+  const textsRef = useRef([t("home.cta.text1"), t("home.cta.text2")])
+
+  useEffect(() => {
+    textsRef.current = [t("home.cta.text1"), t("home.cta.text2")]
+    charIndexRef.current = 0
+    textIndexRef.current = 0
+    phaseRef.current = "typing"
+    setDisplayText("")
+  }, [t])
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>
 
     const tick = () => {
-      const currentText = rotatingTexts[textIndexRef.current]
+      const currentText = textsRef.current[textIndexRef.current]
 
       if (phaseRef.current === "typing") {
         charIndexRef.current++
@@ -57,7 +63,7 @@ function RotatingText() {
         charIndexRef.current--
         setDisplayText(currentText.slice(0, charIndexRef.current))
         if (charIndexRef.current <= 0) {
-          textIndexRef.current = (textIndexRef.current + 1) % rotatingTexts.length
+          textIndexRef.current = (textIndexRef.current + 1) % textsRef.current.length
           phaseRef.current = "typing"
           timeout = setTimeout(tick, 300)
         } else {
@@ -68,7 +74,7 @@ function RotatingText() {
 
     timeout = setTimeout(tick, 50)
     return () => clearTimeout(timeout)
-  }, [])
+  }, [t])
 
   return (
     <div className="h-[2em] flex items-center justify-center min-w-0 sm:min-w-[300px]">
@@ -151,10 +157,11 @@ function UseCasesSection() {
 
 
 export default function LandingPage() {
+  const { t } = useLanguage()
   const [isMounted, setIsMounted] = useState(false)
   const [typedText, setTypedText] = useState("")
   const [heroTyped, setHeroTyped] = useState(false)
-  const heroTitle = "Designed by engineers. Hated by users."
+  const heroTitle = t("home.hero.title")
 
   // Handle hash scrolling when navigating from other pages
   useEffect(() => {
@@ -176,6 +183,8 @@ export default function LandingPage() {
   // Typing animation for hero title
   useEffect(() => {
     if (!isMounted) return
+    setTypedText("")
+    setHeroTyped(false)
     let i = 0
     const interval = setInterval(() => {
       i++
@@ -186,7 +195,7 @@ export default function LandingPage() {
       }
     }, 28)
     return () => clearInterval(interval)
-  }, [isMounted])
+  }, [isMounted, heroTitle])
 
   // Scroll animation observer - starts after hero subtitle/CTA appear
   useEffect(() => {
@@ -273,7 +282,7 @@ export default function LandingPage() {
                 transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
               }}
             >
-              <p>Your console has 47 columns, 20 filter dropdowns, and a toolbar<br className="hidden sm:block" /> that needs its own 3 hours training session.</p>
+              <p>{t("home.hero.subtitle")}<br className="hidden sm:block" /> {t("home.hero.subtitle2")}</p>
             </div>
 
             <div
@@ -286,7 +295,7 @@ export default function LandingPage() {
             >
               <Button size="default" className="px-6 py-2.5 text-base font-semibold h-10 rounded-none" asChild>
                 <Link href="/contact">
-                  Start a Project &rsaquo;
+                  {t("home.hero.cta")} &rsaquo;
                 </Link>
               </Button>
             </div>
@@ -313,9 +322,9 @@ export default function LandingPage() {
                     className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-relaxed text-foreground"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                   >
-                    &ldquo;We burnt a year trying to fix &lsquo;squirrel-brain sandbox design.&rsquo; Got nowhere. Heurica fixed in 2 weeks.&rdquo;
+                    &ldquo;{t("home.casestudy.quote")}&rdquo;
                   </h2>
-                  <p className="text-sm text-muted-foreground">&mdash; VP of Product, Data Security Enterprise serving Fortune 100</p>
+                  <p className="text-sm text-muted-foreground">&mdash; {t("home.casestudy.role")}</p>
                 </div>
 
                 {/* Stats */}
@@ -325,18 +334,18 @@ export default function LandingPage() {
                       className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
-                      2 weeks
+                      {t("home.casestudy.stat1.number")}
                     </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">Full redesign delivered</p>
+                    <p className="text-sm text-muted-foreground sm:mt-1">{t("home.casestudy.stat1.label")}</p>
                   </div>
                   <div className="flex items-start gap-3 sm:block">
                     <p
                       className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
-                      3 days
+                      {t("home.casestudy.stat2.number")}
                     </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">98 user stories analyzed</p>
+                    <p className="text-sm text-muted-foreground sm:mt-1">{t("home.casestudy.stat2.label")}</p>
                   </div>
                 </div>
 
@@ -366,7 +375,7 @@ export default function LandingPage() {
                   style={{ opacity: 0.55 }}
                 />
                 <Link href="/case-study/enterprise-data-security" className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 md:bottom-14 md:right-14 inline-flex items-center text-sm leading-normal font-medium hover:opacity-80 transition-opacity px-4 py-2 rounded-none" style={{ color: '#f5c542', backgroundColor: '#333', zIndex: 3 }}>
-                  Read case study &rsaquo;
+                  {t("home.casestudy.readmore")} &rsaquo;
                 </Link>
               </div>
             </div>
@@ -936,7 +945,7 @@ export default function LandingPage() {
           <RotatingText />
           <Button size="default" className="px-6 py-2.5 text-base font-semibold h-10 mt-6 rounded-none" asChild>
             <Link href="/contact">
-              Start a project &rsaquo;
+              {t("home.cta.button")} &rsaquo;
             </Link>
           </Button>
         </div>

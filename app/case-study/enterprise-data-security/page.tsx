@@ -32,7 +32,7 @@ export default function EnterpriseDataSecurityCaseStudy() {
     <>
       <main className="flex-1" ref={articleRef}>
         {/* Hero */}
-        <header className="min-h-[70vh] flex flex-col justify-center py-20 md:py-32 overflow-hidden">
+        <header className="min-h-[70vh] flex flex-col justify-center pt-20 md:pt-32 pb-10 md:pb-16 overflow-hidden">
           <div className="container mx-auto px-6 lg:px-12 max-w-3xl relative">
             <HeroCircles />
             <div
@@ -62,7 +62,7 @@ export default function EnterpriseDataSecurityCaseStudy() {
         </header>
 
         {/* Testimonial */}
-        <section className="py-16 sm:py-20">
+        <section className="pb-8 sm:pb-10">
           <div className="container mx-auto px-6 lg:px-12 max-w-3xl fade-in">
             <div
               className="p-8 sm:p-12 rounded-none border border-border/40 text-center bg-[#FDFCF8] dark:bg-[#1C1917]"
@@ -116,6 +116,21 @@ export default function EnterpriseDataSecurityCaseStudy() {
                   <p className="text-xs text-muted-foreground leading-snug">{t(`cs.stat.${i}.label`)}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="mb-10 fade-in">
+              <p
+                className="text-lg sm:text-xl font-medium mb-2 leading-snug"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                {t("cs.problem.stakes1")}
+              </p>
+              <p
+                className="text-lg sm:text-xl font-medium leading-snug"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                {t("cs.problem.stakes2")}
+              </p>
             </div>
 
             {/* Quotes - Row 1: Business Impact */}
@@ -240,7 +255,7 @@ export default function EnterpriseDataSecurityCaseStudy() {
               </span>
               <div className="p-6 border border-border/40 rounded-none" style={{ backgroundColor: "var(--case-study-bg)" }}>
                 <ul className="space-y-3">
-                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                  {[1, 2, 3, 4].map((i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
                       <span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 shrink-0" />
                       {t(`cs.result.delivered.${i}`)}
@@ -251,8 +266,8 @@ export default function EnterpriseDataSecurityCaseStudy() {
             </div>
 
             {/* Outcome cards */}
-            <div className="grid sm:grid-cols-3 gap-4 fade-in">
-              {[1, 2, 3].map((i) => (
+            <div className="grid sm:grid-cols-2 gap-4 fade-in">
+              {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
                   className="p-6 border border-border/40 rounded-none"

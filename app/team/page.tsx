@@ -1,7 +1,12 @@
+"use client"
+
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
+import { useLanguage } from "@/components/language-context"
 
 export default function TeamPage() {
+  const { t } = useLanguage()
+
   return (
     <>
       {/* Main Content */}
@@ -29,29 +34,29 @@ export default function TeamPage() {
                 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-title"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                <span style={{ color: 'var(--accent-gold)' }}>Why</span> Heurica Exists;
+                <span style={{ color: 'var(--accent-gold)' }}>Why</span> {t("about.title")}
               </h1>
 
               {/* Body content */}
               <div className="space-y-6">
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto animate-hero-subtitle">
-                  Enterprise UX doesn't break at launch. It breaks in the decisions that were never made. Features get built exactly as specced — but users still can't figure out how to complete tasks. Not because engineers made bad decisions, but because no one was set up to make UX decisions at all.
+                  {t("about.p1")}
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto animate-hero-footer">
-                  Heurica brings structure to that gap.
+                  {t("about.p2")}
                 </p>
                 <p
                   className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer"
                   style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                 >
-                  We make UX decisions systematic, explainable, and grounded in how users actually work.
+                  {t("about.p3")}
                 </p>
 
                 {/* Signature with divider */}
                 <div className="mt-12 pt-8">
                   <div className="w-12 h-px bg-border mb-6 mx-auto"></div>
                   <div className="flex items-center justify-center gap-3">
-                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Yunbin Bae — Founder, Heurica</span>
+                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">{t("about.founder")}</span>
                     <a
                       href="https://www.linkedin.com/in/yunbinbae/"
                       target="_blank"
