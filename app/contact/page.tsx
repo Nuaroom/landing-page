@@ -1,7 +1,12 @@
+"use client"
+
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
+import { useLanguage } from "@/components/language-context"
 
 export default function ContactPage() {
+  const { t } = useLanguage()
+
   return (
     <>
       {/* Main Content */}
@@ -16,9 +21,9 @@ export default function ContactPage() {
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight"
                   style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                 >
-                  Start a Project
+                  {t("contact.title")}
                 </h1>
-                <p className="text-sm text-muted-foreground mb-4">Or reach out directly</p>
+                <p className="text-sm text-muted-foreground mb-4">{t("contact.subtitle")}</p>
                 <a
                   href="mailto:yunbin@heurica.co?subject=Inquiry%20to%20Heurica%20Team"
                   className="text-sm hover:text-foreground transition-colors"

@@ -34,7 +34,7 @@ export default function TeamPage() {
                 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-tight animate-hero-title"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                <span style={{ color: 'var(--accent-gold)' }}>Why</span> {t("about.title")}
+                {t("about.title")}
               </h1>
 
               {/* Body content */}

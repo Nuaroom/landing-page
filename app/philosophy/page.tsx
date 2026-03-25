@@ -1,36 +1,30 @@
+"use client"
+
 import Link from "next/link"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
-
-// Article data
-const articles = [
-  {
-    slug: "the-50-1-problem",
-    title: "The 50:1 Problem.",
-    excerpt: "When Nobody Owns UX, Users Pay the Price.",
-    titleHighlight: ["The 50:1 Problem"],
-    description:
-      "The best-practice ratio is 5 engineers per designer. Most B2B SaaS teams run at 50:1. Some at 500:1. The result? Users clicking 57 times to do something that should take 5.",
-    date: "Jan 2026",
-    readTime: "8 min read",
-    author: "Yunbin Bae",
-    category: "Thought Piece",
-  },
-  {
-    slug: "every-screen-is-right",
-    title: "Each Screen Is Correct. The Product Is Wrong.",
-    excerpt: "Enterprise products don't fail on individual screens. They fail in the gaps between them.",
-    titleHighlight: ["Each Screen Is Correct."],
-    description:
-      "Enterprise products don't fail on individual screens. They fail in the gaps between them — where no one designed the connections, the sequence, or the logic that ties a workflow together.",
-    date: "Feb 2026",
-    readTime: "7 min read",
-    author: "Yunbin Bae",
-    category: "Thought Piece",
-  },
-]
+import { useLanguage } from "@/components/language-context"
 
 export default function PerspectivesPage() {
+  const { t } = useLanguage()
+
+  const articles = [
+    {
+      slug: "the-50-1-problem",
+      titleKey: "philosophy.article1.title",
+      excerptKey: "philosophy.article1.excerpt",
+      dateKey: "philosophy.date1",
+      readTimeKey: "philosophy.minread.8",
+    },
+    {
+      slug: "every-screen-is-right",
+      titleKey: "philosophy.article2.title",
+      excerptKey: "philosophy.article2.excerpt",
+      dateKey: "philosophy.date2",
+      readTimeKey: "philosophy.minread.7",
+    },
+  ]
+
   return (
     <>
       <main className="flex-1">
@@ -42,7 +36,7 @@ export default function PerspectivesPage() {
               className="text-4xl md:text-5xl font-normal"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Philosophy.
+              {t("philosophy.title")}
             </h1>
           </div>
         </section>
@@ -76,19 +70,19 @@ export default function PerspectivesPage() {
                       <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1" style={{ backgroundColor: "var(--case-study-bg)" }}>
                         {/* Meta */}
                         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                          <span>{article.readTime}</span>
+                          <span>{t(article.readTimeKey)}</span>
                           <span>·</span>
-                          <span>{article.date}</span>
+                          <span>{t(article.dateKey)}</span>
                         </div>
 
                         {/* Title */}
                         <h2 className="text-2xl font-semibold mb-5 group-hover:text-foreground transition-colors leading-tight">
-                          {article.title}
+                          {t(article.titleKey)}
                         </h2>
 
                         {/* Excerpt */}
                         <p className="text-sm text-muted-foreground leading-relaxed">
-                          {article.excerpt}
+                          {t(article.excerptKey)}
                         </p>
                       </div>
                     </article>

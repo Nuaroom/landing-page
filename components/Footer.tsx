@@ -1,6 +1,11 @@
+"use client"
+
 import Link from "next/link"
+import { useLanguage } from "@/components/language-context"
 
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <div className="pt-64 relative">
       {/* Full-width grid */}
@@ -29,7 +34,7 @@ export function Footer() {
                     }}
                   >Heurica</span>
                   <span className="text-sm mt-1" style={{ color: 'var(--accent-gold)' }}>
-                    heuristics + eureka
+                    {t("footer.tagline")}
                   </span>
                 </div>
               </Link>
@@ -39,42 +44,42 @@ export function Footer() {
             <div className="grid grid-cols-3 gap-8 sm:gap-12 md:gap-24 mt-8 md:mt-0 md:flex-1 md:flex md:flex-row md:justify-end">
               {/* Pages */}
               <div>
-                <h4 className="text-xs text-muted-foreground mb-3">Pages</h4>
+                <h4 className="text-xs text-muted-foreground mb-3">{t("footer.pages")}</h4>
                 <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/philosophy" className="text-xs hover:text-foreground transition-colors">Philosophy</Link>
+                    <Link href="/philosophy" className="text-xs hover:text-foreground transition-colors">{t("nav.philosophy")}</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/case-study" className="text-xs hover:text-foreground transition-colors">Case Study</Link>
+                    <Link href="/case-study" className="text-xs hover:text-foreground transition-colors">{t("nav.casestudy")}</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/contact" className="text-xs hover:text-foreground transition-colors">Start a Project &rsaquo;</Link>
+                    <Link href="/contact" className="text-xs hover:text-foreground transition-colors">{t("footer.startproject")} &rsaquo;</Link>
                   </li>
                 </ul>
               </div>
 
               {/* Company */}
               <div>
-                <h4 className="text-xs text-muted-foreground mb-3">Company</h4>
+                <h4 className="text-xs text-muted-foreground mb-3">{t("footer.company")}</h4>
                 <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/team" className="text-xs hover:text-foreground transition-colors">About</Link>
+                    <Link href="/team" className="text-xs hover:text-foreground transition-colors">{t("nav.about")}</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/careers" className="text-xs hover:text-foreground transition-colors">Careers</Link>
+                    <Link href="/careers" className="text-xs hover:text-foreground transition-colors">{t("nav.careers")}</Link>
                   </li>
                 </ul>
               </div>
 
               {/* Legal */}
               <div>
-                <h4 className="text-xs text-muted-foreground mb-3">Legal</h4>
+                <h4 className="text-xs text-muted-foreground mb-3">{t("footer.legal")}</h4>
                 <ul className="space-y-2">
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/privacy" className="text-xs hover:text-foreground transition-colors">Privacy Policy</Link>
+                    <Link href="/privacy" className="text-xs hover:text-foreground transition-colors">{t("footer.privacy")}</Link>
                   </li>
                   <li className="transition-transform duration-200 hover:-translate-y-0.5">
-                    <Link href="/terms" className="text-xs hover:text-foreground transition-colors">Terms of Service</Link>
+                    <Link href="/terms" className="text-xs hover:text-foreground transition-colors">{t("footer.terms")}</Link>
                   </li>
                 </ul>
               </div>

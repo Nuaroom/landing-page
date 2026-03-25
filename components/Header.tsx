@@ -23,7 +23,7 @@ function ThemedIcons({ className }: { className?: string }) {
 
 export function Header() {
   const { theme, setTheme } = useTheme()
-  const { locale, setLocale } = useLanguage()
+  const { locale, setLocale, t } = useLanguage()
   const pathname = usePathname()
   const [isMounted, setIsMounted] = useState(false)
   const [isNavVisible, setIsNavVisible] = useState(true)
@@ -94,32 +94,32 @@ export function Header() {
             href="/philosophy"
             className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${isPerspectivesPage ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
-            Philosophy
+            {t("nav.philosophy")}
           </Link>
           <Link
             href="/case-study"
             className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${isCaseStudyPage ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
-            Case Study
+            {t("nav.casestudy")}
           </Link>
           <Link
             href="/team"
             className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${pathname === '/team' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
-            About
+            {t("nav.about")}
           </Link>
           <Link
             href="/careers"
             className={`text-sm transition-all duration-200 hover:-translate-y-0.5 ${pathname === '/careers' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground hover:font-medium'}`}
           >
-            Careers
+            {t("nav.careers")}
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <Button size="sm" className="hidden md:inline-flex px-4 py-1.5 text-xs font-semibold h-8 rounded-none" asChild>
             <Link href="/contact">
-              Start now &rsaquo;
+              {t("nav.startnow")} &rsaquo;
             </Link>
           </Button>
           <Button
@@ -160,28 +160,28 @@ export function Header() {
               className={`text-sm transition-colors ${isPerspectivesPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Philosophy
+              {t("nav.philosophy")}
             </Link>
             <Link
               href="/case-study"
               className={`text-sm transition-colors ${isCaseStudyPage ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Case Study
+              {t("nav.casestudy")}
             </Link>
             <Link
               href="/team"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              About
+              {t("nav.about")}
             </Link>
             <Link
               href="/careers"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Careers
+              {t("nav.careers")}
             </Link>
           </nav>
         </div>

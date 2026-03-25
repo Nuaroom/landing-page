@@ -334,6 +334,114 @@ const translations: Record<string, Record<Locale, string>> = {
     en: "Lead user research to deeply understand enterprise workflows and pain points. You'll shape product direction through insights that bridge the gap between complex systems and human needs.",
     ko: "엔터프라이즈 워크플로우와 사용자 문제를 깊이 이해하기 위한 리서치를 리드합니다. 복잡한 시스템과 사용자 사이의 간극을 메우는 인사이트로 제품 방향을 만들어갑니다.",
   },
+
+  // Navigation
+  "nav.philosophy": { en: "Philosophy", ko: "철학" },
+  "nav.casestudy": { en: "Case Study", ko: "케이스 스터디" },
+  "nav.about": { en: "About", ko: "소개" },
+  "nav.careers": { en: "Careers", ko: "채용" },
+  "nav.startnow": { en: "Start now", ko: "시작하기" },
+
+  // Footer
+  "footer.tagline": { en: "heuristics + eureka", ko: "heuristics + eureka" },
+  "footer.pages": { en: "Pages", ko: "페이지" },
+  "footer.company": { en: "Company", ko: "회사" },
+  "footer.legal": { en: "Legal", ko: "법률" },
+  "footer.startproject": { en: "Start a Project", ko: "프로젝트 시작하기" },
+  "footer.privacy": { en: "Privacy Policy", ko: "개인정보처리방침" },
+  "footer.terms": { en: "Terms of Service", ko: "이용약관" },
+
+  // Home - UX Reasoning Engine
+  "home.engine.label": { en: "POWERED BY", ko: "기반 기술" },
+  "home.engine.title": {
+    en: "UX Reasoning Engine grounded in HCI research.",
+    ko: "HCI 연구에 기반한 UX 추론 엔진.",
+  },
+
+  // Home - Built For
+  "home.builtfor.label": { en: "BUILT FOR", ko: "대상" },
+  "home.builtfor.title1": { en: "Complex B2B products.", ko: "복잡한 B2B 제품." },
+  "home.builtfor.title2": { en: "Best practice UX.", ko: "최고 수준의 UX." },
+  "home.builtfor.desc1": {
+    en: "Built for trust-critical, workflow-heavy products.",
+    ko: "신뢰가 중요하고 워크플로우가 복잡한 제품을 위해 만들어졌습니다.",
+  },
+  "home.builtfor.desc2": {
+    en: "Not for marketing sites or consumer UI experimentation.",
+    ko: "마케팅 사이트나 소비자 UI 실험용이 아닙니다.",
+  },
+  "home.builtfor.cta": { en: "Start a project", ko: "프로젝트 시작하기" },
+  "home.builtfor.security": { en: "Security", ko: "보안" },
+  "home.builtfor.security.desc": {
+    en: "Configuration panels, policy engines, role-based access.",
+    ko: "설정 패널, 정책 엔진, 역할 기반 접근 제어.",
+  },
+  "home.builtfor.fintech": { en: "Fintech", ko: "핀테크" },
+  "home.builtfor.fintech.desc": {
+    en: "Transaction workflows, compliance dashboards, audit trails.",
+    ko: "거래 워크플로우, 컴플라이언스 대시보드, 감사 추적.",
+  },
+  "home.builtfor.healthcare": { en: "Healthcare", ko: "헬스케어" },
+  "home.builtfor.healthcare.desc": {
+    en: "Patient portals, clinical workflows, EHR integrations.",
+    ko: "환자 포털, 임상 워크플로우, EHR 연동.",
+  },
+  "home.builtfor.platforms": { en: "B2B Platforms", ko: "B2B 플랫폼" },
+  "home.builtfor.platforms.desc": {
+    en: "Admin consoles, multi-tenant systems, API management.",
+    ko: "관리 콘솔, 멀티 테넌트 시스템, API 관리.",
+  },
+
+  // Home - Enterprise Ready
+  "home.enterprise.title": {
+    en: "Enterprise-Ready from Day 1.",
+    ko: "Day 1부터 엔터프라이즈 대응.",
+  },
+  "home.enterprise.subtitle": {
+    en: "Built for regulated teams.",
+    ko: "규제 산업 팀을 위해 설계.",
+  },
+  "home.enterprise.card1.title": { en: "Traceable Decisions", ko: "추적 가능한 결정" },
+  "home.enterprise.card1.desc": {
+    en: "Every UX decision comes with rationale. You'll know why, not just what.",
+    ko: "모든 UX 결정에 근거가 있습니다. 무엇이 아니라 왜인지 알 수 있습니다.",
+  },
+  "home.enterprise.card2.title": { en: "No Customer Data Required", ko: "고객 데이터 불필요" },
+  "home.enterprise.card2.desc": {
+    en: "We work from your requirements and existing UI. No sensitive customer data needed.",
+    ko: "요구사항과 기존 UI로 작업합니다. 민감한 고객 데이터가 필요 없습니다.",
+  },
+  "home.enterprise.card3.title": { en: "Works With Your Stack", ko: "기존 스택과 호환" },
+  "home.enterprise.card3.desc": {
+    en: "Output integrates with your existing component library and design system.",
+    ko: "기존 컴포넌트 라이브러리와 디자인 시스템에 바로 적용 가능합니다.",
+  },
+
+  // Contact page
+  "contact.title": { en: "Start a Project", ko: "프로젝트 시작하기" },
+  "contact.subtitle": { en: "Or reach out directly", ko: "또는 직접 연락하세요" },
+
+  // Philosophy page
+  "philosophy.title": { en: "Philosophy.", ko: "철학." },
+  "philosophy.article1.title": { en: "The 50:1 Problem.", ko: "50:1 문제." },
+  "philosophy.article1.excerpt": {
+    en: "When Nobody Owns UX, Users Pay the Price.",
+    ko: "아무도 UX를 책임지지 않으면, 사용자가 대가를 치른다.",
+  },
+  "philosophy.article1.description": {
+    en: "The best-practice ratio is 5 engineers per designer. Most B2B SaaS teams run at 50:1. Some at 500:1. The result? Users clicking 57 times to do something that should take 5.",
+    ko: "모범 비율은 엔지니어 5명당 디자이너 1명. 대부분의 B2B SaaS 팀은 50:1로 운영됩니다. 어떤 곳은 500:1. 결과? 5번이면 될 일을 57번 클릭합니다.",
+  },
+  "philosophy.article2.title": { en: "Each Screen Is Correct. The Product Is Wrong.", ko: "각 화면은 맞다. 제품이 틀렸다." },
+  "philosophy.article2.excerpt": {
+    en: "Enterprise products don't fail on individual screens. They fail in the gaps between them.",
+    ko: "엔터프라이즈 제품은 개별 화면에서 실패하지 않습니다. 화면 사이의 빈틈에서 실패합니다.",
+  },
+  "philosophy.thoughtpiece": { en: "Thought Piece", ko: "칼럼" },
+  "philosophy.minread.8": { en: "8 min read", ko: "8분 읽기" },
+  "philosophy.minread.7": { en: "7 min read", ko: "7분 읽기" },
+  "philosophy.date1": { en: "Jan 2026", ko: "2026년 1월" },
+  "philosophy.date2": { en: "Feb 2026", ko: "2026년 2월" },
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {

@@ -92,14 +92,15 @@ function RotatingText() {
   )
 }
 
-const useCaseItems = [
-  { name: "Security", description: "Configuration panels, policy engines, role-based access.", Icon: ShieldCheck },
-  { name: "Fintech", description: "Transaction workflows, compliance dashboards, audit trails.", Icon: TrendingUp },
-  { name: "Healthcare", description: "Patient portals, clinical workflows, EHR integrations.", Icon: HeartPulse },
-  { name: "B2B Platforms", description: "Admin consoles, multi-tenant systems, API management.", Icon: Blocks },
-]
-
 function UseCasesSection() {
+  const { t } = useLanguage()
+  const useCaseItems = [
+    { nameKey: "home.builtfor.security", descKey: "home.builtfor.security.desc", Icon: ShieldCheck },
+    { nameKey: "home.builtfor.fintech", descKey: "home.builtfor.fintech.desc", Icon: TrendingUp },
+    { nameKey: "home.builtfor.healthcare", descKey: "home.builtfor.healthcare.desc", Icon: HeartPulse },
+    { nameKey: "home.builtfor.platforms", descKey: "home.builtfor.platforms.desc", Icon: Blocks },
+  ]
+
   return (
     <section className="py-14 sm:py-20 border-t border-border/40">
       {/* Full-width top/bottom borders for block feel */}
@@ -113,21 +114,21 @@ function UseCasesSection() {
                   className="text-xs font-mono tracking-wider mb-3"
                   style={{ color: 'var(--accent-gold)' }}
                 >
-                  BUILT FOR
+                  {t("home.builtfor.label")}
                 </p>
                 <h3
                   className="text-2xl md:text-3xl font-normal mb-4 leading-tight text-foreground"
                   style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                 >
-                  Complex B2B products.<br />Best practice UX.
+                  {t("home.builtfor.title1")}<br />{t("home.builtfor.title2")}
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-                  Built for trust-critical, workflow-heavy products.<br />
-                  Not for marketing sites or consumer UI experimentation.
+                  {t("home.builtfor.desc1")}<br />
+                  {t("home.builtfor.desc2")}
                 </p>
                 <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8 mt-6 w-fit rounded-none" asChild>
                   <Link href="/contact">
-                    Start a project &rsaquo;
+                    {t("home.builtfor.cta")} &rsaquo;
                   </Link>
                 </Button>
               </div>
@@ -136,14 +137,14 @@ function UseCasesSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2">
                 {useCaseItems.map((uc) => (
                   <div
-                    key={uc.name}
+                    key={uc.nameKey}
                     className="p-4 sm:p-8 border-l border-t border-stone-300/40 dark:border-white/10"
                   >
                     <div className="w-10 h-10 border border-stone-300/60 dark:border-white/15 flex items-center justify-center mb-4">
                       <uc.Icon className="w-5 h-5 text-muted-foreground" />
                     </div>
-                    <h4 className="text-sm font-medium text-foreground">{uc.name}</h4>
-                    <p className="text-sm text-muted-foreground mt-1">{uc.description}</p>
+                    <h4 className="text-sm font-medium text-foreground">{t(uc.nameKey)}</h4>
+                    <p className="text-sm text-muted-foreground mt-1">{t(uc.descKey)}</p>
                   </div>
                 ))}
               </div>
@@ -391,13 +392,13 @@ export default function LandingPage() {
               className="text-xs font-mono tracking-wider mb-3"
               style={{ color: 'var(--accent-gold)' }}
             >
-              POWERED BY
+              {t("home.engine.label")}
             </p>
             <h2
               className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              UX Reasoning Engine grounded in HCI research.
+              {t("home.engine.title")}
             </h2>
           </div>
           <div className="animate-on-scroll">
@@ -415,10 +416,10 @@ export default function LandingPage() {
               className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              Enterprise-Ready from Day 1.
+              {t("home.enterprise.title")}
             </h2>
             <p className="text-base text-muted-foreground max-w-xl mx-auto">
-              Built for regulated teams.
+              {t("home.enterprise.subtitle")}
             </p>
           </div>
         </div>
@@ -432,9 +433,9 @@ export default function LandingPage() {
                 <div className="mb-6">
                   <ClipboardCheck className="w-6 h-6 text-muted-foreground" />
                 </div>
-                <h3 className="text-sm font-medium mb-2">Traceable Decisions</h3>
+                <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card1.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Every UX decision comes with rationale. You'll know why, not just what.
+                  {t("home.enterprise.card1.desc")}
                 </p>
               </div>
 
@@ -443,9 +444,9 @@ export default function LandingPage() {
                 <div className="mb-6">
                   <ShieldCheck className="w-6 h-6 text-muted-foreground" />
                 </div>
-                <h3 className="text-sm font-medium mb-2">No Customer Data Required</h3>
+                <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card2.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  We work from your requirements and existing UI. No sensitive customer data needed.
+                  {t("home.enterprise.card2.desc")}
                 </p>
               </div>
 
@@ -454,9 +455,9 @@ export default function LandingPage() {
                 <div className="mb-6">
                   <Layers className="w-6 h-6 text-muted-foreground" />
                 </div>
-                <h3 className="text-sm font-medium mb-2">Works With Your Stack</h3>
+                <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card3.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Output integrates with your existing component library and design system.
+                  {t("home.enterprise.card3.desc")}
                 </p>
               </div>
 
