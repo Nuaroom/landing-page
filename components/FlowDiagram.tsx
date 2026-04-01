@@ -33,16 +33,24 @@ const steps: {
   {
     number: "03",
     label: "",
-    description: "Design",
+    description: "Ship",
     Icon: Scale,
+    cardText: "",
+  },
+  {
+    number: "04",
+    label: "",
+    description: "Handoff",
+    Icon: Rocket,
     cardText: "",
   },
 ]
 
 const stepDescriptions: string[] = [
-  "Share your requirements. PRDs, user stories, existing UI.",
-  "We figure out what screens to build and how they connect.",
-  "Production-ready screens and code, grounded in UX research.",
+  "We learn your product, your users, and where the team gets stuck.",
+  "We map how everything connects: flows, edge cases, dependencies your team hasn't untangled yet.",
+  "We join the build. Your team ships with UX clarity baked in.",
+  "UX decision framework built around your product's context. Your team makes better decisions on your own, not just while we're embedded.",
 ]
 
 export function FlowDiagram({ className = "" }: FlowDiagramProps) {
@@ -64,12 +72,14 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
 
       if (distanceIntoView < 0) {
         setActiveStep(-1)
-      } else if (distanceIntoView < 80) {
+      } else if (distanceIntoView < 50) {
         setActiveStep(0)
-      } else if (distanceIntoView < 180) {
+      } else if (distanceIntoView < 100) {
         setActiveStep(1)
-      } else {
+      } else if (distanceIntoView < 150) {
         setActiveStep(2)
+      } else {
+        setActiveStep(3)
       }
     }
 
@@ -103,7 +113,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
               bottom: '31px',
               left: '4.5px',
               height: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
-              transition: 'height 700ms ease-out',
+              transition: 'height 400ms ease-out',
             }}
           >
             <div className="w-full h-full" style={{ backgroundColor: 'var(--accent-gold)' }} />
@@ -118,7 +128,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
                     style={{
                       backgroundColor: isActive ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
                       boxShadow: isActive ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                      transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
+                      transition: `background-color 300ms ease-out ${index * 100}ms, box-shadow 300ms ease-out ${index * 100}ms`,
                     }}
                   />
                 </div>
@@ -126,7 +136,7 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
                   style={{
                     opacity: isActive ? 1 : 0.3,
                     transform: isActive ? 'translateY(0)' : 'translateY(8px)',
-                    transition: `opacity 500ms ease-out ${index * 200}ms, transform 500ms ease-out ${index * 200}ms`,
+                    transition: `opacity 300ms ease-out ${index * 100}ms, transform 300ms ease-out ${index * 100}ms`,
                   }}
                 >
                   <span className="text-xs font-mono tracking-wider" style={{ color: 'var(--accent-gold)' }}>
@@ -145,45 +155,54 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
         {/* Desktop layout - horizontal with one continuous line through dots */}
         <div className="hidden sm:block">
           {/* Continuous line + dots row */}
-          <div className="relative flex items-center justify-between">
-            {/* Gray base line */}
+          <div className="relative flex w-full min-h-[10px] items-center">
+            {/* Gray base line — full width; arrow tip aligns with right-0 */}
             <div
-              className="absolute h-[1.5px] left-[4px] right-0"
+              className="absolute top-1/2 left-[4px] right-0 h-[1.5px] -translate-y-1/2"
               style={{ backgroundColor: isDark ? '#404040' : '#C4C4C4' }}
             />
             {/* Gold progress line */}
             <div
-              className="absolute h-[1.5px] left-[4px]"
+              className="absolute top-1/2 left-[4px] h-[1.5px] -translate-y-1/2"
               style={{
-                width: activeStep <= 0 ? '0%' : activeStep >= steps.length - 1 ? '100%' : `${(activeStep / (steps.length - 1)) * 100}%`,
+                width:
+                  activeStep <= 0
+                    ? '0%'
+                    : activeStep >= steps.length - 1
+                      ? 'calc(100% - 4px)'
+                      : `calc((100% - 4px) * ${activeStep / (steps.length - 1)})`,
                 backgroundColor: 'var(--accent-gold)',
-                transition: 'width 700ms ease-out',
+                transition: 'width 400ms ease-out',
               }}
             />
-            {/* Dots */}
-            {steps.map((step, index) => (
-              <div
-                key={step.number}
-                className="w-[10px] h-[10px] rounded-full relative z-10 shrink-0"
-                style={{
-                  backgroundColor: index <= activeStep ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
-                  boxShadow: index <= activeStep ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
-                  transition: `background-color 500ms ease-out ${index * 200}ms, box-shadow 500ms ease-out ${index * 200}ms`,
-                }}
-              />
-            ))}
-            {/* Triangle arrowhead at far right */}
+            {/* Triangle arrowhead — tip at the line’s right end (not after flex columns) */}
             <div
-              className="relative z-10 shrink-0"
+              className="pointer-events-none absolute top-1/2 right-0 z-10 -translate-y-1/2"
               style={{
                 width: 0,
                 height: 0,
                 borderTop: '5px solid transparent',
                 borderBottom: '5px solid transparent',
                 borderLeft: `7px solid ${activeStep >= steps.length - 1 ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4')}`,
-                transition: 'border-left-color 700ms ease-out',
+                transition: 'border-left-color 400ms ease-out',
               }}
             />
+            {/* Dots */}
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+                style={{ flex: 1, paddingRight: index < steps.length - 1 ? '2rem' : 0 }}
+              >
+                <div
+                  className="w-[10px] h-[10px] rounded-full relative z-10 shrink-0"
+                  style={{
+                    backgroundColor: index <= activeStep ? 'var(--accent-gold)' : (isDark ? '#404040' : '#C4C4C4'),
+                    boxShadow: index <= activeStep ? '0 0 6px rgba(202, 138, 4, 0.4)' : 'none',
+                    transition: `background-color 300ms ease-out ${index * 100}ms, box-shadow 300ms ease-out ${index * 100}ms`,
+                  }}
+                />
+              </div>
+            ))}
           </div>
 
           {/* Text labels below dots */}
@@ -191,12 +210,12 @@ export function FlowDiagram({ className = "" }: FlowDiagramProps) {
             {steps.map((step, index) => {
               const isActive = index <= activeStep
               return (
-                <div key={step.number} style={{ flex: 1 }}>
+                <div key={step.number} style={{ flex: 1, paddingRight: index < steps.length - 1 ? '2rem' : 0 }}>
                   <div
                     style={{
                       opacity: isActive ? 1 : 0.3,
                       transform: isActive ? 'translateY(0)' : 'translateY(8px)',
-                      transition: `opacity 500ms ease-out ${index * 200}ms, transform 500ms ease-out ${index * 200}ms`,
+                      transition: `opacity 300ms ease-out ${index * 100}ms, transform 300ms ease-out ${index * 100}ms`,
                     }}
                   >
                     <span className="text-xs font-mono tracking-wider" style={{ color: 'var(--accent-gold)' }}>

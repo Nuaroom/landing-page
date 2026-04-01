@@ -41,6 +41,7 @@
   --duct-tape-color-2: #ede7d8;
   --duct-tape-opacity: 0.95;
   --accent-gold: #CA8A04;
+  --accent-gold-dark: #A97104;
   --accent-gold-muted: rgba(202, 138, 4, 0.15);
   --accent-blue: #2563EB;
   --accent-pink: #DE425E;
@@ -117,6 +118,7 @@
   --duct-tape-color-2: #37350B;
   --duct-tape-opacity: 0.80;
   --accent-gold: #F6E05E;
+  --accent-gold-dark: #D4B84A;
   --accent-gold-muted: rgba(246, 224, 94, 0.12);
   --accent-blue: #60A5FA;
   --accent-pink: #EF5E79;

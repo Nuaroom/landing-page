@@ -3,15 +3,16 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, ClipboardCheck, Eye, ShieldCheck, Layers, UserCheck, Target, TrendingUp, HeartPulse, Blocks } from "lucide-react"
+import { ArrowRight, ClipboardCheck, Eye, ShieldCheck, Layers, UserCheck, Target, TrendingUp, HeartPulse, Blocks, Scale, Zap, Users } from "lucide-react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { FlowDiagram } from "@/components/FlowDiagram"
+import { ComparisonDiagram } from "@/components/ComparisonDiagram"
 import { useLanguage } from "@/components/language-context"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
 
-export function ThemedImage({ lightSrc, darkSrc, alt, className }: { lightSrc: string; darkSrc: string; alt: string; className?: string }) {
+function ThemedImage({ lightSrc, darkSrc, alt, className }: { lightSrc: string; darkSrc: string; alt: string; className?: string }) {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -120,7 +121,7 @@ function UseCasesSection() {
                   className="text-2xl md:text-3xl font-normal mb-4 leading-tight text-foreground"
                   style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                 >
-                  {t("home.builtfor.title1")}<br />{t("home.builtfor.title2")}
+                  {t("home.builtfor.title1")}
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
                   {t("home.builtfor.desc1")}<br />
@@ -162,7 +163,10 @@ export default function LandingPage() {
   const [isMounted, setIsMounted] = useState(false)
   const [typedText, setTypedText] = useState("")
   const [heroTyped, setHeroTyped] = useState(false)
+  const [subtitleText, setSubtitleText] = useState("")
+  const [subtitleTyped, setSubtitleTyped] = useState(false)
   const heroTitle = t("home.hero.title")
+  const heroSubtitle = `${t("home.hero.tagline1")} ${t("home.hero.tagline2")}`
 
   // Handle hash scrolling when navigating from other pages
   useEffect(() => {
@@ -198,9 +202,26 @@ export default function LandingPage() {
     return () => clearInterval(interval)
   }, [isMounted, heroTitle])
 
-  // Scroll animation observer - starts after hero subtitle/CTA appear
+  // Typing animation for hero subtitle (starts after hero title finishes)
   useEffect(() => {
     if (!heroTyped) return
+    setSubtitleText("")
+    setSubtitleTyped(false)
+    let i = 0
+    const interval = setInterval(() => {
+      i++
+      setSubtitleText(heroSubtitle.slice(0, i))
+      if (i >= heroSubtitle.length) {
+        clearInterval(interval)
+        setTimeout(() => setSubtitleTyped(true), 300)
+      }
+    }, 28)
+    return () => clearInterval(interval)
+  }, [heroTyped, heroSubtitle])
+
+  // Scroll animation observer - starts after hero subtitle/CTA appear
+  useEffect(() => {
+    if (!subtitleTyped) return
 
     // Delay so sections appear after subtitle/CTA, not simultaneously
     const timeout = setTimeout(() => {
@@ -230,7 +251,7 @@ export default function LandingPage() {
     }, 600)
 
     return () => clearTimeout(timeout)
-  }, [heroTyped])
+  }, [subtitleTyped])
 
   // Don't render until mounted to prevent hydration issues
   if (!isMounted) {
@@ -263,49 +284,67 @@ export default function LandingPage() {
           />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, var(--background) 100%)' }} />
         </div>
-        <div className="flex items-start justify-center pt-16 sm:pt-24 md:pt-32 relative z-10">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-20 text-center max-w-4xl relative">
+        <div className="relative z-10 px-6 sm:px-8 lg:px-20 pt-16 sm:pt-24 md:pt-32">
+          <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center text-center">
             <HeroCircles />
 
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal mb-4 sm:mb-6 leading-tight relative lg:whitespace-nowrap"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal mb-4 sm:mb-6 leading-tight lg:whitespace-nowrap w-fit max-w-full text-balance"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               {typedText}
-              {!heroTyped && <span className="inline-block w-[2px] h-[0.9em] bg-foreground ml-1 align-middle animate-blink" />}
+              {!heroTyped && (
+                <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
+              )}
             </h1>
 
+            {heroTyped && (
+              <p
+                className="text-lg sm:text-xl md:text-2xl font-normal mb-5 sm:mb-6 leading-tight text-balance"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                {subtitleText}
+                {!subtitleTyped && (
+                  <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
+                )}
+              </p>
+            )}
+
             <div
-              className="flex flex-col gap-1 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base text-muted-foreground"
+              className="mb-5 flex w-full flex-col items-center gap-1 sm:mb-6"
               style={{
-                opacity: heroTyped ? 1 : 0,
-                transform: heroTyped ? 'translateY(0)' : 'translateY(20px)',
+                opacity: subtitleTyped ? 1 : 0,
+                transform: subtitleTyped ? 'translateY(0)' : 'translateY(20px)',
                 transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
               }}
             >
-              <p>{t("home.hero.subtitle")}<br className="hidden sm:block" /> {t("home.hero.subtitle2")}</p>
+              <p className="max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground">
+                {t("home.hero.subtitle")}
+                <br className="hidden sm:block" /> {t("home.hero.subtitle2")}
+              </p>
             </div>
 
             <div
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 md:mb-14"
+              className="flex w-full justify-center"
               style={{
-                opacity: heroTyped ? 1 : 0,
-                transform: heroTyped ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s',
+                opacity: subtitleTyped ? 1 : 0,
+                transform: subtitleTyped ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s',
               }}
             >
-              <Button size="default" className="px-6 py-2.5 text-base font-semibold h-10 rounded-none" asChild>
+              <Button size="default" className="h-10 rounded-none px-6 py-2.5 text-base font-semibold" asChild>
                 <Link href="/contact">
                   {t("home.hero.cta")} &rsaquo;
                 </Link>
               </Button>
             </div>
-
           </div>
         </div>
+
       </section>
+
       {/* Case Study Section */}
-      <section className="py-14 sm:py-20 border-t border-border/40">
+      <section className="py-14 sm:py-20">
         <div className="border-t border-b border-border/40 animate-on-scroll">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="overflow-hidden" style={{ backgroundColor: 'var(--case-study-bg)' }}>
@@ -323,7 +362,7 @@ export default function LandingPage() {
                     className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-relaxed text-foreground"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                   >
-                    &ldquo;{t("home.casestudy.quote")}&rdquo;
+                    &ldquo;{t("home.casestudy.quote.1")}<span style={{ color: 'var(--accent-gold-dark)' }}>{t("home.casestudy.quote.highlight1")}</span>{t("home.casestudy.quote.2")}<span style={{ color: 'var(--accent-gold-dark)' }}>{t("home.casestudy.quote.highlight2")}</span>{t("home.casestudy.quote.3")}&rdquo;
                   </h2>
                   <p className="text-sm text-muted-foreground">&mdash; {t("home.casestudy.role")}</p>
                 </div>
@@ -384,25 +423,32 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      {/* Comparison Diagram - full width */}
+      <ComparisonDiagram />
       {/* UX Reasoning Engine Section */}
       <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/40">
-        <div className="container mx-auto px-12 sm:px-[72px] lg:px-[104px] xl:px-[120px] max-w-7xl">
-          <div className="mb-10 animate-on-scroll">
-            <p
-              className="text-xs font-mono tracking-wider mb-3"
-              style={{ color: 'var(--accent-gold)' }}
-            >
-              {t("home.engine.label")}
-            </p>
-            <h2
-              className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
-              style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-            >
-              {t("home.engine.title")}
-            </h2>
-          </div>
-          <div className="animate-on-scroll">
-            <FlowDiagram />
+        <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
+          <div className="px-6 sm:px-10 md:px-14">
+            <div className="mb-10 animate-on-scroll">
+              <p
+                className="text-xs font-mono tracking-wider mb-3"
+                style={{ color: 'var(--accent-gold)' }}
+              >
+                {t("home.engine.label")}
+              </p>
+              <h2
+                className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                {t("home.engine.title")}
+              </h2>
+              <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
+                AI tools help your team build faster. They don't help your team build right.
+              </p>
+            </div>
+            <div className="animate-on-scroll">
+              <FlowDiagram />
+            </div>
           </div>
         </div>
       </section>
@@ -429,9 +475,9 @@ export default function LandingPage() {
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="grid sm:grid-cols-3">
               {/* Card 1: Traceable Decisions */}
-              <div className="p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-border/40">
+              <div className="p-6 sm:p-10 md:p-14 border-b sm:border-b-0 sm:border-r border-border/40">
                 <div className="mb-6">
-                  <ClipboardCheck className="w-6 h-6 text-muted-foreground" />
+                  <Scale className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card1.title")}</h3>
                 <p className="text-sm text-muted-foreground">
@@ -440,9 +486,9 @@ export default function LandingPage() {
               </div>
 
               {/* Card 2: No Customer Data Required */}
-              <div className="p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-border/40">
+              <div className="p-6 sm:p-10 md:p-14 border-b sm:border-b-0 sm:border-r border-border/40">
                 <div className="mb-6">
-                  <ShieldCheck className="w-6 h-6 text-muted-foreground" />
+                  <Zap className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card2.title")}</h3>
                 <p className="text-sm text-muted-foreground">
@@ -451,9 +497,9 @@ export default function LandingPage() {
               </div>
 
               {/* Card 3: Works With Your Stack */}
-              <div className="p-6 sm:p-8">
+              <div className="p-6 sm:p-10 md:p-14">
                 <div className="mb-6">
-                  <Layers className="w-6 h-6 text-muted-foreground" />
+                  <Users className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card3.title")}</h3>
                 <p className="text-sm text-muted-foreground">

@@ -46,7 +46,7 @@ export default function TeamPage() {
                   {t("about.p2")}
                 </p>
                 <p
-                  className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer"
+                  className="text-xl md:text-2xl font-normal max-w-2xl mx-auto mt-8 animate-hero-footer leading-relaxed"
                   style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                 >
                   {t("about.p3")}

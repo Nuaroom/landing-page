@@ -28,7 +28,7 @@ const translations: Record<string, Record<Locale, string>> = {
     ko: "포춘 100대 기업이 사용하는 엔터프라이즈 데이터 보안 플랫폼을 리디자인하다,",
   },
   "cs.hero.titleEmphasis": {
-    en: "without rebuilding it.",
+    en: "without months of rework.",
     ko: "처음부터 다시 만들지 않고.",
   },
   "cs.hero.description": {
@@ -208,7 +208,7 @@ const translations: Record<string, Record<Locale, string>> = {
 
   // Testimonial
   "cs.testimonial.quote": {
-    en: "We burnt a year trying to fix 'squirrel-brain sandbox design.' Got nowhere. Heurica fixed in 2 weeks.",
+    en: "We burnt 1 year trying to fix 'squirrel-brain sandbox design.' Got nowhere. Heurica fixed in 2 weeks.",
     ko: "우리는 '다람쥐 뇌 샌드박스 디자인'을 고치겠다고 1년을 날렸습니다. 아무것도 안 됐습니다. Heurica가 2주 만에 끝냈습니다.",
   },
   "cs.testimonial.role": { en: "VP of Product", ko: "VP of Product" },
@@ -222,7 +222,7 @@ const translations: Record<string, Record<Locale, string>> = {
     en: "3-day analysis. 2-week redesign.",
     ko: "3일 분석. 2주 리디자인.",
   },
-  "cs.cta.button": { en: "Start a Project", ko: "프로젝트 시작하기" },
+  "cs.cta.button": { en: "Book a Call", ko: "상담 예약하기" },
 
   // Home page
   "home.hero.title": {
@@ -237,10 +237,34 @@ const translations: Record<string, Record<Locale, string>> = {
     en: "that needs its own 3 hours training session.",
     ko: "당신의 콘솔 얘기입니다.",
   },
-  "home.hero.cta": { en: "Start a Project", ko: "프로젝트 시작하기" },
-  "home.casestudy.quote": {
-    en: "We burnt a year trying to fix \u2018squirrel-brain sandbox design.\u2019 Got nowhere. Heurica fixed in 2 weeks.",
-    ko: "\u2018다람쥐 뇌 샌드박스 디자인\u2019을 고치겠다고 1년을 날렸습니다. 아무것도 안 됐습니다. Heurica가 2주 만에 끝냈습니다.",
+  "home.hero.tagline1": {
+    en: "Your team ships fast but nobody owns UX.",
+    ko: "팀은 빠르게 출시하지만 UX를 책임지는 사람이 없습니다.",
+  },
+  "home.hero.tagline2": {
+    en: "We embed and fix that.",
+    ko: "우리가 합류해서 해결합니다.",
+  },
+  "home.hero.cta": { en: "Book a Call", ko: "상담 예약하기" },
+  "home.casestudy.quote.1": {
+    en: "We burnt ",
+    ko: "\u2018다람쥐 뇌 샌드박스 디자인\u2019을 고치겠다고 ",
+  },
+  "home.casestudy.quote.highlight1": {
+    en: "1 year",
+    ko: "1년",
+  },
+  "home.casestudy.quote.2": {
+    en: " trying to fix \u2018squirrel-brain sandbox design.\u2019 Got nowhere. Heurica fixed in ",
+    ko: "을 날렸습니다. 아무것도 안 됐습니다. Heurica가 ",
+  },
+  "home.casestudy.quote.highlight2": {
+    en: "2 weeks",
+    ko: "2주",
+  },
+  "home.casestudy.quote.3": {
+    en: ".",
+    ko: " 만에 끝냈습니다.",
   },
   "home.casestudy.role": {
     en: "VP of Product, Data Security Enterprise serving Fortune 100",
@@ -251,15 +275,23 @@ const translations: Record<string, Record<Locale, string>> = {
   "home.casestudy.stat2.number": { en: "3 days", ko: "3일" },
   "home.casestudy.stat2.label": { en: "98 user stories analyzed", ko: "사용자 스토리 98개 분석" },
   "home.casestudy.readmore": { en: "Read case study", ko: "케이스 스터디 보기" },
+  "home.stays.title": {
+    en: "What stays after Heurica leaves.",
+    ko: "Heurica가 떠난 후에도 남는 것.",
+  },
+  "home.stays.description": {
+    en: "UX reasoning framework built around your product's context. So your team makes better UX decisions on their own, not just while Heurica is embedded.",
+    ko: "제품 맥락에 맞춰 설계된 UX 의사결정 프레임워크. Heurica가 함께할 때만이 아니라, 팀 스스로 더 나은 UX 판단을 내릴 수 있도록.",
+  },
   "home.cta.text1": {
-    en: "Your requirements, finally designed right.",
-    ko: "당신의 요구사항, 드디어 제대로 설계됩니다.",
+    en: "Speed of AI. Judgment of an expert.",
+    ko: "AI의 속도. 전문가의 판단.",
   },
   "home.cta.text2": {
-    en: "You wrote the spec. Ship it already.",
-    ko: "스펙은 다 썼잖아요. 이제 출시하세요.",
+    en: "Ship Smart. Not just fast.",
+    ko: "빠르기만 한 게 아닌, 똑똑한 출시.",
   },
-  "home.cta.button": { en: "Start a project", ko: "프로젝트 시작하기" },
+  "home.cta.button": { en: "Book a Call", ko: "상담 예약하기" },
 
   // About page
   "about.title": { en: "Why Heurica Exists;", ko: "Heurica가 존재하는 이유." },
@@ -283,7 +315,7 @@ const translations: Record<string, Record<Locale, string>> = {
   // Case Study listing page
   "csl.title": { en: "Case Study;", ko: "케이스 스터디." },
   "csl.subtitle": {
-    en: "Redesigned, without rebuilding.",
+    en: "Redesigned, without months of rework.",
     ko: "처음부터 다시 만들지 않고, 리디자인.",
   },
   "csl.card1.industry": { en: "data security", ko: "데이터 보안" },
@@ -340,37 +372,53 @@ const translations: Record<string, Record<Locale, string>> = {
   "nav.casestudy": { en: "Case Study", ko: "케이스 스터디" },
   "nav.about": { en: "About", ko: "소개" },
   "nav.careers": { en: "Careers", ko: "채용" },
-  "nav.startnow": { en: "Start now", ko: "시작하기" },
+  "nav.startnow": { en: "Book a Call", ko: "상담 예약하기" },
 
   // Footer
   "footer.tagline": { en: "heuristics + eureka", ko: "heuristics + eureka" },
   "footer.pages": { en: "Pages", ko: "페이지" },
   "footer.company": { en: "Company", ko: "회사" },
   "footer.legal": { en: "Legal", ko: "법률" },
-  "footer.startproject": { en: "Start a Project", ko: "프로젝트 시작하기" },
+  "footer.startproject": { en: "Book a Call", ko: "상담 예약하기" },
   "footer.privacy": { en: "Privacy Policy", ko: "개인정보처리방침" },
   "footer.terms": { en: "Terms of Service", ko: "이용약관" },
 
+  // Home - Comparison Diagram
+  "home.compare.without.title1": { en: "1 year stuck rebuilding", ko: "전담 UX 없이" },
+  "home.compare.without.title2": { en: "without dedicated UX.", ko: "1년째 재작업." },
+  "home.compare.without.subtitle": { en: "Engineers design, stakeholders react, everyone reworks", ko: "엔지니어가 설계하고, 이해관계자가 반응하고, 모두가 재작업" },
+  "home.compare.buildv1": { en: "Rebuild", ko: "Rebuild" },
+  "home.compare.buildv2": { en: "Rebuild", ko: "Rebuild" },
+  "home.compare.buildv3": { en: "Build v3", ko: "Build v3" },
+  "home.compare.rework": { en: "Rework", ko: "재작업" },
+  "home.compare.without.badge": { en: "~1 year, still going", ko: "~1년째, 아직 진행 중" },
+  "home.compare.with.title1": { en: "2 weeks with Heurica.", ko: "Heurica와 함께 2주." },
+  "home.compare.with.title2": { en: "Then build what\u2019s next.", ko: "그다음은 빌드." },
+  "home.compare.with.subtitle": { en: "Structure first, then build with clarity", ko: "구조를 먼저 잡고, 명확하게 빌드" },
+  "home.compare.map": { en: "Map structure", ko: "구조 매핑" },
+  "home.compare.build": { en: "Build with clarity", ko: "명확하게 빌드" },
+  "home.compare.ship": { en: "Ship", ko: "출시" },
+  "home.compare.with.badge": { en: "~2 weeks to clarity", ko: "~2주 만에 명확한 구조" },
+
   // Home - UX Reasoning Engine
-  "home.engine.label": { en: "POWERED BY", ko: "기반 기술" },
+  "home.engine.label": { en: "HOW WE WORK", ko: "일하는 방식" },
   "home.engine.title": {
-    en: "UX Reasoning Engine grounded in HCI research.",
-    ko: "HCI 연구에 기반한 UX 추론 엔진.",
+    en: "Expert UX judgment. Embedded at the speed your team ships.",
+    ko: "전문 UX 판단력. 팀의 출시 속도에 맞춰 합류합니다.",
   },
 
   // Home - Built For
   "home.builtfor.label": { en: "BUILT FOR", ko: "대상" },
-  "home.builtfor.title1": { en: "Complex B2B products.", ko: "복잡한 B2B 제품." },
-  "home.builtfor.title2": { en: "Best practice UX.", ko: "최고 수준의 UX." },
+  "home.builtfor.title1": { en: "Products where UX is hard.", ko: "UX가 어려운 제품." },
   "home.builtfor.desc1": {
-    en: "Built for trust-critical, workflow-heavy products.",
-    ko: "신뢰가 중요하고 워크플로우가 복잡한 제품을 위해 만들어졌습니다.",
+    en: "Not marketing sites. Not consumer apps. Complex B2B products where the real problem is structure, not visuals.",
+    ko: "마케팅 사이트가 아닙니다. 소비자 앱이 아닙니다. 진짜 문제가 비주얼이 아닌 구조인 복잡한 B2B 제품.",
   },
   "home.builtfor.desc2": {
-    en: "Not for marketing sites or consumer UI experimentation.",
-    ko: "마케팅 사이트나 소비자 UI 실험용이 아닙니다.",
+    en: "",
+    ko: "",
   },
-  "home.builtfor.cta": { en: "Start a project", ko: "프로젝트 시작하기" },
+  "home.builtfor.cta": { en: "Book a Call", ko: "상담 예약하기" },
   "home.builtfor.security": { en: "Security", ko: "보안" },
   "home.builtfor.security.desc": {
     en: "Configuration panels, policy engines, role-based access.",
@@ -394,31 +442,31 @@ const translations: Record<string, Record<Locale, string>> = {
 
   // Home - Enterprise Ready
   "home.enterprise.title": {
-    en: "Enterprise-Ready from Day 1.",
-    ko: "Day 1부터 엔터프라이즈 대응.",
+    en: "Why teams choose Heurica.",
+    ko: "팀이 Heurica를 선택하는 이유.",
   },
   "home.enterprise.subtitle": {
-    en: "Built for regulated teams.",
-    ko: "규제 산업 팀을 위해 설계.",
+    en: "",
+    ko: "",
   },
-  "home.enterprise.card1.title": { en: "Traceable Decisions", ko: "추적 가능한 결정" },
+  "home.enterprise.card1.title": { en: "Decisions with rationale", ko: "근거 있는 결정" },
   "home.enterprise.card1.desc": {
     en: "Every UX decision comes with rationale. You'll know why, not just what.",
     ko: "모든 UX 결정에 근거가 있습니다. 무엇이 아니라 왜인지 알 수 있습니다.",
   },
-  "home.enterprise.card2.title": { en: "No Customer Data Required", ko: "고객 데이터 불필요" },
+  "home.enterprise.card2.title": { en: "Expert judgment, AI speed.", ko: "전문가 판단, AI 속도." },
   "home.enterprise.card2.desc": {
-    en: "We work from your requirements and existing UI. No sensitive customer data needed.",
-    ko: "요구사항과 기존 UI로 작업합니다. 민감한 고객 데이터가 필요 없습니다.",
+    en: "AI tools get you 70% there. We cover the 30% they miss: business context, edge cases, connected flows.",
+    ko: "AI 도구가 70%를 해결합니다. 나머지 30%를 채웁니다: 비즈니스 맥락, 엣지 케이스, 연결된 플로우.",
   },
-  "home.enterprise.card3.title": { en: "Works With Your Stack", ko: "기존 스택과 호환" },
+  "home.enterprise.card3.title": { en: "Embedded, not outsourced", ko: "외주가 아닌 합류" },
   "home.enterprise.card3.desc": {
-    en: "Output integrates with your existing component library and design system.",
-    ko: "기존 컴포넌트 라이브러리와 디자인 시스템에 바로 적용 가능합니다.",
+    en: "We work inside your build cycle. No separate design phase, no handoff deck that sits in a drawer.",
+    ko: "빌드 사이클 안에서 함께 일합니다. 별도 디자인 단계도, 서랍에 넣어둘 핸드오프 문서도 없습니다.",
   },
 
   // Contact page
-  "contact.title": { en: "Start a Project", ko: "프로젝트 시작하기" },
+  "contact.title": { en: "Book a Call", ko: "상담 예약하기" },
   "contact.subtitle": { en: "Or reach out directly", ko: "또는 직접 연락하세요" },
 
   // Philosophy page
