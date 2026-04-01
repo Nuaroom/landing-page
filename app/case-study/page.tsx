@@ -83,28 +83,6 @@ export default function CaseStudyPage() {
                     </div>
                   </article>
                 </div>
-
-                {/* Financial card */}
-                <div
-                  className="block border border-border/40"
-                >
-                  <article className="h-full flex flex-col">
-                    <div className="p-5 sm:p-8 md:p-10 flex flex-col flex-1">
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="text-xs text-muted-foreground px-2.5 py-0.5 rounded-full border border-border/60">{t("csl.card3.industry")}</span>
-                      </div>
-                      <h2 className="text-2xl font-semibold mb-5 leading-tight">
-                        {t("csl.card3.title")}
-                      </h2>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                        {t("csl.card3.excerpt")}
-                      </p>
-                      <span className="text-sm font-medium mt-auto text-muted-foreground">
-                        {t("csl.comingsoon")}
-                      </span>
-                    </div>
-                  </article>
-                </div>
               </div>
             </div>
           </div>
