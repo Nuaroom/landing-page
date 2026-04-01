@@ -7,6 +7,7 @@ import { ArrowRight, ClipboardCheck, Eye, ShieldCheck, Layers, UserCheck, Target
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { FlowDiagram } from "@/components/FlowDiagram"
+import { ComparisonDiagram } from "@/components/ComparisonDiagram"
 import { useLanguage } from "@/components/language-context"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
@@ -102,7 +103,7 @@ function UseCasesSection() {
   ]
 
   return (
-    <section className="py-14 sm:py-20 border-t border-border/40">
+    <section className="border-t border-border/40 pt-10 pb-10 sm:pt-14 sm:pb-14">
       {/* Full-width top/bottom borders for block feel */}
       <div className="border-t border-b border-border/40 animate-on-scroll">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
@@ -310,7 +311,7 @@ export default function LandingPage() {
             )}
 
             <div
-              className="mb-5 flex w-full flex-col items-center gap-1 sm:mb-6"
+              className="mb-8 flex w-full flex-col items-center gap-1 sm:mb-10"
               style={{
                 opacity: subtitleTyped ? 1 : 0,
                 transform: subtitleTyped ? 'translateY(0)' : 'translateY(20px)',
@@ -422,6 +423,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <div className="pb-10 pt-0 sm:pb-14">
+        <ComparisonDiagram />
+      </div>
       {/* UX Reasoning Engine Section */}
       <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/40">
         <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
@@ -452,11 +456,11 @@ export default function LandingPage() {
       {/* Built for */}
       <UseCasesSection />
       {/* Enterprise-Ready from Day 1 Section */}
-      <section className="py-14 sm:py-20 border-t border-border/40">
+      <section className="py-10 sm:py-14 border-t border-border/40">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
-          <div className="text-center mb-8 animate-on-scroll">
+          <div className="text-center mb-6 animate-on-scroll">
             <h2
-              className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
+              className="text-xl md:text-2xl lg:text-3xl font-normal mb-3 leading-tight"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               {t("home.enterprise.title")}
@@ -472,8 +476,8 @@ export default function LandingPage() {
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="grid sm:grid-cols-3">
               {/* Card 1: Traceable Decisions */}
-              <div className="p-6 sm:p-10 md:p-14 border-b sm:border-b-0 sm:border-r border-border/40">
-                <div className="mb-6">
+              <div className="border-b border-border/40 p-5 sm:p-8 md:p-10 sm:border-b-0 sm:border-r">
+                <div className="mb-4">
                   <Scale className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card1.title")}</h3>
@@ -483,8 +487,8 @@ export default function LandingPage() {
               </div>
 
               {/* Card 2: No Customer Data Required */}
-              <div className="p-6 sm:p-10 md:p-14 border-b sm:border-b-0 sm:border-r border-border/40">
-                <div className="mb-6">
+              <div className="border-b border-border/40 p-5 sm:p-8 md:p-10 sm:border-b-0 sm:border-r">
+                <div className="mb-4">
                   <Zap className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card2.title")}</h3>
@@ -494,8 +498,8 @@ export default function LandingPage() {
               </div>
 
               {/* Card 3: Works With Your Stack */}
-              <div className="p-6 sm:p-10 md:p-14">
-                <div className="mb-6">
+              <div className="p-5 sm:p-8 md:p-10">
+                <div className="mb-4">
                   <Users className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <h3 className="text-sm font-medium mb-2">{t("home.enterprise.card3.title")}</h3>

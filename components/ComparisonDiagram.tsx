@@ -9,158 +9,166 @@ export function ComparisonDiagram() {
     <section>
       <div className="border-t border-b border-border/40">
         <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
-          <div className="bg-[#FDFCF8] dark:bg-[#1C1917] px-6 sm:px-10 md:px-14 py-10 sm:py-14">
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-
-            {/* Left: Without dedicated UX — circular loop */}
-            <div>
-              <h3
-                className="text-lg sm:text-xl md:text-2xl font-normal mb-2 text-foreground leading-relaxed"
-                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-              >
-                {t("home.compare.without.title1")}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-8">
-                {t("home.compare.without.title2")}
-              </p>
-
-              {/* Horizontal circular loop */}
-              <div className="flex items-center justify-center py-8">
-                <div className="relative w-full max-w-[360px] h-[180px]">
-                  {/* Ellipse loop path */}
-                  <svg
-                    className="absolute inset-0 w-full h-full"
-                    viewBox="0 0 360 180"
-                    fill="none"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    <ellipse
-                      cx="180" cy="90" rx="160" ry="70"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      strokeDasharray="6 4"
-                      strokeOpacity="0.15"
-                      fill="none"
-                    />
-                  </svg>
-
-                  {/* Eng builds — left */}
-                  <div className="absolute top-1/2 left-0 -translate-y-1/2">
-                    <div className="px-3 py-2 text-[10px] sm:text-[11px] font-mono tracking-wider text-muted-foreground bg-background border border-border/40 whitespace-nowrap">
-                      ENG BUILDS
-                    </div>
-                  </div>
-
-                  {/* No UX direction — top */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1">
-                    <div
-                      className="px-3 py-2 text-[10px] sm:text-[11px] font-mono tracking-wider whitespace-nowrap border"
-                      style={{
-                        color: "var(--accent-pink)",
-                        opacity: 0.7,
-                        borderColor: "color-mix(in srgb, var(--accent-pink) 25%, transparent)",
-                        background: "var(--background)",
-                      }}
-                    >
-                      NO UX DIRECTION
-                    </div>
-                  </div>
-
-                  {/* Rebuild — right */}
-                  <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                    <div className="px-3 py-2 text-[10px] sm:text-[11px] font-mono tracking-wider text-muted-foreground bg-background border border-border/40 whitespace-nowrap">
-                      REBUILD
-                    </div>
-                  </div>
-
-                  {/* REPEAT — center */}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 text-[10px] font-mono tracking-widest text-muted-foreground opacity-25">
-                    REPEAT
-                  </span>
-                </div>
+          <div className="bg-[#FDFCF8] px-6 py-7 sm:px-10 sm:py-9 md:px-14 dark:bg-[#1C1917]">
+            <div className="relative grid grid-cols-1 gap-10 md:grid-cols-2 md:items-stretch md:gap-16">
+              {/* Center divider — desktop only */}
+              <div className="absolute left-1/2 top-0 bottom-0 hidden -translate-x-1/2 md:block">
+                <div className="h-full w-px bg-border/40" />
               </div>
-            </div>
+              {/* Left — without dedicated UX */}
+              <div className="flex min-h-0 flex-col self-stretch md:pr-8">
+                <h3
+                  className="mb-6 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
+                  style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                >
+                  {t("home.compare.without.title1")}
+                  <br />
+                  {t("home.compare.without.title2")}
+                </h3>
 
-            {/* Right: With Heurica — horizontal linear flow */}
-            <div className="md:border-l md:border-border/40 md:pl-16 flex flex-col">
-              <h3
-                className="text-lg sm:text-xl md:text-2xl font-normal mb-2 text-foreground leading-relaxed"
-                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-              >
-                {t("home.compare.with.title1")}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-8">
-                {t("home.compare.with.title2")}
-              </p>
-
-              {/* Horizontal linear flow */}
-              <div className="flex items-center justify-center py-8">
-                <div className="flex flex-col gap-3 w-full">
-                  {/* Main flow row */}
-                  <div className="flex flex-row items-center w-full">
-                    {/* Eng builds */}
-                    <div className="px-3 py-2 text-[10px] sm:text-[11px] font-mono tracking-wider text-muted-foreground bg-background border border-border/40 whitespace-nowrap shrink-0">
-                      ENG BUILDS
+                <div className="flex min-h-0 flex-1 items-center justify-center py-4">
+                  <div className="flex w-full items-stretch gap-0">
+                    <div className="flex min-h-0 flex-1 flex-col items-center justify-start gap-3 border border-border/50 bg-muted/25 p-4 text-center dark:bg-muted/15 sm:p-5 md:min-h-[7.25rem]">
+                      <div className="flex min-h-[1.75rem] w-full items-center justify-center sm:min-h-[2rem]">
+                        <span
+                          className="text-sm font-normal text-foreground sm:text-base"
+                          style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                        >
+                          {t("home.compare.buildv1")}
+                        </span>
+                      </div>
+                      <p className="w-full text-balance text-center text-xs leading-relaxed text-muted-foreground">
+                        {t("home.compare.without.noDirection")}
+                      </p>
                     </div>
 
-                    {/* Arrow */}
-                    <div className="flex-1 min-w-2 h-[1px]" style={{ background: "var(--accent-gold)", opacity: 0.4 }} />
-
-                    {/* Heurica */}
                     <div
-                      className="px-3 py-2 text-center border whitespace-nowrap shrink-0"
+                      className="flex shrink-0 flex-col items-center justify-center self-center gap-0 px-2 sm:px-3"
+                      aria-hidden
+                    >
+                      <span
+                        className="text-base font-normal leading-none sm:text-lg"
+                        style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "#B54A4A" }}
+                      >
+                        &rarr;
+                      </span>
+                      <span
+                        className="-mt-1 text-base font-normal leading-none sm:text-lg"
+                        style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "#B54A4A", opacity: 0.75 }}
+                      >
+                        &larr;
+                      </span>
+                    </div>
+
+                    <div
+                      className="flex min-h-0 flex-1 flex-col items-center justify-start gap-2 border p-4 text-center sm:p-5 md:min-h-[7.25rem]"
                       style={{
-                        color: "var(--accent-gold-dark)",
-                        background: "var(--accent-gold-muted)",
-                        borderColor: "color-mix(in srgb, var(--accent-gold) 40%, transparent)",
+                        background: "rgba(181, 74, 74, 0.08)",
+                        borderColor: "rgba(181, 74, 74, 0.2)",
                       }}
                     >
-                      <span className="block text-[10px] sm:text-[11px] font-mono tracking-wider font-medium">HEURICA</span>
-                      <span className="block text-[9px] sm:text-[10px] font-mono tracking-wider opacity-70 mt-0.5">UX DIRECTION</span>
+                      <div className="flex min-h-[1.75rem] w-full items-center justify-center sm:min-h-[2rem]">
+                        <span
+                          className="text-sm font-normal sm:text-base"
+                          style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "#B54A4A" }}
+                        >
+                          {t("home.compare.without.uxBreaks")}
+                        </span>
+                      </div>
+                      <p
+                        className="w-full text-balance text-center text-xs leading-relaxed"
+                        style={{ color: "#B54A4A", opacity: 0.85 }}
+                      >
+                        {t("home.compare.without.uxBreaksCaption")}
+                      </p>
                     </div>
-
-                    {/* Arrow */}
-                    <div className="flex-1 min-w-2 h-[1px]" style={{ background: "var(--accent-gold)", opacity: 0.4 }} />
-
-                    {/* Ship */}
-                    <div
-                      className="px-3 py-2 text-[10px] sm:text-[11px] font-mono tracking-wider border whitespace-nowrap shrink-0"
-                      style={{
-                        color: "var(--accent-gold-dark)",
-                        background: "var(--accent-gold-muted)",
-                        borderColor: "color-mix(in srgb, var(--accent-gold) 40%, transparent)",
-                      }}
-                    >
-                      SHIP
-                    </div>
-
-                    {/* Dashed arrow */}
-                    <div className="flex-1 min-w-2 h-[1px] border-t border-dashed border-border/40" />
-
-                    {/* Next feature */}
-                    <div className="px-3 py-2 text-[10px] sm:text-[11px] font-mono tracking-wider text-muted-foreground bg-background border border-border/40 whitespace-nowrap shrink-0">
-                      NEXT FEATURE
-                    </div>
-                  </div>
-
-                  {/* Annotations row */}
-                  <div className="flex flex-row items-start w-full">
-                    {/* Spacer for first 3 items */}
-                    <div className="flex-1" />
-                    <span className="text-[9px] sm:text-[10px] font-mono tracking-wider text-muted-foreground opacity-50 whitespace-nowrap text-center" style={{ flexBasis: "25%" }}>
-                      Heurica exits
-                    </span>
-                    <div className="flex-1" />
-                    <span className="text-[9px] sm:text-[10px] font-mono tracking-wider text-muted-foreground opacity-50 whitespace-nowrap text-right">
-                      Your team continues
-                    </span>
                   </div>
                 </div>
               </div>
-            </div>
 
-          </div>
+              {/* Right — with Heurica */}
+              <div className="flex min-h-0 flex-col self-stretch md:pl-8">
+                <h3
+                  className="mb-6 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
+                  style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                >
+                  {t("home.compare.with.title1")}
+                  <br />
+                  {t("home.compare.with.title2")}
+                </h3>
+
+                <div className="flex min-h-0 flex-1 items-center justify-center py-4">
+                  <div className="flex w-full items-stretch gap-0">
+                    <div className="flex min-h-0 flex-1 flex-col items-center justify-start gap-3 border border-border/50 bg-muted/25 p-4 text-center dark:bg-muted/15 sm:p-5 md:min-h-[7.25rem]">
+                      <div className="flex min-h-[1.75rem] w-full items-center justify-center sm:min-h-[2rem]">
+                        <span
+                          className="text-sm font-normal text-foreground sm:text-base"
+                          style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                        >
+                          {t("home.compare.buildv1")}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <span className="text-xs text-muted-foreground">{t("home.compare.with.withWord")}</span>
+                        <span
+                          className="text-xs font-medium"
+                          style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "var(--accent-gold)" }}
+                        >
+                          Heurica
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      className="flex shrink-0 items-center justify-center self-center px-2 sm:px-3"
+                      aria-hidden
+                    >
+                      <span
+                        className="text-lg font-normal leading-none sm:text-xl"
+                        style={{
+                          fontFamily: "var(--font-ibm-plex-serif), serif",
+                          color: "var(--accent-gold)",
+                        }}
+                      >
+                        &rarr;
+                      </span>
+                    </div>
+
+                    <div
+                      className="flex min-h-0 flex-1 flex-col items-center justify-start gap-2 border p-4 text-center sm:p-5 md:min-h-[7.25rem]"
+                      style={{
+                        background: "var(--accent-gold-muted)",
+                        borderColor: "color-mix(in srgb, var(--accent-gold) 30%, transparent)",
+                      }}
+                    >
+                      <div className="flex min-h-[1.75rem] w-full items-center justify-center sm:min-h-[2rem]">
+                        <span
+                          className="text-sm font-normal sm:text-base"
+                          style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "var(--accent-gold-dark)" }}
+                        >
+                          {t("home.compare.with.buildNext")}
+                        </span>
+                      </div>
+                      <p className="w-full text-balance text-center text-xs leading-relaxed">
+                        <span
+                          className="text-xs font-medium"
+                          style={{ fontFamily: "var(--font-ibm-plex-serif), serif", color: "var(--accent-gold)" }}
+                        >
+                          Heurica
+                        </span>
+                        <span style={{ color: "var(--accent-gold-dark)", opacity: 0.85 }}>
+                          {t("home.compare.with.phase2Line1Tail")}
+                        </span>
+                        <br />
+                        <span style={{ color: "var(--accent-gold-dark)", opacity: 0.85 }}>
+                          {t("home.compare.with.phase2Line2")}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

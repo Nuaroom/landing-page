@@ -47,10 +47,10 @@ const steps: {
 ]
 
 const stepDescriptions: string[] = [
-  "We learn your product, your users, and where the team gets stuck.",
-  "We map how everything connects: flows, edge cases, dependencies your team hasn't untangled yet.",
-  "We join the build. Your team ships with UX clarity baked in.",
-  "UX decision framework built around your product's context. Your team makes better decisions on your own, not just while we're embedded.",
+  "We learn your product, business, users, and where the team gets stuck.",
+  "We map how everything connects: user flows, edge cases, UX complexities your team couldn't untangle.",
+  "We join the build and ship together, with UX clarity baked in.",
+  "UX decision framework built around your product's context. Moving forward, your team makes better UX decisions, not just while we're embedded.",
 ]
 
 export function FlowDiagram({ className = "" }: FlowDiagramProps) {
