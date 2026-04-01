@@ -7,7 +7,6 @@ import { ArrowRight, ClipboardCheck, Eye, ShieldCheck, Layers, UserCheck, Target
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { FlowDiagram } from "@/components/FlowDiagram"
-import { ComparisonDiagram } from "@/components/ComparisonDiagram"
 import { useLanguage } from "@/components/language-context"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
@@ -423,8 +422,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      {/* Comparison Diagram - full width */}
-      <ComparisonDiagram />
       {/* UX Reasoning Engine Section */}
       <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/40">
         <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
