@@ -422,7 +422,7 @@ const translations: Record<string, Record<Locale, string>> = {
   },
 
   // Home - Built For
-  "home.builtfor.label": { en: "BUILT FOR", ko: "대상" },
+  "home.builtfor.label": { en: "WHO WE SERVE", ko: "대상" },
   "home.builtfor.title1": { en: "Products where UX is hard.", ko: "UX가 어려운 제품." },
   "home.builtfor.desc1": {
     en: "Not marketing sites. Not consumer apps. Complex B2B products where the real problem is structure, not visuals.",

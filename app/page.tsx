@@ -104,9 +104,9 @@ function UseCasesSection() {
   ]
 
   return (
-    <section className="border-t border-border/60 pt-10 pb-10 sm:pt-14 sm:pb-14">
+    <section className="border-t border-border/60">
       {/* Full-width top/bottom borders for block feel */}
-      <div className="border-t border-b border-border/60 animate-on-scroll">
+      <div className="animate-on-scroll">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1C1917]">
             <div className="grid md:grid-cols-2">
@@ -137,10 +137,14 @@ function UseCasesSection() {
 
               {/* Right: 2x2 category grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2">
-                {useCaseItems.map((uc) => (
+                {useCaseItems.map((uc, idx) => (
                   <div
                     key={uc.nameKey}
-                    className="p-4 sm:p-8 border-l border-t border-stone-300/40 dark:border-white/10"
+                    className={
+                      idx < 2
+                        ? "p-4 sm:p-8 border-l border-stone-300/40 dark:border-white/10"
+                        : "p-4 sm:p-8 border-l border-t border-stone-300/40 dark:border-white/10"
+                    }
                   >
                     <div className="w-10 h-10 border border-stone-300/60 dark:border-white/15 flex items-center justify-center mb-4">
                       <uc.Icon className="w-5 h-5 text-muted-foreground" />
@@ -346,7 +350,7 @@ export default function LandingPage() {
       </section>
 
       {/* Case Study Section */}
-      <section className="py-10 sm:py-14">
+      <section className="py-10 sm:py-14 border-b border-border/60">
         <div className="border-t border-b border-border/60 animate-on-scroll">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="overflow-hidden" style={{ backgroundColor: 'var(--case-study-bg)' }}>
@@ -425,14 +429,15 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <hr className="border-t border-border/60" />
+
       <FlowInfographic />
-      {/* Built for */}
-      <UseCasesSection />
+
+      <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
+
       {/* UX Reasoning Engine Section */}
-      <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/60">
+      <section id="how-it-works" className="pt-14 sm:pt-20 border-t border-border/60">
         <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
-          <div className="px-6 sm:px-10 md:px-14">
+          <div className="px-6 sm:px-10 md:px-14 pb-10 sm:pb-14">
             <div className="mb-10 animate-on-scroll">
               <p
                 className="text-xs font-mono tracking-wider mb-3"
@@ -456,9 +461,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <hr className="border-t border-border/60" />
+      <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
+      {/* Built for */}
+      <UseCasesSection />
+      <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
       {/* Enterprise-Ready from Day 1 Section */}
-      <section className="py-10 sm:py-14">
+      <section className="pt-10 sm:pt-14 pb-10 sm:pb-14">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="text-center mb-6 animate-on-scroll">
             <h2

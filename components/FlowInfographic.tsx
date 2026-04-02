@@ -23,9 +23,9 @@ function Node({
   const sty: Record<string, React.CSSProperties> = {
     default: { background: "#FDFCF8", borderColor: "#E1E1DE" },
     danger: { background: "#F7EDE9", borderColor: "#E8CAC7" },
-    "danger-launch": { background: "#FDFCF8", borderColor: "#E8CAC7" },
+    "danger-launch": { background: "#FDFCF8", borderColor: "#E1E1DE" },
     "danger-fill": { background: "#F0D2CA", borderColor: "#D59A93" },
-    "gold-fill": { background: "#FFEBC9", borderColor: "#D58600", color: "#D58600" },
+    "gold-fill": { background: "#F0E2CB", borderColor: "#D58600", color: "#D58600" },
   }
   return (
     <div className={`${base} ${cls[variant]} ${className}`} style={{ ...serif, ...sty[variant] }}>
@@ -36,14 +36,14 @@ function Node({
 
 export function FlowInfographic() {
   return (
-    <section className="py-8 sm:py-12">
+    <section className="pt-8 pb-20 sm:pt-12 sm:pb-24">
       <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-20 lg:gap-28">
+        <div className="grid grid-cols-1 gap-[10rem] md:grid-cols-2 md:gap-20 lg:gap-28">
 
           {/* ═══ LEFT COLUMN: Without Heurica ═══ */}
-          <div className="pl-6 sm:pl-10 md:pl-14">
+          <div className="px-6 sm:px-10 md:px-0 animate-on-scroll">
             <h3
-              className="mb-10 text-2xl font-normal leading-relaxed text-foreground md:text-3xl"
+              className="mx-auto mb-10 max-w-[400px] text-2xl font-normal leading-relaxed text-foreground md:text-3xl"
               style={serif}
             >
               <span className="font-medium">1 Year</span> rebuilding with
@@ -52,8 +52,8 @@ export function FlowInfographic() {
             </h3>
 
             <div
-              className="relative"
-              style={{ aspectRatio: "568 / 644" }}
+              className="relative mx-auto"
+              style={{ aspectRatio: "568 / 644", maxWidth: "400px" }}
             >
               {/* SVG connectors */}
               <svg
@@ -91,7 +91,7 @@ export function FlowInfographic() {
                 <line
                   x1="478" y1="523" x2="478" y2="742"
                   stroke="#757575" strokeWidth="1.2"
-                  strokeDasharray="8 8" opacity="0.72"
+                  strokeDasharray="8 8"
                   markerEnd="url(#inf-arr-r)"
                 />
 
@@ -133,19 +133,19 @@ export function FlowInfographic() {
           </div>
 
           {/* ═══ RIGHT COLUMN: With Heurica ═══ */}
-          <div className="pr-6 sm:pr-10 md:pr-14">
+          <div className="px-6 sm:px-10 md:px-0 animate-on-scroll">
             <h3
-              className="mb-10 text-2xl font-normal leading-relaxed text-foreground md:text-3xl"
+              className="mx-auto mb-10 max-w-[400px] text-2xl font-normal leading-relaxed text-foreground md:text-3xl"
               style={serif}
             >
-              <span className="font-medium">3 Weeks</span> with Heurica.
+              <span className="font-medium">2 weeks</span> with Heurica.
               <br />
-              Then build what&#8217;s next with clarity.
+              Then build forward.
             </h3>
 
             <div
-              className="relative"
-              style={{ aspectRatio: "596 / 644" }}
+              className="relative mx-auto"
+              style={{ aspectRatio: "596 / 644", maxWidth: "400px" }}
             >
               {/* SVG connectors */}
               <svg
@@ -163,7 +163,7 @@ export function FlowInfographic() {
                 {/* Dashed amber zone border */}
                 <rect
                   x="795.5" y="210.5" width="595" height="361"
-                fill="none" stroke="#D58600"
+                fill="none" stroke="var(--accent-gold)"
                   strokeWidth="1" strokeDasharray="8 8"
                 />
 
@@ -171,7 +171,7 @@ export function FlowInfographic() {
                 <line
                   x1="1093" y1="276" x2="1093" y2="701"
                   stroke="#757575" strokeWidth="1.2"
-                  strokeDasharray="8 8" opacity="0.72"
+                  strokeDasharray="8 8"
                   markerEnd="url(#inf-arr-gold)"
                 />
               </svg>
@@ -198,14 +198,14 @@ export function FlowInfographic() {
                 </p>
               </div>
 
-              {/* Review */}
+              {/* Build right UX */}
               <div className="absolute" style={{ top: "29.81%", left: "27.35%", width: "45.13%" }}>
-                <Node label="Review" className="w-full" />
+                <Node label="Build right UX" className="w-full" />
               </div>
 
-              {/* Build right UX */}
+              {/* Launch */}
               <div className="absolute" style={{ top: "46.12%", left: "27.35%", width: "45.13%" }}>
-                <Node label="Build right UX" className="w-full" />
+                <Node label="Launch" className="w-full" />
               </div>
 
               {/* Growth */}
@@ -215,8 +215,8 @@ export function FlowInfographic() {
                   top: "83.98%",
                   left: "27.35%",
                   width: "45.13%",
-                  background: "#FFEBC9",
-                  borderColor: "#D58600",
+                  background: "#F0E2CB",
+                  borderColor: "var(--accent-gold-dark)",
                 }}
               >
                 <span
