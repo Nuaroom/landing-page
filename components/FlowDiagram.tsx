@@ -19,14 +19,14 @@ const steps: {
   {
     number: "01",
     label: "",
-    description: "Understand",
+    description: "Diagnose",
     Icon: FileSearch,
     cardText: "",
   },
   {
     number: "02",
     label: "",
-    description: "Analyze",
+    description: "Restructure",
     Icon: GitBranch,
     cardText: "",
   },
@@ -40,7 +40,7 @@ const steps: {
   {
     number: "04",
     label: "",
-    description: "Handoff",
+    description: "Independence",
     Icon: Rocket,
     cardText: "",
   },

@@ -230,20 +230,24 @@ const translations: Record<string, Record<Locale, string>> = {
     ko: "엔지니어가 만들었다. 사용자가 싫어한다.",
   },
   "home.hero.subtitle": {
-    en: "Your console has 47 columns, 20 filter dropdowns, and a toolbar",
-    ko: "47개 컬럼, 20개 필터, 교육 3시간짜리 툴바.",
+    en: "Speed without UX judgment is how you get 47 columns, 20 filter dropdowns,",
+    ko: "UX 판단 없는 속도가 47개 컬럼, 20개 필터,",
   },
   "home.hero.subtitle2": {
-    en: "that needs its own 3 hours training session.",
-    ko: "당신의 콘솔 얘기입니다.",
+    en: "and a toolbar that needs its own training session.",
+    ko: "자체 교육이 필요한 툴바를 만듭니다.",
+  },
+  "home.hero.subtitle3": {
+    en: "2 weeks to full UX direction.",
+    ko: "2주 만에 완전한 UX 방향.",
   },
   "home.hero.tagline1": {
-    en: "Your team ships fast but nobody owns UX.",
-    ko: "팀은 빠르게 출시하지만 UX를 책임지는 사람이 없습니다.",
+    en: "We are UX experts,",
+    ko: "우리는 UX 전문가,",
   },
   "home.hero.tagline2": {
-    en: "We embed and fix that.",
-    ko: "우리가 합류해서 해결합니다.",
+    en: "embedded into your build cycle.",
+    ko: "빌드 사이클에 합류합니다.",
   },
   "home.hero.cta": { en: "Book a Call", ko: "상담 예약하기" },
   "home.casestudy.quote.1": {
@@ -403,7 +407,7 @@ const translations: Record<string, Record<Locale, string>> = {
   "home.compare.with.withWord": { en: "with", ko: "with" },
   "home.compare.with.phase2Line1Tail": { en: " exits.", ko: "는 철수하고." },
   "home.compare.with.phase2Line2": { en: "You own UX direction.", ko: "UX 방향은 팀이 가져갑니다." },
-  "home.compare.with.buildNext": { en: "Build next", ko: "다음 빌드" },
+  "home.compare.with.buildNext": { en: "Build what's next", ko: "다음을 빌드" },
   "home.compare.with.subtitle": { en: "Structure first, then build with clarity", ko: "구조를 먼저 잡고, 명확하게 빌드" },
   "home.compare.map": { en: "Map structure", ko: "구조 매핑" },
   "home.compare.build": { en: "Build with clarity", ko: "명확하게 빌드" },

@@ -8,6 +8,7 @@ import Link from "next/link"
 import { useTheme } from "next-themes"
 import { FlowDiagram } from "@/components/FlowDiagram"
 import { ComparisonDiagram } from "@/components/ComparisonDiagram"
+import { FlowInfographic } from "@/components/FlowInfographic"
 import { useLanguage } from "@/components/language-context"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
@@ -103,9 +104,9 @@ function UseCasesSection() {
   ]
 
   return (
-    <section className="border-t border-border/40 pt-10 pb-10 sm:pt-14 sm:pb-14">
+    <section className="border-t border-border/60 pt-10 pb-10 sm:pt-14 sm:pb-14">
       {/* Full-width top/bottom borders for block feel */}
-      <div className="border-t border-b border-border/40 animate-on-scroll">
+      <div className="border-t border-b border-border/60 animate-on-scroll">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1C1917]">
             <div className="grid md:grid-cols-2">
@@ -267,7 +268,7 @@ export default function LandingPage() {
         style={{ zIndex: 1 }}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 h-full">
-          <div className="h-full border-l border-r border-border/40" />
+          <div className="h-full border-l border-r border-border/60" />
         </div>
       </div>
 
@@ -321,6 +322,7 @@ export default function LandingPage() {
               <p className="max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground">
                 {t("home.hero.subtitle")}
                 <br className="hidden sm:block" /> {t("home.hero.subtitle2")}
+                <br /> {t("home.hero.subtitle3")}
               </p>
             </div>
 
@@ -344,22 +346,22 @@ export default function LandingPage() {
       </section>
 
       {/* Case Study Section */}
-      <section className="py-14 sm:py-20">
-        <div className="border-t border-b border-border/40 animate-on-scroll">
+      <section className="py-10 sm:py-14">
+        <div className="border-t border-b border-border/60 animate-on-scroll">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="overflow-hidden" style={{ backgroundColor: 'var(--case-study-bg)' }}>
             <div className="grid sm:grid-cols-2">
               {/* Left: Content */}
-              <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-between">
+              <div className="flex flex-col justify-between px-6 py-5 sm:px-10 sm:py-8 md:px-14 md:py-10">
                 <div>
                   <p
-                    className="text-xs font-mono tracking-wider mb-3"
+                    className="mb-2 text-xs font-mono tracking-wider"
                     style={{ color: 'var(--accent-gold)' }}
                   >
                     CASE STUDY
                   </p>
                   <h2
-                    className="text-lg sm:text-xl md:text-2xl font-normal mb-4 leading-relaxed text-foreground"
+                    className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
                     style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                   >
                     &ldquo;{t("home.casestudy.quote.1")}<span style={{ color: 'var(--accent-gold-dark)' }}>{t("home.casestudy.quote.highlight1")}</span>{t("home.casestudy.quote.2")}<span style={{ color: 'var(--accent-gold-dark)' }}>{t("home.casestudy.quote.highlight2")}</span>{t("home.casestudy.quote.3")}&rdquo;
@@ -368,7 +370,7 @@ export default function LandingPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="flex flex-row gap-8 sm:gap-12 mt-8 sm:mt-10">
+                <div className="mt-6 flex flex-row gap-8 sm:mt-8 sm:gap-12">
                   <div className="flex items-start gap-3 sm:block">
                     <p
                       className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
@@ -414,7 +416,7 @@ export default function LandingPage() {
                   className="w-full h-full object-cover"
                   style={{ opacity: 0.55 }}
                 />
-                <Link href="/case-study/enterprise-data-security" className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 md:bottom-14 md:right-14 inline-flex items-center text-sm leading-normal font-medium hover:opacity-80 transition-opacity px-4 py-2 rounded-none" style={{ color: '#f5c542', backgroundColor: '#333', zIndex: 3 }}>
+                <Link href="/case-study/enterprise-data-security" className="absolute bottom-5 right-5 inline-flex items-center rounded-none px-4 py-2 text-sm font-medium leading-normal transition-opacity hover:opacity-80 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10" style={{ color: '#f5c542', backgroundColor: '#333', zIndex: 3 }}>
                   {t("home.casestudy.readmore")} &rsaquo;
                 </Link>
               </div>
@@ -423,11 +425,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <div className="pb-10 pt-0 sm:pb-14">
-        <ComparisonDiagram />
-      </div>
+      <hr className="border-t border-border/60" />
+      <FlowInfographic />
+      {/* Built for */}
+      <UseCasesSection />
       {/* UX Reasoning Engine Section */}
-      <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/40">
+      <section id="how-it-works" className="py-14 sm:py-20 border-t border-border/60">
         <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="px-6 sm:px-10 md:px-14">
             <div className="mb-10 animate-on-scroll">
@@ -453,10 +456,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      {/* Built for */}
-      <UseCasesSection />
+      <hr className="border-t border-border/60" />
       {/* Enterprise-Ready from Day 1 Section */}
-      <section className="py-10 sm:py-14 border-t border-border/40">
+      <section className="py-10 sm:py-14">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
           <div className="text-center mb-6 animate-on-scroll">
             <h2
@@ -472,11 +474,11 @@ export default function LandingPage() {
         </div>
 
         {/* Cards grid - border lines extend full width */}
-        <div className="border-t border-b border-border/40 animate-on-scroll">
+        <div className="border-t border-b border-border/60 animate-on-scroll">
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
             <div className="grid sm:grid-cols-3">
               {/* Card 1: Traceable Decisions */}
-              <div className="border-b border-border/40 p-5 sm:p-8 md:p-10 sm:border-b-0 sm:border-r">
+              <div className="border-b border-border/60 p-5 sm:p-8 md:p-10 sm:border-b-0 sm:border-r">
                 <div className="mb-4">
                   <Scale className="w-6 h-6 text-muted-foreground" />
                 </div>
@@ -487,7 +489,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 2: No Customer Data Required */}
-              <div className="border-b border-border/40 p-5 sm:p-8 md:p-10 sm:border-b-0 sm:border-r">
+              <div className="border-b border-border/60 p-5 sm:p-8 md:p-10 sm:border-b-0 sm:border-r">
                 <div className="mb-4">
                   <Zap className="w-6 h-6 text-muted-foreground" />
                 </div>
@@ -524,7 +526,7 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="border-border/40 bg-card/50 backdrop-blur-sm p-0">
+              <Card className="border-border/60 bg-card/50 backdrop-blur-sm p-0">
                 <CardContent className="p-6">
                   <div className="relative w-full mb-6 flex items-center justify-center overflow-hidden">
                     <ThemedImage
@@ -539,7 +541,7 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-border/40 bg-card/50 backdrop-blur-sm p-0">
+              <Card className="border-border/60 bg-card/50 backdrop-blur-sm p-0">
                 <CardContent className="p-6">
                   <div className="relative w-full mb-6 flex items-center justify-center overflow-hidden">
                     <ThemedImage
@@ -556,7 +558,7 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-border/40 bg-card/50 backdrop-blur-sm p-0">
+              <Card className="border-border/60 bg-card/50 backdrop-blur-sm p-0">
                 <CardContent className="p-6">
                   <div className="relative w-full mb-6 flex items-center justify-center overflow-hidden">
                     <ThemedImage
@@ -916,21 +918,21 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="bg-muted/50 border-border/40">
+              <Card className="bg-muted/50 border-border/60">
                 <CardContent className="p-8 text-center">
                   <div className="text-xl font-semibold mb-2">"This saved us 4 weeks of UX/UI design iteration."</div>
                   <p className="text-sm text-muted-foreground">CEO & Founder @Heurica</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-muted/50 border-border/40">
+              <Card className="bg-muted/50 border-border/60">
                 <CardContent className="p-8 text-center">
                   <div className="text-xl font-semibold mb-2">"This saved us 4 weeks of UX/UI design iteration."</div>
                   <p className="text-sm text-muted-foreground">CEO & Founder @Heurica</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-muted/50 border-border/40">
+              <Card className="bg-muted/50 border-border/60">
                 <CardContent className="p-8 text-center">
                   <div className="text-xl font-semibold mb-2">"This saved us 4 weeks of UX/UI design iteration."</div>
                   <p className="text-sm text-muted-foreground">CEO & Founder @Heurica</p>
