@@ -237,16 +237,12 @@ const translations: Record<string, Record<Locale, string>> = {
     en: "and a toolbar that needs its own training session.",
     ko: "자체 교육이 필요한 툴바를 만듭니다.",
   },
-  "home.hero.subtitle3": {
-    en: "2 weeks to full UX direction.",
+  "home.hero.tagline1": {
+    en: "Full UX direction in 2-weeks.",
     ko: "2주 만에 완전한 UX 방향.",
   },
-  "home.hero.tagline1": {
-    en: "We are UX experts,",
-    ko: "우리는 UX 전문가,",
-  },
   "home.hero.tagline2": {
-    en: "embedded into your build cycle.",
+    en: "Embedded into your build cycle.",
     ko: "빌드 사이클에 합류합니다.",
   },
   "home.hero.cta": { en: "Book a Call", ko: "상담 예약하기" },
@@ -417,8 +413,16 @@ const translations: Record<string, Record<Locale, string>> = {
   // Home - UX Reasoning Engine
   "home.engine.label": { en: "HOW WE WORK", ko: "일하는 방식" },
   "home.engine.title": {
-    en: "Expert UX judgment. Embedded at the speed your team ships.",
+    en: "AI tools help you build fast. We help you build right ",
     ko: "전문 UX 판단력. 팀의 출시 속도에 맞춰 합류합니다.",
+  },
+  "home.engine.title.italic": {
+    en: "and",
+    ko: "",
+  },
+  "home.engine.title.suffix": {
+    en: " fast.",
+    ko: "",
   },
 
   // Home - Built For

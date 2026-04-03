@@ -14,21 +14,14 @@ function Node({
 }) {
   const base = "px-4 py-2.5 text-center text-sm font-medium border-[1.5px]"
   const cls: Record<string, string> = {
-    default: "text-foreground",
-    danger: "text-[#B54A4A] dark:text-[#D47070]",
-    "danger-launch": "text-foreground",
-    "danger-fill": "text-[#9E3434] dark:text-[#C65A5A]",
-    "gold-fill": "",
-  }
-  const sty: Record<string, React.CSSProperties> = {
-    default: { background: "#FDFCF8", borderColor: "#E1E1DE" },
-    danger: { background: "#F7EDE9", borderColor: "#E8CAC7" },
-    "danger-launch": { background: "#FDFCF8", borderColor: "#E1E1DE" },
-    "danger-fill": { background: "#F0D2CA", borderColor: "#D59A93" },
-    "gold-fill": { background: "#F0E2CB", borderColor: "#D58600", color: "#D58600" },
+    default: "text-foreground bg-[#FDFCF8] border-[#E1E1DE] dark:bg-[#2D2D2D] dark:border-[#404040]",
+    danger: "text-[#B54A4A] bg-[#F7EDE9] border-[#E8CAC7] dark:text-[#D47070] dark:bg-[#3A2222] dark:border-[#5A3333]",
+    "danger-launch": "text-foreground bg-[#FDFCF8] border-[#E1E1DE] dark:bg-[#2D2D2D] dark:border-[#404040]",
+    "danger-fill": "text-[#9E3434] bg-[#F0D2CA] border-[#D59A93] dark:text-[#E08080] dark:bg-[#4A2020] dark:border-[#6A3A3A]",
+    "gold-fill": "bg-[#F0E2CB] border-[#D58600] text-[#D58600] dark:bg-[#3A3010] dark:border-[#D4B84A] dark:text-[#F6E05E]",
   }
   return (
-    <div className={`${base} ${cls[variant]} ${className}`} style={{ ...serif, ...sty[variant] }}>
+    <div className={`${base} ${cls[variant]} ${className}`} style={serif}>
       {label}
     </div>
   )
@@ -176,24 +169,24 @@ export function FlowInfographic() {
                 />
               </svg>
 
-              {/* Heurica — straddles dashed zone top */}
+              {/* Heurica — box restored, invisible border (0px, color matches page bg) */}
               <div
-                className="absolute text-center border-[1.5px] px-6 py-4"
+                className="absolute text-center border-0 px-4 pt-2 pb-4 bg-[#FAF8F3] dark:bg-[#2D2D2D]"
                 style={{
                   top: "0%",
                   left: "27.35%",
                   width: "45.13%",
-                  background: "#FDFCF8",
-                  borderColor: "#E1E1DE",
+                  borderColor: "var(--background)",
+                  borderStyle: "solid",
                 }}
               >
                 <span
                   className="text-lg font-normal sm:text-xl"
-                  style={{ ...serif, color: "#D58600" }}
+                  style={{ ...serif, color: "var(--accent-gold)" }}
                 >
                   Heurica
                 </span>
-                <p className="text-xs mt-1" style={{ color: "#D58600", opacity: 0.75 }}>
+                <p className="text-xs mt-1" style={{ color: "var(--accent-gold)", opacity: 0.75 }}>
                   Embedded UX judgement.
                 </p>
               </div>
@@ -210,24 +203,23 @@ export function FlowInfographic() {
 
               {/* Growth */}
               <div
-                className="absolute text-center border px-4 py-3"
+                className="absolute text-center border px-4 py-3 bg-[#F0E2CB] dark:bg-[#3A3010]"
                 style={{
                   top: "83.98%",
                   left: "27.35%",
                   width: "45.13%",
-                  background: "#F0E2CB",
-                  borderColor: "var(--accent-gold-dark)",
+                  borderColor: "color-mix(in srgb, var(--accent-gold) 42%, var(--background))",
                 }}
               >
                 <span
                   className="text-base font-normal sm:text-lg"
-                  style={{ ...serif, color: "#D58600" }}
+                  style={{ ...serif, color: "var(--accent-gold)" }}
                 >
                   Growth
                 </span>
                 <p
                   className="mt-1 text-xs leading-relaxed"
-                  style={{ color: "#D58600", opacity: 0.85 }}
+                  style={{ color: "var(--accent-gold)", opacity: 0.85 }}
                 >
                   Your team keeps building
                   <br />

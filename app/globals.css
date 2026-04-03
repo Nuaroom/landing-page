@@ -97,20 +97,20 @@
 
 /* Dark mode colors matching Heurica demo */
 .dark {
-  --background: #1C1C1C;
-  --foreground: #F5F0E1;
-  --card: #262626;
-  --card-foreground: #F5F0E1;
-  --popover: #262626;
-  --popover-foreground: #F5F0E1;
-  --primary: #F5F0E1;
-  --primary-foreground: #1C1C1C;
-  --secondary: #2D2D2D;
-  --secondary-foreground: #F5F0E1;
-  --muted: #2D2D2D;
-  --muted-foreground: #B8B0A0;
-  --accent: #2D2D2D;
-  --accent-foreground: #F5F0E1;
+  --background: #1A1A1A;
+  --foreground: #F0F0EC;
+  --card: #242424;
+  --card-foreground: #F0F0EC;
+  --popover: #242424;
+  --popover-foreground: #F0F0EC;
+  --primary: #F0F0EC;
+  --primary-foreground: #1A1A1A;
+  --secondary: #2A2A2A;
+  --secondary-foreground: #F0F0EC;
+  --muted: #2A2A2A;
+  --muted-foreground: #A8A8A0;
+  --accent: #2A2A2A;
+  --accent-foreground: #F0F0EC;
   --border: #404040;
   --input: #2D2D2D;
   --ring: #A0A0A0;
@@ -143,23 +143,23 @@
   --option-score-selected: #60a5fa; /* blue-400 equivalent */
   --option-button: #6b7280; /* gray-500 equivalent */
   --option-button-selected: #1d4ed8; /* blue-700 equivalent */
-  --waitlist-bg: #343434;
+  --waitlist-bg: #323232;
   --waitlist-bubble: #bebebe;
-  --case-study-bg: #2A2725;
-  --step-bg-base: #1C1917;
-  --step-bg-highlight: rgba(40,40,35,0.85);
-  --step-bg-highlight-2: rgba(40,40,35,0.7);
-  --step-bg-highlight-3: rgba(40,40,35,0.6);
-  --step-bg-accent: rgba(50,45,35,0.5);
-  --step-card-active: #1C1917;
+  --case-study-bg: #252525;
+  --step-bg-base: #1A1A1A;
+  --step-bg-highlight: rgba(38,38,38,0.85);
+  --step-bg-highlight-2: rgba(38,38,38,0.7);
+  --step-bg-highlight-3: rgba(38,38,38,0.6);
+  --step-bg-accent: rgba(45,45,45,0.5);
+  --step-card-active: #1A1A1A;
   /* Mockup component theme - dark */
-  --mock-bg: #1c1917;
-  --mock-bg-alt: #151311;
-  --mock-bg-hover: #292524;
-  --mock-bg-accent: rgba(168,162,158,0.12);
-  --mock-border: #3d3a37;
-  --mock-border-light: #292524;
-  --mock-border-dashed: #57534e;
+  --mock-bg: #1a1a1a;
+  --mock-bg-alt: #141414;
+  --mock-bg-hover: #282828;
+  --mock-bg-accent: rgba(160,160,160,0.12);
+  --mock-border: #3a3a3a;
+  --mock-border-light: #282828;
+  --mock-border-dashed: #555555;
   --mock-text-1: #e7e5e4;
   --mock-text-2: #d6d3d1;
   --mock-text-3: #a8a29e;

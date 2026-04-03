@@ -33,7 +33,7 @@ const steps: {
   {
     number: "03",
     label: "",
-    description: "Ship",
+    description: "Build",
     Icon: Scale,
     cardText: "",
   },

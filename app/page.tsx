@@ -108,7 +108,7 @@ function UseCasesSection() {
       {/* Full-width top/bottom borders for block feel */}
       <div className="animate-on-scroll">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
-          <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1C1917]">
+          <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1E1E1E]">
             <div className="grid md:grid-cols-2">
               {/* Left: Title + Description */}
               <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-center">
@@ -142,11 +142,11 @@ function UseCasesSection() {
                     key={uc.nameKey}
                     className={
                       idx < 2
-                        ? "p-4 sm:p-8 border-l border-stone-300/40 dark:border-white/10"
-                        : "p-4 sm:p-8 border-l border-t border-stone-300/40 dark:border-white/10"
+                        ? "p-4 sm:p-8 border-l border-neutral-300/40 dark:border-white/10"
+                        : "p-4 sm:p-8 border-l border-t border-neutral-300/40 dark:border-white/10"
                     }
                   >
-                    <div className="w-10 h-10 border border-stone-300/60 dark:border-white/15 flex items-center justify-center mb-4">
+                    <div className="w-10 h-10 border border-neutral-300/60 dark:border-white/15 flex items-center justify-center mb-4">
                       <uc.Icon className="w-5 h-5 text-muted-foreground" />
                     </div>
                     <h4 className="text-sm font-medium text-foreground">{t(uc.nameKey)}</h4>
@@ -171,7 +171,8 @@ export default function LandingPage() {
   const [subtitleText, setSubtitleText] = useState("")
   const [subtitleTyped, setSubtitleTyped] = useState(false)
   const heroTitle = t("home.hero.title")
-  const heroSubtitle = `${t("home.hero.tagline1")} ${t("home.hero.tagline2")}`
+  const heroSubtitleLine1 = t("home.hero.tagline1")
+  const heroSubtitleLine2 = t("home.hero.tagline2")
 
   // Handle hash scrolling when navigating from other pages
   useEffect(() => {
@@ -208,6 +209,7 @@ export default function LandingPage() {
   }, [isMounted, heroTitle])
 
   // Typing animation for hero subtitle (starts after hero title finishes)
+  const heroSubtitle = `${heroSubtitleLine1}\n${heroSubtitleLine2}`
   useEffect(() => {
     if (!heroTyped) return
     setSubtitleText("")
@@ -294,7 +296,7 @@ export default function LandingPage() {
             <HeroCircles />
 
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal mb-4 sm:mb-6 leading-tight lg:whitespace-nowrap w-fit max-w-full text-balance"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-normal mb-3 sm:mb-4 leading-tight lg:whitespace-nowrap w-fit max-w-full text-balance"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
               {typedText}
@@ -305,10 +307,14 @@ export default function LandingPage() {
 
             {heroTyped && (
               <p
-                className="text-lg sm:text-xl md:text-2xl font-normal mb-5 sm:mb-6 leading-tight text-balance"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-normal mb-5 sm:mb-6 leading-tight text-balance"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                {subtitleText}
+                {subtitleText.split('\n').map((line, i) => (
+                  <span key={i} className={i > 0 ? "mt-3 sm:mt-4 block" : "block"}>
+                    {line}
+                  </span>
+                ))}
                 {!subtitleTyped && (
                   <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
                 )}
@@ -323,10 +329,9 @@ export default function LandingPage() {
                 transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
               }}
             >
-              <p className="max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground">
+              <p className="max-w-2xl text-balance text-sm md:text-base leading-relaxed text-muted-foreground">
                 {t("home.hero.subtitle")}
                 <br className="hidden sm:block" /> {t("home.hero.subtitle2")}
-                <br /> {t("home.hero.subtitle3")}
               </p>
             </div>
 
@@ -449,10 +454,10 @@ export default function LandingPage() {
                 className="text-xl md:text-2xl lg:text-3xl font-normal mb-4 leading-tight"
                 style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
               >
-                {t("home.engine.title")}
+                {t("home.engine.title")}<em>{t("home.engine.title.italic")}</em>{t("home.engine.title.suffix")}
               </h2>
-              <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
-                AI tools help your team build faster. They don't help your team build right.
+              <p className="text-sm md:text-base text-muted-foreground max-w-xl leading-relaxed">
+                Expert UX judgment, embedded at the speed your team ships.
               </p>
             </div>
             <div className="animate-on-scroll">
