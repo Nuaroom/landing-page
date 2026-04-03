@@ -13,6 +13,12 @@ import { useLanguage } from "@/components/language-context"
 import { Footer } from "@/components/Footer"
 import { HeroCircles } from "@/components/HeroCircles"
 
+/** Hero + mid-page CTA character typing interval (ms); lower = faster */
+const HERO_TYPE_MS = 18
+
+const MID_CTA_LINE_1 = "Is your product designed by engineers, hated by users?"
+const MID_CTA_LINE_2 = "2 weeks to redesign what your team couldn't fix in a year."
+
 function ThemedImage({ lightSrc, darkSrc, alt, className }: { lightSrc: string; darkSrc: string; alt: string; className?: string }) {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -104,61 +110,58 @@ function UseCasesSection() {
   ]
 
   return (
-    <section className="border-t border-border/60">
-      {/* Full-width top/bottom borders for block feel */}
-      <div className="animate-on-scroll">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
-          <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1E1E1E]">
-            <div className="grid md:grid-cols-2">
-              {/* Left: Title + Description */}
-              <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-center">
-                <p
-                  className="text-xs font-mono tracking-wider mb-3"
-                  style={{ color: 'var(--accent-gold)' }}
-                >
-                  {t("home.builtfor.label")}
-                </p>
-                <h3
-                  className="text-2xl md:text-3xl font-normal mb-4 leading-tight text-foreground"
-                  style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-                >
-                  {t("home.builtfor.title1")}
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-                  {t("home.builtfor.desc1")}<br />
-                  {t("home.builtfor.desc2")}
-                </p>
-                <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8 mt-6 w-fit rounded-none" asChild>
-                  <Link href="/contact">
-                    {t("home.builtfor.cta")} &rsaquo;
-                  </Link>
-                </Button>
-              </div>
+    <div className="animate-on-scroll">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-7xl">
+        <div className="overflow-hidden bg-[#FDFCF8] dark:bg-[#1E1E1E]">
+          <div className="grid md:grid-cols-2">
+            {/* Left: Title + Description */}
+            <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-center">
+              <p
+                className="text-xs font-mono tracking-wider mb-3"
+                style={{ color: 'var(--accent-gold)' }}
+              >
+                {t("home.builtfor.label")}
+              </p>
+              <h3
+                className="text-2xl md:text-3xl font-normal mb-4 leading-tight text-foreground"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                {t("home.builtfor.title1")}
+              </h3>
+              <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
+                {t("home.builtfor.desc1")}<br />
+                {t("home.builtfor.desc2")}
+              </p>
+              <Button size="sm" className="px-4 py-1.5 text-xs font-semibold h-8 mt-6 w-fit rounded-none" asChild>
+                <Link href="/contact">
+                  {t("home.builtfor.cta")} &rsaquo;
+                </Link>
+              </Button>
+            </div>
 
-              {/* Right: 2x2 category grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                {useCaseItems.map((uc, idx) => (
-                  <div
-                    key={uc.nameKey}
-                    className={
-                      idx < 2
-                        ? "p-4 sm:p-8 border-l border-neutral-300/40 dark:border-white/10"
-                        : "p-4 sm:p-8 border-l border-t border-neutral-300/40 dark:border-white/10"
-                    }
-                  >
-                    <div className="w-10 h-10 border border-neutral-300/60 dark:border-white/15 flex items-center justify-center mb-4">
-                      <uc.Icon className="w-5 h-5 text-muted-foreground" />
-                    </div>
-                    <h4 className="text-sm font-medium text-foreground">{t(uc.nameKey)}</h4>
-                    <p className="text-sm text-muted-foreground mt-1">{t(uc.descKey)}</p>
+            {/* Right: 2x2 category grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              {useCaseItems.map((uc, idx) => (
+                <div
+                  key={uc.nameKey}
+                  className={
+                    idx < 2
+                      ? "p-4 sm:p-8 border-l border-neutral-300/40 dark:border-white/10"
+                      : "p-4 sm:p-8 border-l border-t border-neutral-300/40 dark:border-white/10"
+                  }
+                >
+                  <div className="w-10 h-10 border border-neutral-300/60 dark:border-white/15 flex items-center justify-center mb-4">
+                    <uc.Icon className="w-5 h-5 text-muted-foreground" />
                   </div>
-                ))}
-              </div>
+                  <h4 className="text-sm font-medium text-foreground">{t(uc.nameKey)}</h4>
+                  <p className="text-sm text-muted-foreground mt-1">{t(uc.descKey)}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 
@@ -170,6 +173,12 @@ export default function LandingPage() {
   const [heroTyped, setHeroTyped] = useState(false)
   const [subtitleText, setSubtitleText] = useState("")
   const [subtitleTyped, setSubtitleTyped] = useState(false)
+  const midCtaRef = useRef<HTMLDivElement | null>(null)
+  const [midCtaActive, setMidCtaActive] = useState(false)
+  const [midCtaLine1, setMidCtaLine1] = useState("")
+  const [midCtaLine1Done, setMidCtaLine1Done] = useState(false)
+  const [midCtaLine2, setMidCtaLine2] = useState("")
+  const [midCtaLine2Done, setMidCtaLine2Done] = useState(false)
   const heroTitle = t("home.hero.title")
   const heroSubtitleLine1 = t("home.hero.tagline1")
   const heroSubtitleLine2 = t("home.hero.tagline2")
@@ -204,7 +213,7 @@ export default function LandingPage() {
         clearInterval(interval)
         setTimeout(() => setHeroTyped(true), 300)
       }
-    }, 28)
+    }, HERO_TYPE_MS)
     return () => clearInterval(interval)
   }, [isMounted, heroTitle])
 
@@ -222,9 +231,61 @@ export default function LandingPage() {
         clearInterval(interval)
         setTimeout(() => setSubtitleTyped(true), 300)
       }
-    }, 28)
+    }, HERO_TYPE_MS)
     return () => clearInterval(interval)
   }, [heroTyped, heroSubtitle])
+
+  // Mid-page CTA: start typing when section scrolls into view (independent of hero)
+  useEffect(() => {
+    if (!isMounted) return
+    const el = midCtaRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMidCtaActive(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [isMounted])
+
+  useEffect(() => {
+    if (!midCtaActive) return
+    setMidCtaLine1("")
+    setMidCtaLine1Done(false)
+    setMidCtaLine2("")
+    setMidCtaLine2Done(false)
+    let i = 0
+    const id = setInterval(() => {
+      i++
+      setMidCtaLine1(MID_CTA_LINE_1.slice(0, i))
+      if (i >= MID_CTA_LINE_1.length) {
+        clearInterval(id)
+        setTimeout(() => setMidCtaLine1Done(true), 220)
+      }
+    }, HERO_TYPE_MS)
+    return () => clearInterval(id)
+  }, [midCtaActive])
+
+  useEffect(() => {
+    if (!midCtaLine1Done) return
+    setMidCtaLine2("")
+    setMidCtaLine2Done(false)
+    let i = 0
+    const id = setInterval(() => {
+      i++
+      setMidCtaLine2(MID_CTA_LINE_2.slice(0, i))
+      if (i >= MID_CTA_LINE_2.length) {
+        clearInterval(id)
+        setTimeout(() => setMidCtaLine2Done(true), 220)
+      }
+    }, HERO_TYPE_MS)
+    return () => clearInterval(id)
+  }, [midCtaLine1Done])
 
   // Scroll animation observer - starts after hero subtitle/CTA appear
   useEffect(() => {
@@ -329,9 +390,10 @@ export default function LandingPage() {
                 transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
               }}
             >
-              <p className="max-w-2xl text-balance text-sm md:text-base leading-relaxed text-muted-foreground">
+              <p className="max-w-2xl text-sm md:text-base leading-relaxed text-muted-foreground">
                 {t("home.hero.subtitle")}
-                <br className="hidden sm:block" /> {t("home.hero.subtitle2")}
+                <br /> {t("home.hero.subtitle2")}
+                <br /> {t("home.hero.subtitle3")}
               </p>
             </div>
 
@@ -364,39 +426,31 @@ export default function LandingPage() {
               <div className="flex flex-col justify-between px-6 py-5 sm:px-10 sm:py-8 md:px-14 md:py-10">
                 <div>
                   <p
-                    className="mb-2 text-xs font-mono tracking-wider"
+                    className="text-xs font-mono tracking-wider mb-8 sm:mb-10"
                     style={{ color: 'var(--accent-gold)' }}
                   >
-                    CASE STUDY
+                    CASE STUDY — FORTUNE 100-SERVING SECURITY ENTERPRISE
                   </p>
-                  <h2
-                    className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
-                    style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-                  >
-                    &ldquo;{t("home.casestudy.quote.1")}<span style={{ color: 'var(--accent-gold-dark)' }}>{t("home.casestudy.quote.highlight1")}</span>{t("home.casestudy.quote.2")}<span style={{ color: 'var(--accent-gold-dark)' }}>{t("home.casestudy.quote.highlight2")}</span>{t("home.casestudy.quote.3")}&rdquo;
-                  </h2>
-                  <p className="text-sm text-muted-foreground">&mdash; {t("home.casestudy.role")}</p>
-                </div>
-
-                {/* Stats */}
-                <div className="mt-6 flex flex-row gap-8 sm:mt-8 sm:gap-12">
-                  <div className="flex items-start gap-3 sm:block">
-                    <p
-                      className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
+                  <div className="mb-16 sm:mb-20">
+                    <h2
+                      className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
-                      {t("home.casestudy.stat1.number")}
-                    </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">{t("home.casestudy.stat1.label")}</p>
+                      &ldquo;{t("home.casestudy.quote.highlight1")}{t("home.casestudy.quote.2")} Heurica fixed in {t("home.casestudy.quote.highlight2")}{t("home.casestudy.quote.3")}&rdquo;
+                    </h2>
+                    <p className="text-sm md:text-base leading-relaxed text-muted-foreground">&mdash; {t("home.casestudy.role")}</p>
                   </div>
-                  <div className="flex items-start gap-3 sm:block">
-                    <p
-                      className="text-xl md:text-2xl font-normal tracking-tight shrink-0"
+                  <div>
+                    <h2
+                      className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
                       style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
                     >
-                      {t("home.casestudy.stat2.number")}
-                    </p>
-                    <p className="text-sm text-muted-foreground sm:mt-1">{t("home.casestudy.stat2.label")}</p>
+                      &ldquo;{t("home.casestudy.quote2.1")}{" "}
+                      {t("home.casestudy.quote2.2a")}
+                      {t("home.casestudy.quote2.highlight")}
+                      {t("home.casestudy.quote2.2b")}&rdquo;
+                    </h2>
+                    <p className="text-sm md:text-base leading-relaxed text-muted-foreground">&mdash; {t("home.casestudy.quote2.role")}</p>
                   </div>
                 </div>
 
@@ -425,11 +479,78 @@ export default function LandingPage() {
                   className="w-full h-full object-cover"
                   style={{ opacity: 0.55 }}
                 />
-                <Link href="/case-study/enterprise-data-security" className="absolute bottom-5 right-5 inline-flex items-center rounded-none px-4 py-2 text-sm font-medium leading-normal transition-opacity hover:opacity-80 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10" style={{ color: '#f5c542', backgroundColor: '#333', zIndex: 3 }}>
-                  {t("home.casestudy.readmore")} &rsaquo;
-                </Link>
+                <div
+                  className="absolute inset-x-0 bottom-0 h-1/2"
+                  style={{
+                    background: 'linear-gradient(to top, var(--case-study-bg) 0%, var(--case-study-bg) 10%, transparent 100%)',
+                    zIndex: 2,
+                  }}
+                />
+                <div className="absolute bottom-7 right-5 flex flex-col items-end sm:bottom-10 sm:right-8 md:bottom-12 md:right-10" style={{ zIndex: 3 }}>
+                  <Link
+                    href="/case-study/enterprise-data-security"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-10 items-center justify-center rounded-none px-6 py-2.5 text-base font-semibold transition-opacity hover:opacity-80"
+                    style={{ color: "#f5c542", backgroundColor: "#333" }}
+                  >
+                    {t("home.casestudy.readmore")} &rsaquo;
+                  </Link>
+                </div>
               </div>
             </div>
+            {/* Case Study Impact Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 border-t border-border/60" style={{ backgroundColor: 'var(--case-study-bg)' }}>
+              {[
+                { metric: "2 weeks \u2192 1 hour", label: "Onboard faster" },
+                { metric: "Hide \u2192 Demo first", label: "Sell more" },
+                { metric: "100+ \u2192 8 tickets", label: "Reduce support tickets" },
+                { metric: "2 hrs \u2192 10 mins", label: "User confidence" },
+              ].map((card, i) => (
+                <div
+                  key={i}
+                  className={`px-3 py-8 text-center sm:px-4 sm:py-9 md:px-5 md:py-10${i > 0 ? " border-l border-border/60" : ""}${i >= 2 ? " border-t border-border/60 md:border-t-0" : ""}`}
+                >
+                  <p
+                    className="mb-1.5 text-lg font-normal leading-snug text-foreground sm:mb-1 sm:whitespace-nowrap sm:text-xl md:text-2xl"
+                    style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                  >
+                    {card.metric}
+                  </p>
+                  <p className="text-sm md:text-base leading-relaxed text-muted-foreground">{card.label}</p>
+                </div>
+              ))}
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Built for → spacer → mid CTA; bottom edge is FlowInfographic border-t (avoid duplicate with section border-b) */}
+      <section>
+        <UseCasesSection />
+        <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
+        <div ref={midCtaRef} className="border-t border-border/60">
+          <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
+            <div className="px-6 py-6 sm:px-10 sm:py-8 md:px-14">
+              <h3
+                className="max-w-4xl text-2xl font-normal leading-tight text-foreground md:text-3xl"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+              >
+                {midCtaLine1}
+                {midCtaActive && !midCtaLine1Done && (
+                  <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
+                )}
+              </h3>
+              <h3
+                className="mt-3 max-w-4xl text-2xl font-normal leading-tight sm:mt-4 md:text-3xl"
+                style={{ fontFamily: "var(--font-ibm-plex-serif), serif", visibility: midCtaLine1Done ? 'visible' : 'hidden' }}
+              >
+                {midCtaLine1Done ? midCtaLine2 : '\u00A0'}
+                {midCtaLine1Done && !midCtaLine2Done && (
+                  <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
+                )}
+              </h3>
             </div>
           </div>
         </div>
@@ -437,10 +558,11 @@ export default function LandingPage() {
 
       <FlowInfographic />
 
-      <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
+      {/* No border-t: FlowInfographic already has border-b (avoids double line with spacer) */}
+      <div className="h-10 sm:h-14" aria-hidden="true" />
 
       {/* UX Reasoning Engine Section */}
-      <section id="how-it-works" className="pt-14 sm:pt-20 border-t border-border/60">
+      <section id="how-it-works" className="pt-10 sm:pt-14 border-t border-border/60">
         <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="px-6 sm:px-10 md:px-14 pb-10 sm:pb-14">
             <div className="mb-10 animate-on-scroll">
@@ -466,9 +588,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
-      {/* Built for */}
-      <UseCasesSection />
       <div className="h-10 sm:h-14 border-t border-border/60" aria-hidden="true" />
       {/* Enterprise-Ready from Day 1 Section */}
       <section className="pt-10 sm:pt-14 pb-10 sm:pb-14">

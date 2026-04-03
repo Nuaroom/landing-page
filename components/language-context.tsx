@@ -226,28 +226,32 @@ const translations: Record<string, Record<Locale, string>> = {
 
   // Home page
   "home.hero.title": {
-    en: "Designed by engineers. Hated by users.",
+    en: "UX is killing your growth.",
     ko: "엔지니어가 만들었다. 사용자가 싫어한다.",
   },
   "home.hero.subtitle": {
-    en: "Speed without UX judgment is how you get 47 columns, 20 filter dropdowns,",
-    ko: "UX 판단 없는 속도가 47개 컬럼, 20개 필터,",
+    en: "47 columns, 20 filter dropdowns, and",
+    ko: "47개 컬럼, 20개 필터 드롭다운,",
   },
   "home.hero.subtitle2": {
-    en: "and a toolbar that needs its own training session.",
+    en: "a toolbar that needs 2 weeks training session.",
     ko: "자체 교육이 필요한 툴바를 만듭니다.",
   },
+  "home.hero.subtitle3": {
+    en: "Sounds familiar? Let\u2019s fix it.",
+    ko: "익숙하신가요? 고쳐드립니다.",
+  },
   "home.hero.tagline1": {
-    en: "Full UX direction in 2-weeks.",
+    en: "We make legacy SaaS usable.",
     ko: "2주 만에 완전한 UX 방향.",
   },
   "home.hero.tagline2": {
-    en: "Embedded into your build cycle.",
+    en: "In weeks, not years.",
     ko: "빌드 사이클에 합류합니다.",
   },
   "home.hero.cta": { en: "Book a Call", ko: "상담 예약하기" },
   "home.casestudy.quote.1": {
-    en: "We burnt ",
+    en: "",
     ko: "\u2018다람쥐 뇌 샌드박스 디자인\u2019을 고치겠다고 ",
   },
   "home.casestudy.quote.highlight1": {
@@ -255,7 +259,7 @@ const translations: Record<string, Record<Locale, string>> = {
     ko: "1년",
   },
   "home.casestudy.quote.2": {
-    en: " trying to fix \u2018squirrel-brain sandbox design.\u2019 Got nowhere. Heurica fixed in ",
+    en: " burnt trying to fix \u2018squirrel-brain sandbox design.\u2019",
     ko: "을 날렸습니다. 아무것도 안 됐습니다. Heurica가 ",
   },
   "home.casestudy.quote.highlight2": {
@@ -266,8 +270,28 @@ const translations: Record<string, Record<Locale, string>> = {
     en: ".",
     ko: " 만에 끝냈습니다.",
   },
+  "home.casestudy.quote2.1": {
+    en: "I used to hide the demo till the very last day.",
+    ko: "데모를 마지막 날까지 숨기곤 했습니다.",
+  },
+  "home.casestudy.quote2.2a": {
+    en: "Now I show it from ",
+    ko: "이제는 ",
+  },
+  "home.casestudy.quote2.highlight": {
+    en: "day 1",
+    ko: "첫날부터",
+  },
+  "home.casestudy.quote2.2b": {
+    en: ".",
+    ko: " 보여줍니다.",
+  },
+  "home.casestudy.quote2.role": {
+    en: "Sales Head",
+    ko: "영업 총괄",
+  },
   "home.casestudy.role": {
-    en: "VP of Product, Data Security Enterprise serving Fortune 100",
+    en: "VP of Product",
     ko: "VP of Product, 포춘 100대 기업 고객사 보유 데이터 보안 기업",
   },
   "home.casestudy.stat1.number": { en: "2 weeks", ko: "2주" },
@@ -284,12 +308,12 @@ const translations: Record<string, Record<Locale, string>> = {
     ko: "제품 맥락에 맞춰 설계된 UX 의사결정 프레임워크. Heurica가 함께할 때만이 아니라, 팀 스스로 더 나은 UX 판단을 내릴 수 있도록.",
   },
   "home.cta.text1": {
-    en: "Speed of AI. Judgment of an expert.",
-    ko: "AI의 속도. 전문가의 판단.",
+    en: "Stop shipping Frankenstein UX.",
+    ko: "프랑켄슈타인 UX는 이제 그만 출시하세요.",
   },
   "home.cta.text2": {
-    en: "Ship Smart. Not just fast.",
-    ko: "빠르기만 한 게 아닌, 똑똑한 출시.",
+    en: "Your product deserves better UX decisions.",
+    ko: "제품은 더 나은 UX 결정을 받을 자격이 있습니다.",
   },
   "home.cta.button": { en: "Book a Call", ko: "상담 예약하기" },
 
@@ -479,8 +503,8 @@ const translations: Record<string, Record<Locale, string>> = {
   },
   "home.enterprise.card3.title": { en: "Embedded, not outsourced", ko: "외주가 아닌 합류" },
   "home.enterprise.card3.desc": {
-    en: "We work inside your build cycle. No separate design phase, no handoff deck that sits in a drawer.",
-    ko: "빌드 사이클 안에서 함께 일합니다. 별도 디자인 단계도, 서랍에 넣어둘 핸드오프 문서도 없습니다.",
+    en: "We don't hand you a redesign and leave. Your team gets a UX decision framework that outlasts our engagement.",
+    ko: "리디자인만 넘기고 떠나지 않습니다. 팀에는 협업 이후에도 남는 UX 결정 프레임워크가 생깁니다.",
   },
 
   // Contact page

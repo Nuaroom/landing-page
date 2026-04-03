@@ -29,29 +29,20 @@ function Node({
 
 export function FlowInfographic() {
   return (
-    <section className="pt-8 pb-20 sm:pt-12 sm:pb-24">
+    <section className="pt-8 pb-12 sm:pt-12 sm:pb-16 border-t border-b border-border/60">
       <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 gap-[10rem] md:grid-cols-2 md:gap-20 lg:gap-28">
 
           {/* ═══ LEFT COLUMN: Without Heurica ═══ */}
-          <div className="px-6 sm:px-10 md:px-0 animate-on-scroll">
-            <h3
-              className="mx-auto mb-10 max-w-[400px] text-2xl font-normal leading-relaxed text-foreground md:text-3xl"
-              style={serif}
-            >
-              <span className="font-medium">1 Year</span> rebuilding with
-              <br />
-              No dedicated expert.
-            </h3>
-
+          <div className="flex flex-col items-center px-6 sm:px-10 md:px-0 animate-on-scroll">
             <div
-              className="relative mx-auto"
-              style={{ aspectRatio: "568 / 644", maxWidth: "400px" }}
+              className="relative mx-auto w-full"
+              style={{ aspectRatio: "596 / 740", maxWidth: "400px" }}
             >
               {/* SVG connectors */}
               <svg
                 className="absolute inset-0 h-full w-full"
-                viewBox="128 163 568 644"
+                viewBox="114 163 596 740"
                 fill="none"
                 aria-hidden
               >
@@ -103,47 +94,64 @@ export function FlowInfographic() {
                 <Node label="Scope" className="w-full" />
               </div>
 
-              <div className="absolute" style={{ top: "15.06%", left: "0%", width: "45.13%" }}>
+              <div className="absolute" style={{ top: "13.1%", left: "0%", width: "45.13%" }}>
                 <Node label="Review" className="w-full" />
               </div>
 
-              <div className="absolute" style={{ top: "29.81%", left: "0%", width: "45.13%" }}>
+              <div className="absolute" style={{ top: "25.95%", left: "0%", width: "45.13%" }}>
                 <Node label="Build" className="w-full" />
               </div>
 
-              <div className="absolute" style={{ top: "45.65%", left: "37.85%", width: "45.13%" }}>
+              <div className="absolute" style={{ top: "39.73%", left: "37.85%", width: "45.13%" }}>
                 <Node label="Frankenstein UX" variant="danger" className="w-full" />
               </div>
 
-              <div className="absolute" style={{ top: "62.73%", left: "37.85%", width: "45.13%" }}>
+              <div className="absolute" style={{ top: "54.6%", left: "37.85%", width: "45.13%" }}>
                 <Node label="Launch" variant="danger-launch" className="w-full" />
               </div>
 
-              <div className="absolute" style={{ top: "90.37%", left: "37.85%", width: "45.13%" }}>
-                <Node label="No Growth" variant="danger-fill" className="w-full" />
+              {/* No Growth — danger/red palette matching Frankenstein UX */}
+              <div
+                className="absolute text-center border px-4 py-3 bg-[#F0D2CA] border-[#D59A93] dark:bg-[#4A2020] dark:border-[#6A3A3A]"
+                style={{
+                  top: "78.63%",
+                  left: "37.85%",
+                  width: "45.13%",
+                }}
+              >
+                <span
+                  className="text-base font-normal sm:text-lg text-[#9E3434] dark:text-[#E08080]"
+                  style={serif}
+                >
+                  No Growth
+                </span>
+                <p
+                  className="mt-1 text-xs leading-relaxed text-[#9E3434] dark:text-[#E08080]"
+                  style={{ opacity: 0.85 }}
+                >
+                  The loop never closes.
+                  <br />
+                  No lift for the business.
+                </p>
               </div>
             </div>
+            <h3 className="mt-10 w-full max-w-[400px] min-h-[3rem] text-center text-sm font-normal leading-relaxed text-muted-foreground md:min-h-[3.25rem] md:text-base">
+              1 Year rebuilding with
+              <br />
+              No dedicated expert.
+            </h3>
           </div>
 
           {/* ═══ RIGHT COLUMN: With Heurica ═══ */}
-          <div className="px-6 sm:px-10 md:px-0 animate-on-scroll">
-            <h3
-              className="mx-auto mb-10 max-w-[400px] text-2xl font-normal leading-relaxed text-foreground md:text-3xl"
-              style={serif}
-            >
-              <span className="font-medium">2 weeks</span> with Heurica.
-              <br />
-              Then build forward.
-            </h3>
-
+          <div className="flex flex-col items-center px-6 sm:px-10 md:px-0 animate-on-scroll">
             <div
-              className="relative mx-auto"
-              style={{ aspectRatio: "596 / 644", maxWidth: "400px" }}
+              className="relative mx-auto w-full"
+              style={{ aspectRatio: "596 / 740", maxWidth: "400px" }}
             >
               {/* SVG connectors */}
               <svg
                 className="absolute inset-0 h-full w-full"
-                viewBox="795 163 596 644"
+                viewBox="795 163 596 740"
                 fill="none"
                 aria-hidden
               >
@@ -153,17 +161,26 @@ export function FlowInfographic() {
                   </marker>
                 </defs>
 
-                {/* Dashed amber zone border */}
+                {/* Dashed amber zone — bottom at midpoint of grey arrow between Launch & Growth */}
                 <rect
-                  x="795.5" y="210.5" width="595" height="361"
-                fill="none" stroke="var(--accent-gold)"
-                  strokeWidth="1" strokeDasharray="8 8"
+                  x="795.5"
+                  y="210.5"
+                  width="595"
+                  height="415"
+                  fill="none"
+                  stroke="var(--accent-gold)"
+                  strokeWidth="1"
+                  strokeDasharray="8 8"
                 />
 
-                {/* Heurica → Growth (dashed vertical) */}
+                {/* Heurica → Growth (dashed vertical; ends at Growth card top) */}
                 <line
-                  x1="1093" y1="276" x2="1093" y2="701"
-                  stroke="#757575" strokeWidth="1.2"
+                  x1="1093"
+                  y1="276"
+                  x2="1093"
+                  y2="745"
+                  stroke="#757575"
+                  strokeWidth="1.2"
                   strokeDasharray="8 8"
                   markerEnd="url(#inf-arr-gold)"
                 />
@@ -192,20 +209,20 @@ export function FlowInfographic() {
               </div>
 
               {/* Build right UX */}
-              <div className="absolute" style={{ top: "29.81%", left: "27.35%", width: "45.13%" }}>
+              <div className="absolute" style={{ top: "25.95%", left: "27.35%", width: "45.13%" }}>
                 <Node label="Build right UX" className="w-full" />
               </div>
 
               {/* Launch */}
-              <div className="absolute" style={{ top: "46.12%", left: "27.35%", width: "45.13%" }}>
+              <div className="absolute" style={{ top: "40.14%", left: "27.35%", width: "45.13%" }}>
                 <Node label="Launch" className="w-full" />
               </div>
 
-              {/* Growth */}
+              {/* Growth — top matches No Growth card (78.63%) */}
               <div
                 className="absolute text-center border px-4 py-3 bg-[#F0E2CB] dark:bg-[#3A3010]"
                 style={{
-                  top: "83.98%",
+                  top: "78.63%",
                   left: "27.35%",
                   width: "45.13%",
                   borderColor: "color-mix(in srgb, var(--accent-gold) 42%, var(--background))",
@@ -227,6 +244,11 @@ export function FlowInfographic() {
                 </p>
               </div>
             </div>
+            <h3 className="mt-10 w-full max-w-[400px] min-h-[3rem] text-center text-sm font-normal leading-relaxed text-muted-foreground md:min-h-[3.25rem] md:text-base">
+              2 weeks with Heurica.
+              <br />
+              Then build forward.
+            </h3>
           </div>
 
         </div>
