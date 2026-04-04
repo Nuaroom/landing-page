@@ -171,8 +171,8 @@ export default function LandingPage() {
   const [isMounted, setIsMounted] = useState(false)
   const [typedText, setTypedText] = useState("")
   const [heroTyped, setHeroTyped] = useState(false)
-  const [subtitleText, setSubtitleText] = useState("")
   const [subtitleTyped, setSubtitleTyped] = useState(false)
+  const [activeQuote, setActiveQuote] = useState(0)
   const midCtaRef = useRef<HTMLDivElement | null>(null)
   const [midCtaActive, setMidCtaActive] = useState(false)
   const [midCtaLine1, setMidCtaLine1] = useState("")
@@ -180,8 +180,6 @@ export default function LandingPage() {
   const [midCtaLine2, setMidCtaLine2] = useState("")
   const [midCtaLine2Done, setMidCtaLine2Done] = useState(false)
   const heroTitle = t("home.hero.title")
-  const heroSubtitleLine1 = t("home.hero.tagline1")
-  const heroSubtitleLine2 = t("home.hero.tagline2")
 
   // Handle hash scrolling when navigating from other pages
   useEffect(() => {
@@ -217,23 +215,10 @@ export default function LandingPage() {
     return () => clearInterval(interval)
   }, [isMounted, heroTitle])
 
-  // Typing animation for hero subtitle (starts after hero title finishes)
-  const heroSubtitle = `${heroSubtitleLine1}\n${heroSubtitleLine2}`
   useEffect(() => {
     if (!heroTyped) return
-    setSubtitleText("")
-    setSubtitleTyped(false)
-    let i = 0
-    const interval = setInterval(() => {
-      i++
-      setSubtitleText(heroSubtitle.slice(0, i))
-      if (i >= heroSubtitle.length) {
-        clearInterval(interval)
-        setTimeout(() => setSubtitleTyped(true), 300)
-      }
-    }, HERO_TYPE_MS)
-    return () => clearInterval(interval)
-  }, [heroTyped, heroSubtitle])
+    setTimeout(() => setSubtitleTyped(true), 300)
+  }, [heroTyped])
 
   // Mid-page CTA: start typing when section scrolls into view (independent of hero)
   useEffect(() => {
@@ -357,30 +342,18 @@ export default function LandingPage() {
             <HeroCircles />
 
             <h1
-              className="text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-normal mb-3 sm:mb-4 leading-tight lg:whitespace-nowrap w-fit max-w-full text-balance"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-normal mb-5 sm:mb-6 leading-tight w-fit max-w-full text-balance"
               style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
             >
-              {typedText}
+              {typedText.split('\n').map((line, i) => (
+                <span key={i} className={i > 0 ? "block mt-2" : ""}>
+                  {line}
+                </span>
+              ))}
               {!heroTyped && (
                 <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
               )}
             </h1>
-
-            {heroTyped && (
-              <p
-                className="text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-normal mb-5 sm:mb-6 leading-tight text-balance"
-                style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
-              >
-                {subtitleText.split('\n').map((line, i) => (
-                  <span key={i} className={i > 0 ? "mt-3 sm:mt-4 block" : "block"}>
-                    {line}
-                  </span>
-                ))}
-                {!subtitleTyped && (
-                  <span className="inline-block ml-1 h-[0.9em] w-[2px] align-middle animate-blink bg-foreground" />
-                )}
-              </p>
-            )}
 
             <div
               className="mb-8 flex w-full flex-col items-center gap-1 sm:mb-10"
@@ -431,26 +404,62 @@ export default function LandingPage() {
                   >
                     CASE STUDY — FORTUNE 100-SERVING SECURITY ENTERPRISE
                   </p>
-                  <div className="mb-16 sm:mb-20">
-                    <h2
-                      className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
-                      style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                  <div className="relative min-h-[140px] sm:min-h-[160px]">
+                    <div
+                      className="transition-all duration-500 ease-in-out"
+                      style={{
+                        opacity: activeQuote === 0 ? 1 : 0,
+                        transform: activeQuote === 0 ? 'translateX(0)' : 'translateX(-20px)',
+                        position: activeQuote === 0 ? 'relative' : 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        pointerEvents: activeQuote === 0 ? 'auto' : 'none',
+                      }}
                     >
-                      &ldquo;{t("home.casestudy.quote.highlight1")}{t("home.casestudy.quote.2")} Heurica fixed in {t("home.casestudy.quote.highlight2")}{t("home.casestudy.quote.3")}&rdquo;
-                    </h2>
-                    <p className="text-sm md:text-base leading-relaxed text-muted-foreground">&mdash; {t("home.casestudy.role")}</p>
+                      <h2
+                        className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
+                        style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                      >
+                        &ldquo;{t("home.casestudy.quote.highlight1")}{t("home.casestudy.quote.2")} Heurica fixed in {t("home.casestudy.quote.highlight2")}{t("home.casestudy.quote.3")}&rdquo;
+                      </h2>
+                      <p className="text-sm md:text-base leading-relaxed text-muted-foreground">&mdash; {t("home.casestudy.role")}</p>
+                    </div>
+                    <div
+                      className="transition-all duration-500 ease-in-out"
+                      style={{
+                        opacity: activeQuote === 1 ? 1 : 0,
+                        transform: activeQuote === 1 ? 'translateX(0)' : 'translateX(20px)',
+                        position: activeQuote === 1 ? 'relative' : 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        pointerEvents: activeQuote === 1 ? 'auto' : 'none',
+                      }}
+                    >
+                      <h2
+                        className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
+                        style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                      >
+                        &ldquo;{t("home.casestudy.quote2.1")}{" "}
+                        {t("home.casestudy.quote2.2a")}
+                        {t("home.casestudy.quote2.highlight")}
+                        {t("home.casestudy.quote2.2b")}&rdquo;
+                      </h2>
+                      <p className="text-sm md:text-base leading-relaxed text-muted-foreground">&mdash; {t("home.casestudy.quote2.role")}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h2
-                      className="mb-3 text-lg font-normal leading-relaxed text-foreground sm:text-xl md:text-2xl"
-                      style={{ fontFamily: "var(--font-ibm-plex-serif), serif" }}
+                  <div className="flex items-center gap-3 mt-6">
+                    <button
+                      onClick={() => setActiveQuote(activeQuote === 0 ? 1 : 0)}
+                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={activeQuote === 0 ? "Next testimonial" : "Previous testimonial"}
                     >
-                      &ldquo;{t("home.casestudy.quote2.1")}{" "}
-                      {t("home.casestudy.quote2.2a")}
-                      {t("home.casestudy.quote2.highlight")}
-                      {t("home.casestudy.quote2.2b")}&rdquo;
-                    </h2>
-                    <p className="text-sm md:text-base leading-relaxed text-muted-foreground">&mdash; {t("home.casestudy.quote2.role")}</p>
+                      <span className="tabular-nums">{activeQuote + 1} / 2</span>
+                      <span className="inline-flex items-center justify-center w-7 h-7 border border-current/20 rounded-full">
+                        {activeQuote === 0 ? "\u2192" : "\u2190"}
+                      </span>
+                    </button>
                   </div>
                 </div>
 

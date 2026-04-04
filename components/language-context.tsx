@@ -226,7 +226,7 @@ const translations: Record<string, Record<Locale, string>> = {
 
   // Home page
   "home.hero.title": {
-    en: "UX is killing your growth.",
+    en: "Make your ugly SaaS usable\nin weeks, not years.",
     ko: "엔지니어가 만들었다. 사용자가 싫어한다.",
   },
   "home.hero.subtitle": {
